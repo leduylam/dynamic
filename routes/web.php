@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//Admin Controller
 use App\Http\Controllers\Admin\AdminController;
+
+//Frontend Controller
+use App\Http\Controllers\FrontEnd\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +18,7 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendController::class, 'home']);
 
 
 Route::prefix('/admin')->namespace('Admin')->group(function(){
