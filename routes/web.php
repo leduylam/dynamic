@@ -20,5 +20,6 @@ Route::get('/', function () {
 
 
 Route::prefix('/admin')->namespace('Admin')->group(function(){
+    Route::get('/login', [AdminController::class, 'login']);
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
 });

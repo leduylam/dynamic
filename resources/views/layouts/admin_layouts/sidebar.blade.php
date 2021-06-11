@@ -1,4 +1,4 @@
-<aside id="left-panel" class="left-panel">
+<aside id="left-panel" class="left-panel bg-light">
     <nav class="navbar navbar-expand-sm navbar-default">
 
         <div class="navbar-header">
@@ -9,12 +9,12 @@
             <a class="navbar-brand hidden" href="./"><i class="fa fa-bars"></i></a>
         </div>
 
-        <div id="main-menu" class="main-menu collapse navbar-collapse">
+        <div id="main-menu" class="main-menu collapse navbar-collapse bg-light">
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
-                <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Managers</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Components</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -46,7 +46,7 @@
                     </ul>
                 </li>
 
-                <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Sales</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
