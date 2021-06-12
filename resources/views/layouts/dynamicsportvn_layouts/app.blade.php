@@ -38,10 +38,10 @@
     </div>
     <!-- Preloader Start -->
 
-    @include('layouts.frontend_layout.header')
+    @include('layouts.dynamicsportvn_layouts.header')
     @yield('content')
     
-    @include('layouts.frontend_layout.footer')
+    @include('layouts.dynamicsportvn_layouts.footer')
    
 	<!-- JS here -->
 	
