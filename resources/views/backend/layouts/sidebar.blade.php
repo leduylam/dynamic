@@ -6,16 +6,16 @@
                 aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="{{ route('admin.dashboard') }}"><img src="{{ asset('admin/images/logo.png') }}" alt="Logo"></a>
+            <a class="navbar-brand" href="{{ route('admin.index') }}"><img src="{{ asset('admin/images/logo.png') }}" alt="Logo"></a>
             <a class="navbar-brand hidden" href=""><i class="fa fa-bars"></i></a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse bg-light">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{{ route('admin.dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    <a href="{{ route('admin.index') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
-                
+
                 <h3 class="menu-title">Orders</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
@@ -32,10 +32,10 @@
                 </li>
                 <h3 class="menu-title">Managers</h3><!-- /.menu-title -->
                 <li class="">
-                    <a href="{{ route('admin.list.category') }}"> <i class="menu-icon fa fa-table"></i>Categories</a>
+                    <a href="{{ route('admin.category.index') }}"> <i class="menu-icon fa fa-table"></i>Categories</a>
                 </li>
                 <li class="">
-                    <a href="{{ route('admin.list.product') }}"> <i class="menu-icon fa fa-table"></i>Products</a>
+                    <a href="{{ route('admin.product.index') }}"> <i class="menu-icon fa fa-table"></i>Products</a>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"

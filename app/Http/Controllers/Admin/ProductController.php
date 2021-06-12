@@ -14,8 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $title = "Product Table";
-        return view('admin.product.index', compact('title'));
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        //
     }
 
     /**
