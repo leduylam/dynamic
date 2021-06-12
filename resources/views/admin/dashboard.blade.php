@@ -5,7 +5,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                {{-- <h1>Dashboard</h1> --}}
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
                 <h4 class="mb-0">
                     <span class="count">10468</span>
                 </h4>
-                <p class="text-light">Members online</p>
+                <p class="text-light">All Products</p>
 
                 <div class="chart-wrapper px-0" style="height:70px;" height="70">
                     <canvas id="widgetChart1"></canvas>

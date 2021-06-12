@@ -46,9 +46,14 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Tiger Nixon</td>
+                                    <td class="category_image">
+                                        <img src="{{ asset('admin/images/no-image.png') }}" alt="">
+                                    </td>
                                     <td>Systdaaaaaaem Architect</td>
-                                    <td>Edinburgh</td>
+                                    <td>
+                                        <a href="" class="badge badge-success">Show</a>
+                                        <a href="" class="badge badge-secondary">Hide</a> 
+                                    </td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-outline-secondary">Update</a>
                                         <a href="" class="btn btn-sm btn-outline-danger">Delete</a>

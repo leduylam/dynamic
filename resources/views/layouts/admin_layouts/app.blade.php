@@ -23,10 +23,11 @@
     <link rel="stylesheet" href="{{ asset('admin/vendors/selectFX/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/jqvmap/dist/jqvmap.min.css') }}">
 
-    
+
     <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('admin/vendors/chosen/chosen.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
 
@@ -80,6 +81,7 @@
     <script src="{{ asset('admin/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{ asset('admin/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
     <script src="{{ asset('admin/assets/js/init-scripts/data-table/datatables-init.js') }}"></script>
+    <script src="{{ asset('admin/vendors/chosen/chosen.jquery.min.js') }}"></script>
     <script>
         (function($) {
             "use strict";
@@ -97,6 +99,13 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
+        jQuery(document).ready(function() {
+            jQuery(".standardSelect").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+        });
     </script>
 
 </body>
