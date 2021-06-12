@@ -1589,7 +1589,12 @@ header .form-inline {
 
 .breadcrumbs {
   margin-top: 0; }
-
+.category_image{
+  text-align: center;
+}
+.category_image img {
+  width: 60px;
+}
 /* Tabs */
 .nav-tabs a.active {
   color: #555;
