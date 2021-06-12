@@ -14,7 +14,7 @@
             <div class="page-title">
                 <ol class="breadcrumb text-right">
                     <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">{{ $title }}</a></li>
+                    <li><a href="#">Table</a></li>
                     <li class="active">Data table</li>
                 </ol>
             </div>
@@ -29,7 +29,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">{{ $title}}</strong>
+                        <strong class="card-title">Data Table</strong>
                         <a href="{{ route('admin.create.product') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
