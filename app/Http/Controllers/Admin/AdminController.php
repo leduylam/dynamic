@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function dashboard(){
-        return view('admin.dashboard');
+    public function index(){
+        return view('backend.dashboard');
     }
-    public function login(){
-        return view('admin.login');
+
+    public function create()
+    {
+        return view('backend.admin.create');
     }
 }

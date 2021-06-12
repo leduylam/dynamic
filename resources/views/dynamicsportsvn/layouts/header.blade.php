@@ -24,14 +24,14 @@
                                 </div>
                             </div>
                             <div class="header-info-right">
-                                   <ul>                                          
-                                       <li><a href="login.html">My Account </a></li>
-                                       <li><a href="product_list.html">Wish List  </a></li>
-                                       <li><a href="cart.html">Shopping</a></li>
-                                       <li><a href="cart.html">Cart</a></li>
-                                       <li><a href="checkout.html">Checkout</a></li>
-                                   </ul>
-                                </div>
+                                <ul>
+                                    <li><a href="login.html">My Account </a></li>
+                                    <li><a href="product_list.html">Wish List  </a></li>
+                                    <li><a href="cart.html">Shopping</a></li>
+                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

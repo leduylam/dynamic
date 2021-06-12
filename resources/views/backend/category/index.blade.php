@@ -1,4 +1,4 @@
-@extends('layouts.admin_layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title" style="justify-content: center">Categories table</strong>
-                        <a href="{{ route('admin.create.category') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
+                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -52,7 +52,7 @@
                                     <td>Systdaaaaaaem Architect</td>
                                     <td>
                                         <a href="" class="badge badge-success">Show</a>
-                                        <a href="" class="badge badge-secondary">Hide</a> 
+                                        <a href="" class="badge badge-secondary">Hide</a>
                                     </td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-outline-secondary">Update</a>
