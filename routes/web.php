@@ -17,9 +17,3 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::prefix('/admin')->namespace('Admin')->group(function(){
-    Route::get('/login', [AdminController::class, 'login']);
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
-});
