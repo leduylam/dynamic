@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin_layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -37,9 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>Images</th>
-                                    <th>SKU</th>
                                     <th>Categories</th>
-                                    <th>Price</th>
                                     <th>Active</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,7 +49,7 @@
                                     </td>
                                     <td>57790102</td>
                                     <td><a href="{{ route('admin.product.product-detail.create') }}">PUMA LS Sun Crew</a></td>
-                                    <td>1.422.000 VND</td>   
+                                    <td>1.422.000 VND</td>
                                     <td>
                                         <a href="" class="badge badge-success">Show</a>
                                         <a href="" class="badge badge-secondary">Hide</a>

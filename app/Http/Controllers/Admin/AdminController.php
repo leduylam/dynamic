@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AddAdminRequest;
+use App\Http\Requests\Admin\EditAdminRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 
@@ -33,23 +35,53 @@ class AdminController extends Controller
         return view('backend.admin.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param AddAdminRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(AddAdminRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $data['confirmation_code'] = md5(uniqid(mt_rand(), true));
+        $data['confirmed'] = true;
+        $data['status'] = true;
+        Admin::create($data);
+
+        return redirect()->route('admin.list')->with('success', 'Admin created successfully.');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function edit($id)
     {
-        //
+        $admin = Admin::find($id);
+
+        return view('backend.admin.edit', compact('admin'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @param EditAdminRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(EditAdminRequest $request, $id)
     {
-        //
+        $admin = Admin::find($id);
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $admin->update($data);
+
+        return redirect()->route('admin.list')->with('success', 'Admin update successfully');
     }
 
     public function destroy($id)
     {
-        //
+        $admin = Admin::find($id);
+        $admin->delete();
+
+        return redirect()->back()->with('success', 'Delete category successfully');
     }
 }
