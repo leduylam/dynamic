@@ -25,24 +25,35 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <form action="" method="POST">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="card">
                         <div class="card-header"><strong>Add New Category</strong></div>
                         <div class="card-body card-block">
                             <div class="form-group">
                                 <label for="name" class=" form-control-label">Category name</label>
-                                <input type="text" id="name" name="name" class="form-control">
+                                <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="name" class=" form-control-label">Category Description</label>
-                                <textarea name="description" id="description" cols="10" class="form-control"></textarea>
+                                <textarea name="description" id="description" cols="10" class="form-control"> {{ old('description') }}</textarea>
                             </div>
 
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">File
                                         input</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input"
+                                <div class="col-12 col-md-9"><input type="file" id="file-input" name="image"
                                         class="form-control-file"></div>
                             </div>
                         </div>
