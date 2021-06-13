@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -23,7 +24,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.create');
+        $category = Category::where('parent_id_1', 0)->where('parent_id_2', 0)->get();
+
+        return view('backend.product.create', compact('category'));
     }
 
     /**
@@ -34,7 +37,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

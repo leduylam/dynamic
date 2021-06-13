@@ -1,4 +1,4 @@
-@extends('layouts.admin_layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -37,28 +37,39 @@
                             <thead>
                                 <tr>
                                     <th>Images</th>
-                                    <th>Categories</th>
+                                    <th>Sku</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
                                     <th>Active</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($products as $product)
                                 <tr>
                                     <td class="images">
-                                        <img src="{{ asset('admin/images/no-image.png') }}" alt="">
+                                        <img class="img" src="{{ asset($product->image) }}" alt="">
                                     </td>
-                                    <td>57790102</td>
-                                    <td><a href="{{ route('admin.product.product-detail.create') }}">PUMA LS Sun Crew</a></td>
-                                    <td>1.422.000 VND</td>
+                                    <td>{{ $product->sku }}</td>
+                                    <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>
+                                    <td>{{ $product->price }}VND</td>
                                     <td>
-                                        <a href="" class="badge badge-success">Show</a>
-                                        <a href="" class="badge badge-secondary">Hide</a>
+                                        @if($product->status == 1)
+                                            <a href="#" class="badge badge-success">Show</a>
+                                        @else
+                                            <a href="#" class="badge badge-secondary">Hide</a>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-warning">Update</a>
-                                        <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
+                                            <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-sm btn-warning">Update</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
