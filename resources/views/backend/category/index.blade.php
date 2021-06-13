@@ -27,6 +27,11 @@
         <div class="row">
 
             <div class="col-md-12">
+                @if ($message = \Illuminate\Support\Facades\Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title" style="justify-content: center">Categories table</strong>
@@ -44,28 +49,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td class="category_image">
-                                        <img src="{{ asset('admin/images/no-image.png') }}" alt="">
-                                    </td>
-                                    <td>Systdaaaaaaem Architect</td>
-                                    <td>
-                                        <a href="" class="badge badge-success">Show</a>
-                                        <a href="" class="badge badge-secondary">Hide</a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="btn btn-sm btn-outline-secondary">Update</a>
-                                        <a href="" class="btn btn-sm btn-outline-danger">Delete</a>
-                                    </td>
-                                </tr>
+                                @foreach($categories as $category)
+                                    <tr>
+                                        <td>{{ $category->id }}</td>
+                                        <td class="category_image">
+                                            <a href="{{ route('admin.category.show', $category->id) }}">
+                                                <img src="{{ asset($category->image) }}" alt="">
+                                            </a>
+                                        </td>
+                                        <td><a href="{{ route('admin.category.show', $category->id) }}">{{ $category->name }}</a></td>
+                                        <td>
+                                            @if($category->status == 1)
+                                                <a href="#" class="badge badge-success">Show</a>
+                                            @else
+                                                <a href="#" class="badge badge-secondary">Hide</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
+                                                <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-sm btn-outline-secondary">Update</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
