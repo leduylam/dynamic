@@ -1,5 +1,4 @@
 @extends('backend.layouts.app')
-
 @section('content')
     <div class="breadcrumbs">
         <div class="col-sm-4">
@@ -33,36 +32,34 @@
                         </div>
                     @endif
                     <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title" style="justify-content: center">Colors table</strong>
-                            <a href="{{ route('admin.color.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
-                        </div>
+                        <div class="card-header"></div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Color</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
+                                    <th>Images</th>
+                                    <th>Category Name</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($colors as $color)
-                                    <tr>
-                                        <td>{{ $color->id }}</td>
-                                        <td>{{ $color->color }}</td>
-                                        <td>{{ $color->description }}</td>
-                                        <td>
-                                            <form action="{{ route('admin.color.destroy', $color->id) }}" method="POST">
-                                                <a href="{{ route('admin.color.edit', $color->id) }}" class="btn btn-sm btn-outline-secondary">Update</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tr>
+                                    <td>{{ $category->id }}</td>
+                                    <td class="category_image">
+                                        <a href="{{ route('admin.category.show.small', $category->id) }}">
+                                            <img class="img" src="{{ asset($category->image) }}" alt="">
+                                        </a>
+                                    </td>
+                                    <td><a href="{{ route('admin.category.show.small', $category->id) }}">{{ $category->name }}</a></td>
+                                    <td>
+                                        @if($category->status == 1)
+                                            <a href="#" class="badge badge-success">Show</a>
+                                        @else
+                                            <a href="#" class="badge badge-secondary">Hide</a>
+                                        @endif
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

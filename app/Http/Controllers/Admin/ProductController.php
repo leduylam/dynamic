@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -80,5 +81,15 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->back()->with('success', 'Delete category successfully');
+    }
+
+    public function createAttr()
+    {
+        return view('backend.product.attr.create');
+    }
+
+    public function storeAttr(Request $request, $id)
+    {
+        dd($request->all());
     }
 }

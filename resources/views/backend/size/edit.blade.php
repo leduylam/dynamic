@@ -14,7 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                        <li><a href="{{ route('admin.color.index') }}">Colors table</a></li>
+                        <li><a href="{{ route('admin.size.index') }}">Products table</a></li>
                         <li class="active">Add New</li>
                     </ol>
                 </div>
@@ -23,8 +23,9 @@
     </div>
     <div class="content mt-3">
         <div class="animated fadeIn">
-            <form action="{{ route('admin.color.store') }}" method="post">
+            <form action="{{ route('admin.size.update', $size->id) }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-lg-12">
                         @if ($errors->any())
@@ -37,18 +38,18 @@
                             </div>
                         @endif
                         <div class="card">
-                            <div class="card-header"><strong>Add Color</strong></div>
+                            <div class="card-header"><strong>Edit Size</strong></div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="card-body card-block">
                                         <div class="form-group">
-                                            <label for="size" class=" form-control-label">Color</label>
-                                            <input type="text" id="size" name="color" class="form-control" value="{{ old('color') }}">
+                                            <label for="size" class=" form-control-label">Size</label>
+                                            <input type="text" id="size" name="size" class="form-control" value="{{ !empty(old('size')) ? old('size') : $size->size }}">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="description" class=" form-control-label">Description</label>
-                                            <textarea name="description" id="description" cols="10" class="form-control"> {{ old('description') }}</textarea>
+                                            <textarea name="description" id="description" cols="10" class="form-control"> {{ !empty(old('description')) ?  old('description') : $size->description }}</textarea>
                                         </div>
                                     </div>
                                 </div>
