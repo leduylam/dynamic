@@ -36,27 +36,17 @@
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Images</th>
-                                    <th>SKU</th>
-                                    <th>Categories</th>
-                                    <th>Price</th>
-                                    <th>Active</th>
+                                    <th>#</th>
+                                    <th>Color</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="images">
-                                        <img src="{{ asset('admin/images/no-image.png') }}" alt="">
-                                    </td>
-                                    <td>57790102</td>
-                                    <td><a href="{{ route('admin.product.product-detail.create') }}">PUMA LS Sun Crew</a></td>
-                                    <td>1.422.000 VND</td>   
+                                    <td>1</td>
+                                    <td>Puma Black</td>
                                     <td>
-                                        <a href="" class="badge badge-success">Show</a>
-                                        <a href="" class="badge badge-secondary">Hide</a>
-                                    </td>
-                                    <td>
+                                        <a href="{{ route('admin.product.product-detail.create') }}" class="btn btn-sm btn-info">Add Detail</a>
                                         <a href="" class="btn btn-sm btn-warning">Update</a>
                                         <a href="" class="btn btn-sm btn-danger">Delete</a>
                                     </td>

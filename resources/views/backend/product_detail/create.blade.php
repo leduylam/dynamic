@@ -26,7 +26,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header"><strong>Add Attributes</strong></div>
+                        <div class="card-header">
+                            <strong>Add Attributes</strong>
+                            <a href="{{ route('admin.product.color.create') }}" class="btn btn-primary btn-sm" style="float: right; margin:0 10px;">Add Color</a>
+                            <a href="{{ route('admin.product.size.create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left:5px;">Add Size</a>
+                        </div>
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="card-body card-block">
@@ -41,8 +45,24 @@
                                     </div>
                                     <div class="field_wrapper">
                                         <div>
-                                            <input style="width: 150px;" type="text" name="size[]" id="size" placeholder="Size" value=""/>
-                                            <input style="width: 150px;" type="text" name="color[]" id="color" placeholder="Color" value=""/>
+                                            <select name="size[]" id="size" style="width: 150px;">
+                                                <option value="">-- select --</option>
+                                                <option value="">XS</option>
+                                                <option value="">S</option>
+                                                <option value="">M</option>
+                                                <option value="">L</option>
+                                                <option value="">XL</option>
+                                            </select>
+                                            <select name="color[]" id="color" style="width: 150px;">
+                                                <option value="">-- select --</option>
+                                                <option value="">White</option>
+                                                <option value="">Black</option>
+                                                <option value="">Pink</option>
+                                                <option value="">Green</option>
+                                                <option value="">Yellow</option>
+                                            </select>
+                                            {{-- <input style="width: 150px;" type="text" name="size[]" id="size" placeholder="Size" value=""/> --}}
+                                            {{-- <input style="width: 150px;" type="text" name="color[]" id="color" placeholder="Color" value=""/> --}}
                                             <input style="width: 150px;" type="text" name="brand[]" id="brand" placeholder="Brand" value=""/>
                                             <input style="width: 150px;" type="text" name="model[]" id="model" placeholder="Year Model" value=""/>
                                             <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
