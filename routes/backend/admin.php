@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductDetailController;
+use App\Http\Controllers\Admin\ProductSizeController;
+use App\Http\Controllers\Admin\ProductColorController;
 use App\Http\Controllers\Admin\CategoryController;
 
-Route::auth();
+// Route::auth();
 
 Route::group([
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
     'as' => 'admin.',
 ], function () {
     // page home
@@ -43,6 +45,24 @@ Route::group([
         ], function () {
             // Route::get('/', [ProductController::class, 'index'])->name('index');
             Route::get('/create', [ProductDetailController::class, 'create'])->name('create');
+        });
+
+        //page size
+        Route::group([
+            'prefix' => 'size',
+            'as' => 'size.',
+        ], function () {
+            // Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/create', [ProductSizeController::class, 'create'])->name('create');
+        });
+
+        //page size
+        Route::group([
+            'prefix' => 'color',
+            'as' => 'color.',
+        ], function () {
+            // Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/create', [ProductColorController::class, 'create'])->name('create');
         });
     });
 
