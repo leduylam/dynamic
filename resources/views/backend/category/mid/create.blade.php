@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                        <li><a href="{{ route('admin.index') }}">Admins table</a></li>
+                        <li><a href="{{ route('admin.category.index') }}">Categories table</a></li>
                         <li class="active">Add New</li>
                     </ol>
                 </div>
@@ -35,11 +35,16 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.category.store.mid', $category->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-header"><strong>Add New Category</strong></div>
                             <div class="card-body card-block">
+                                <div class="form-group">
+                                    <label for="name" class=" form-control-label">Category big</label>
+                                    <h5>{{ $category->name }}</h5>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="name" class=" form-control-label">Category name</label>
                                     <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
