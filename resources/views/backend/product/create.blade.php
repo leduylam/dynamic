@@ -1,4 +1,4 @@
-@extends('layouts.admin_layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -13,8 +13,8 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('admin.list.product') }}">Products table</a></li>
+                    <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
+                    <li><a href="{{ route('admin.product.index') }}">Products table</a></li>
                     <li class="active">Add New</li>
                 </ol>
             </div>
@@ -40,6 +40,19 @@
                                         <input type="text" id="sku" name="sku" class="form-control">
                                     </div>
                                     <div class="form-group">
+                                        <label for="price" class=" form-control-label">W/S Price</label>
+                                        <input type="text" id="price" name="price" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class=" form-control-label">Description</label>
+                                        <textarea name="description" id="description" class="form-control"
+                                            cols="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body card-block">
+                                    <div class="form-group">
                                         <label for="category_id" class="form-control-label">Category</label>
                                         <select class="form-control" id="category_id" name="category_id">
                                             <option value="">-- Select Category --</option>
@@ -58,12 +71,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="price" class=" form-control-label">W/S Price</label>
-                                        <input type="text" id="price" name="price" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description" class=" form-control-label">Description</label>
-                                        <textarea name="description" id="description" class="form-control"
+                                        <label for="content" class=" form-control-label">Description</label>
+                                        <textarea name="content" id="content" class="form-control"
                                             cols="10"></textarea>
                                     </div>
                                     <div class="row form-group">
@@ -72,37 +81,6 @@
                                                 input</label></div>
                                         <div class="col-12 col-md-9"><input type="file" id="file-input"
                                                 name="file-input" class="form-control-file"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card-body card-block">
-                                    <div class="form-group">
-                                        <label for="size" class=" form-control-label">Size</label>
-                                        <select name="size" id="size" class="form-control">
-                                            <option value="">-- Select Size --</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="color" class=" form-control-label">Color</label>
-                                        <select name="color" id="color" class="form-control">
-                                            <option value="">-- Select Color --</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="brand" class=" form-control-label">Brand</label>
-                                        <select name="brand" id="brand" class="form-control">
-                                            <option value="">-- Select Brand --</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="model" class=" form-control-label">Year Model</label>
-                                        <input type="text" id="model" name="model" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="content" class=" form-control-label">Description</label>
-                                        <textarea name="content" id="content" class="form-control"
-                                            cols="10"></textarea>
                                     </div>
                                 </div>
                             </div>

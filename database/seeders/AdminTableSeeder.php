@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin;
 use Carbon\Carbon as Carbon;
 
 class AdminTableSeeder extends Seeder
@@ -15,19 +16,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        if (DB::connection()->getDriverName() == 'mysql') {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        }
-
-        if (DB::connection()->getDriverName() == 'mysql') {
-            DB::table(config('access.users_table'))->truncate();
-        } elseif (DB::connection()->getDriverName() == 'sqlite') {
-            DB::statement('DELETE FROM ' . config('access.users_table'));
-        } else {
-            //For PostgreSQL or anything else
-            DB::statement('TRUNCATE TABLE ' . config('access.users_table') . ' CASCADE');
-        }
-
+        
         //Add the master administrator, user id of 1
         $users = [
             [
@@ -58,10 +47,8 @@ class AdminTableSeeder extends Seeder
             ],
         ];
 
-        DB::table(config('access.users_table'))->insert($users);
+        Admin::insert($users);
 
-        if (DB::connection()->getDriverName() == 'mysql') {
-            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        }
+        
     }
 }
