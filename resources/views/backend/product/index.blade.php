@@ -1,4 +1,4 @@
-@extends('layouts.admin_layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -14,7 +14,7 @@
             <div class="page-title">
                 <ol class="breadcrumb text-right">
                     <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">{{ $title }}</a></li>
+                    <li><a href="#">Product table</a></li>
                     <li class="active">Data table</li>
                 </ol>
             </div>
@@ -29,27 +29,37 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">{{ $title}}</strong>
-                        <a href="{{ route('admin.create.product') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
+                        <strong class="card-title">Product Manage</strong>
+                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Images</th>
+                                    <th>SKU</th>
                                     <th>Categories</th>
+                                    <th>Price</th>
                                     <th>Active</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>Systdaaaaaaem Architect</td>
-                                    <td>Show / Hide</td>
+                                    <td class="images">
+                                        <img src="{{ asset('admin/images/no-image.png') }}" alt="">
+                                    </td>
+                                    <td>57790102</td>
+                                    <td>PUMA LS Sun Crew</td>
+                                    <td>1.422.000 VND</td>   
                                     <td>
-                                        <a href="" class="btn btn-warning">Update</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <a href="" class="badge badge-success">Show</a>
+                                        <a href="" class="badge badge-secondary">Hide</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.product.product-detail.create') }}" class="btn btn-sm btn-info">Add Detail</a>
+                                        <a href="" class="btn btn-sm btn-warning">Update</a>
+                                        <a href="" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             </tbody>

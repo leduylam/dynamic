@@ -1589,10 +1589,10 @@ header .form-inline {
 
 .breadcrumbs {
   margin-top: 0; }
-.category_image{
+.images{
   text-align: center;
 }
-.category_image img {
+.images img {
   width: 60px;
 }
 /* Tabs */

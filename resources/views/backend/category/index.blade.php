@@ -52,7 +52,7 @@
                                 @foreach($categories as $category)
                                     <tr>
                                         <td>{{ $category->id }}</td>
-                                        <td class="category_image">
+                                        <td class="images">
                                             <a href="{{ route('admin.category.show', $category->id) }}">
                                                 <img src="{{ asset($category->image) }}" alt="">
                                             </a>

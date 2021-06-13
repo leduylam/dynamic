@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductDetailController;
 use App\Http\Controllers\Admin\CategoryController;
 
-Route::auth();
+// Route::auth();
 
 Route::group([
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
     'as' => 'admin.',
 ], function () {
     // page home
@@ -33,7 +34,20 @@ Route::group([
         'as' => 'product.',
     ], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/create', [ProductController::class, 'create'])->name('create');
+
+
+        Route::group([
+            'prefix' => 'product-detail',
+            'as' => 'product-detail.',
+        ], function () {
+            // Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/create', [ProductDetailController::class, 'create'])->name('create');
+        });
     });
+
+    
+    
 
     //page category
     Route::group([

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin;
 
 class AccessTableSeeder extends Seeder
 {
@@ -14,14 +15,9 @@ class AccessTableSeeder extends Seeder
      */
     public function run()
     {
-        if (DB::connection()->getDriverName() == 'mysql') {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        }
-
+        
         $this->call(AdminTableSeeder::class);
 
-        if (DB::connection()->getDriverName() == 'mysql') {
-            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        }
+       
     }
 }

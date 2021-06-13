@@ -24,7 +24,7 @@ class ProductDetailController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.product_detail.create');
     }
 
     /**
