@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Product Manage</strong>
-                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
+                        <a href="" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -38,7 +38,7 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>SKU</th>
-                                    <th>Categories</th>
+                                    <th>Description</th>
                                     <th>Price</th>
                                     <th>Active</th>
                                     <th>Action</th>
@@ -49,7 +49,7 @@
                                     <td class="images">
                                         <img src="{{ asset('admin/images/no-image.png') }}" alt="">
                                     </td>
-                                    <td>57790102</td>
+                                    <td><a href="{{ route('admin.product.product-detail.create') }}">57790102</a></td>
                                     <td><a href="{{ route('admin.product.product-detail.create') }}">PUMA LS Sun Crew</a></td>
                                     <td>1.422.000 VND</td>   
                                     <td>

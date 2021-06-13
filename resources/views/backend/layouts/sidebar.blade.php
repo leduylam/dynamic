@@ -39,14 +39,15 @@
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Detail</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                        <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
+                        <li><i class="menu-icon fa fa-line-chart"></i><a href="{{ route('admin.size.index') }}">Sizes</a></li>
+                        <li><i class="menu-icon fa fa-area-chart"></i><a href="{{ route('admin.color.index') }}">Colors</a></li>
                     </ul>
                 </li>
-
+                <li class="">
+                    <a href="{{ route('admin.stock.index') }}"> <i class="menu-icon fa fa-table"></i>Stock</a>
+                </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>

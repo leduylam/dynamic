@@ -14,7 +14,7 @@ class ProductSizeController extends Controller
      */
     public function index()
     {
-        
+        return view('backend.size.index');
     }
 
     /**

@@ -14,7 +14,7 @@ class ProductColorController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.color.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductColorController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.color.create');
     }
 
     /**

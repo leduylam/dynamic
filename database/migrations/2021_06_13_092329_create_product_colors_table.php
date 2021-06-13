@@ -17,6 +17,7 @@ class CreateProductColorsTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->string('color');
+            $table->string('sku'); //Trường này hiểu thị mã màu dạng số hoặc chữ (vd: màu trắng sku là 02 hoặc WHT)
             $table->timestamps();
         });
     }
