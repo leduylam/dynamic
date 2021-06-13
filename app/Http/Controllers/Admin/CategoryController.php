@@ -92,7 +92,7 @@ class CategoryController extends Controller
         $data['image'] = !empty($image) ? $image : $category['image'];
         $category->update($data);
 
-        return redirect()->route('admin.category.index')->with('success', 'Update category success');
+        return redirect()->route('admin.category.index')->with('success', 'Update category successfully');
     }
 
     /**
@@ -107,7 +107,7 @@ class CategoryController extends Controller
         \File::delete(public_path() . '/' . $category['image']);
         $category->delete();
 
-        return redirect()->route('admin.category.index')->with('success', 'Delete category success');
+        return redirect()->route('admin.category.index')->with('success', 'Delete category successfully');
     }
 
     /**
@@ -185,6 +185,6 @@ class CategoryController extends Controller
         $data['image'] = !empty($image) ? $image : $category['image'];
         $category->update($data);
 
-        return redirect()->route('admin.category.show', $category_parent_id)->with('success', 'Category update success');
+        return redirect()->route('admin.category.show', $category_parent_id)->with('success', 'Category update successfully');
     }
 }

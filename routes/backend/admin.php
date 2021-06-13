@@ -8,10 +8,10 @@ use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ProductColorController;
 use App\Http\Controllers\Admin\CategoryController;
 
-// Route::auth();
+Route::auth();
 
 Route::group([
-    // 'middleware' => 'auth',
+    'middleware' => 'auth',
     'as' => 'admin.',
 ], function () {
     // page home
@@ -20,6 +20,7 @@ Route::group([
     // page admins
     Route::get('/list', [AdminController::class, 'listAdmin'])->name('list');
     Route::get('/create', [AdminController::class, 'create'])->name('create');
+    Route::post('/store', [AdminController::class, 'store'])->name('store');
 
     Route::group([
         'prefix' => '{id}',
@@ -37,37 +38,17 @@ Route::group([
     ], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::post('/', [ProductController::class, 'store'])->name('store');
 
-        //page product-detail
         Route::group([
-            'prefix' => 'product-detail',
-            'as' => 'product-detail.',
+            'prefix' => '{id}',
         ], function () {
-            // Route::get('/', [ProductController::class, 'index'])->name('index');
-            Route::get('/create', [ProductDetailController::class, 'create'])->name('create');
-        });
-
-        //page size
-        Route::group([
-            'prefix' => 'size',
-            'as' => 'size.',
-        ], function () {
-            // Route::get('/', [ProductController::class, 'index'])->name('index');
-            Route::get('/create', [ProductSizeController::class, 'create'])->name('create');
-        });
-
-        //page size
-        Route::group([
-            'prefix' => 'color',
-            'as' => 'color.',
-        ], function () {
-            // Route::get('/', [ProductController::class, 'index'])->name('index');
-            Route::get('/create', [ProductColorController::class, 'create'])->name('create');
+            Route::get('/show', [ProductController::class, 'show'])->name('show');
+            Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
+            Route::put('/', [ProductController::class, 'update'])->name('update');
+            Route::delete('/', [ProductController::class, 'destroy'])->name('destroy');
         });
     });
-
-    
-    
 
     //page category
     Route::group([

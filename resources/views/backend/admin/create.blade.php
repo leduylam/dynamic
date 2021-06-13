@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                        <li><a href="{{ route('admin.index') }}">Admins table</a></li>
+                        <li><a href="{{ route('admin.list') }}">Admins table</a></li>
                         <li class="active">Add New</li>
                     </ol>
                 </div>
@@ -35,26 +35,39 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.store') }}" method="POST">
                         @csrf
                         <div class="card">
-                            <div class="card-header"><strong>Add New Category</strong></div>
+                            <div class="card-header"><strong>Add New Admin</strong></div>
                             <div class="card-body card-block">
                                 <div class="form-group">
-                                    <label for="name" class=" form-control-label">Category name</label>
+                                    <label for="name" class=" form-control-label">Name</label>
                                     <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="name" class=" form-control-label">Category Description</label>
-                                    <textarea name="description" id="description" cols="10" class="form-control"> {{ old('description') }}</textarea>
+                                    <label for="email" class=" form-control-label">Email</label>
+                                    <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
                                 </div>
 
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">File
-                                            input</label></div>
-                                    <div class="col-12 col-md-9"><input type="file" id="file-input" name="image"
-                                                                        class="form-control-file"></div>
+                                <div class="form-group">
+                                    <label for="address" class=" form-control-label">Address</label>
+                                    <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone" class=" form-control-label">Phone</label>
+                                    <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class=" form-control-label">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control" value="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password_confirm" class=" form-control-label">Password confirm</label>
+                                    <input type="password" id="password_confirm" name="password_confirmation" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="card-footer">
