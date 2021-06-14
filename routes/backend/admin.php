@@ -51,45 +51,6 @@ Route::group([
         Route::group([
             'prefix' => '{id}',
         ], function () {
-<<<<<<< HEAD
-            // Route::get('/', [ProductController::class, 'index'])->name('index');
-            Route::get('/create', [ProductDetailController::class, 'create'])->name('create');
-        });
-
-        
-
-        
-    });
-
-    //page color
-    Route::group([
-        'prefix' => 'color',
-        'as' => 'color.',
-    ], function () {
-        Route::get('/', [ProductColorController::class, 'index'])->name('index');
-        Route::get('/create', [ProductColorController::class, 'create'])->name('create');
-    });
-    
-
-    //page size
-    Route::group([
-        'prefix' => 'size',
-        'as' => 'size.',
-    ], function () {
-        Route::get('/', [ProductSizeController::class, 'index'])->name('index');
-        Route::get('/create', [ProductSizeController::class, 'create'])->name('create');
-    });
-
-    //page stock
-    Route::group([
-        'prefix' => 'stock',
-        'as' => 'stock.',
-    ], function () {
-        Route::get('/', [StockController::class, 'index'])->name('index');
-        Route::get('/create', [StockController::class, 'create'])->name('create');
-    });
-    
-=======
             Route::get('/show', [ProductController::class, 'show'])->name('show');
             Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
             Route::get('/attr', [ProductController::class, 'createAttr'])->name('create.attr');
@@ -99,7 +60,6 @@ Route::group([
         });
     });
 
->>>>>>> main
     //page category
     Route::group([
         'prefix' => 'category',
