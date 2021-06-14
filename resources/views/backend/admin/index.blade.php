@@ -43,6 +43,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -52,6 +55,9 @@
                                     <tr>
                                         <td>{{ $admin->id }}</td>
                                         <td><a href="{{ route('admin.show', $admin->id) }}">{{ $admin->name }}</a></td>
+                                        <td><a href="{{ route('admin.show', $admin->id) }}">{{ $admin->email }}</a></td>
+                                        <td><a href="{{ route('admin.show', $admin->id) }}">{{ $admin->address }}</a></td>
+                                        <td><a href="{{ route('admin.show', $admin->id) }}">{{ $admin->phone }}</a></td>
                                         <td>
                                             @if($admin->status == 1)
                                                 <a href="#" class="badge badge-success">Show</a>

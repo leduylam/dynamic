@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                        <li><a href="{{ route('admin.list') }}">Admins table</a></li>
+                        <li><a href="{{ route('admin.category.index') }}">Categories table</a></li>
                         <li class="active">Add New</li>
                     </ol>
                 </div>
@@ -35,39 +35,39 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.store') }}" method="POST">
+                    <form action="{{ route('admin.category.update.small', $category->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="card">
-                            <div class="card-header"><strong>Add New Admin</strong></div>
+                            <div class="card-header"><strong>Add New Category</strong></div>
                             <div class="card-body card-block">
                                 <div class="form-group">
-                                    <label for="name" class=" form-control-label">Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
+                                    <label for="name" class=" form-control-label">Category big</label>
+                                    <h5>{{ $category_big->name }}</h5>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email" class=" form-control-label">Email</label>
-                                    <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                                    <label for="name" class=" form-control-label">Category mid</label>
+                                    <h5>{{ $category_mid->name }}</h5>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="address" class=" form-control-label">Address</label>
-                                    <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}">
+                                    <label for="name" class=" form-control-label">Category name</label>
+                                    <input type="text" id="name" name="name" class="form-control" value="{{ !empty(old('name')) ? old('name') : $category->name }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone" class=" form-control-label">Phone</label>
-                                    <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}">
+                                    <label for="name" class=" form-control-label">Category Description</label>
+                                    <textarea name="description" id="description" cols="10" class="form-control"> {{ !empty(old('description')) ? old('description') : $category->description }}</textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password" class=" form-control-label">Password</label>
-                                    <input type="password" id="password" name="password" class="form-control" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password_confirm" class=" form-control-label">Password confirm</label>
-                                    <input type="password" id="password_confirm" name="password_confirmation" class="form-control" value="">
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="file-input" class=" form-control-label">File
+                                            input</label></div>
+                                    <div class="col-12 col-md-9">
+                                        <img style="width: 70px;height: 70px; margin-bottom: 10px" src="{{ asset($category->image) }}" alt="{{ $category->name }}">
+                                        <input type="file" id="file-input" name="image" class="form-control-file">
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">

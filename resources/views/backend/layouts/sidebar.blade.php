@@ -37,6 +37,7 @@
                 <li class="">
                     <a href="{{ route('admin.product.index') }}"> <i class="menu-icon fa fa-table"></i>Products</a>
                 </li>
+<<<<<<< HEAD
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Detail</a>
@@ -55,17 +56,15 @@
                         <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
                         <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
                     </ul>
+=======
+                <li class="">
+                    <a href="{{ route('admin.size.index') }}"> <i class="menu-icon fa fa-table"></i>Sizes</a>
+>>>>>>> main
                 </li>
-                <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
-                    </ul>
+                <li class="">
+                    <a href="{{ route('admin.color.index') }}"> <i class="menu-icon fa fa-table"></i>Colors</a>
                 </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

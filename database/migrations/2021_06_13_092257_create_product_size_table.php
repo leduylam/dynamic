@@ -13,10 +13,10 @@ class CreateProductSizeTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_size', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
             $table->string('size');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateProductSizeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_size');
+        Schema::dropIfExists('sizes');
     }
 }
