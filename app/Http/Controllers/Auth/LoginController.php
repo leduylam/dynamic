@@ -26,7 +26,6 @@ class LoginController extends Controller
      *
      * @var string
      */
-
     protected $redirectTo = '/admin/dashboard';
 
     protected $redirectAfterLogout = '/login';
@@ -38,7 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest',['except' =>'logout']);
     }
 
     /**
@@ -48,7 +47,7 @@ class LoginController extends Controller
     {
         return view('backend.login');
     }
-
+    
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response|void
@@ -67,7 +66,7 @@ class LoginController extends Controller
 
             return $this->sendLockoutResponse($request);
         }
-
+        
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }
