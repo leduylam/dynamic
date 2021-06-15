@@ -276,4 +276,32 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.category.show.mid', $parent_mid_id)->with('success', 'Category update successfully.');
     }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function listCategoryMid(Request $request)
+    {
+        $categories = [];
+        if ($request->ajax()) {
+            $categories = Category::where('parent_id_1', $request['category_id'])->where('parent_id_2', 0)->get();
+        }
+
+        return $categories;
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function listCategorySmall(Request $request)
+    {
+        $categories = [];
+        if ($request->ajax()) {
+            $categories = Category::where('parent_id_1', $request['category_id_1'])->where('parent_id_2', $request['category_id_2'])->get();
+        }
+
+        return $categories;
+    }
 }

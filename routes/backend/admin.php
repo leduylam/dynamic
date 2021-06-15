@@ -59,6 +59,8 @@ Route::group([
     ], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::get('/list/mid', [CategoryController::class, 'listCategoryMid'])->name('list.mid');
+        Route::get('/list/small', [CategoryController::class, 'listCategorySmall'])->name('list.small');
         Route::post('/', [CategoryController::class, 'store'])->name('store');
 
         Route::group([

@@ -2,3 +2,57 @@
     width: 100px;
     height: 150px;
 }
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    width: 150px;
+    color: white;
+    background-color: green;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #075a25;
+}
+
+.inputfile:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+input[type="file"] {
+    display: block;
+}
+.imageThumb {
+    max-height: 75px;
+    padding: 1px;
+    cursor: pointer;
+}
+.pip {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+}
+.remove {
+    cursor: pointer;
+    margin-right: -30px !important;
+    margin-top: -30px !important;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    opacity: 1 !important;
+}
+.remove:hover {
+    background: white;
+    color: black;
+}

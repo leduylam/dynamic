@@ -52,7 +52,7 @@
 </div><!-- /#right-panel -->
 
 <!-- Right Panel -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ asset('admin/vendors/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('admin/vendors/popper.js/dist/umd/popper.min.js') }}"></script>
 <script src="{{ asset('admin/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -83,7 +83,7 @@
         });
     })(jQuery);
 </script>
-
+@stack('after-scripts')
 </body>
 
 </html>
