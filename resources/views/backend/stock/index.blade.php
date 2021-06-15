@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin_layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -30,18 +30,15 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Data Table</strong>
-                        <a href="" class="btn btn-primary btn-sm" style="float: right">Add new</a>
+                        <a href="{{ route('admin.create.product') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Product Name</th>
-                                    <th>Brand</th>
-                                    <th>Size</th>
-                                    <th>Color</th>
-                                    <th>Stock</th>
+                                    <th>Images</th>
+                                    <th>Categories</th>
+                                    <th>Active</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

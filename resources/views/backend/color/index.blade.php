@@ -26,36 +26,6 @@
         <div class="animated fadeIn">
             <div class="row">
 
-<<<<<<< HEAD
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <strong class="card-title">Color Manage</strong>
-                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
-                    </div>
-                    <div class="card-body">
-                        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Color</th>
-                                    <th>SKU</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Puma Black</td>
-                                    <td>BLK</td>
-                                    <td>
-                                        <a href="" class="btn btn-sm btn-warning">Update</a>
-                                        <a href="" class="btn btn-sm btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-=======
                 <div class="col-md-12">
                     @if ($message = \Illuminate\Support\Facades\Session::get('success'))
                         <div class="alert alert-success">
@@ -96,7 +66,6 @@
                                 </tbody>
                             </table>
                         </div>
->>>>>>> main
                     </div>
                 </div>
             </div>

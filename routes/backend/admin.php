@@ -7,10 +7,10 @@ use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CategoryController;
 
-Route::auth();
+// Route::auth();
 
 Route::group([
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
     'as' => 'admin.',
 ], function () {
     // page home
@@ -28,15 +28,6 @@ Route::group([
         Route::get('/edit', [AdminController::class, 'edit'])->name('edit');
         Route::put('/', [AdminController::class, 'update'])->name('update');
         Route::delete('/', [AdminController::class, 'destroy'])->name('destroy');
-    });
-
-    //page color
-    Route::group([
-        'prefix' => 'order',
-        'as' => 'order.',
-    ], function () {
-        Route::get('/', [ProductColorController::class, 'index'])->name('index');
-        Route::get('/create', [ProductColorController::class, 'create'])->name('create');
     });
 
     //page product

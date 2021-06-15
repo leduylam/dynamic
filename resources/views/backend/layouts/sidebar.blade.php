@@ -37,29 +37,8 @@
                 <li class="">
                     <a href="{{ route('admin.product.index') }}"> <i class="menu-icon fa fa-table"></i>Products</a>
                 </li>
-<<<<<<< HEAD
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Detail</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-line-chart"></i><a href="{{ route('admin.size.index') }}">Sizes</a></li>
-                        <li><i class="menu-icon fa fa-area-chart"></i><a href="{{ route('admin.color.index') }}">Colors</a></li>
-                    </ul>
-                </li>
-                <li class="">
-                    <a href="{{ route('admin.stock.index') }}"> <i class="menu-icon fa fa-table"></i>Stock</a>
-                </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                        <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
-                    </ul>
-=======
                 <li class="">
                     <a href="{{ route('admin.size.index') }}"> <i class="menu-icon fa fa-table"></i>Sizes</a>
->>>>>>> main
                 </li>
                 <li class="">
                     <a href="{{ route('admin.color.index') }}"> <i class="menu-icon fa fa-table"></i>Colors</a>

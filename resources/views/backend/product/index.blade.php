@@ -30,20 +30,15 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Product Manage</strong>
-                        <a href="" class="btn btn-primary btn-sm" style="float: right">Add new</a>
+                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Images</th>
-<<<<<<< HEAD
-                                    <th>SKU</th>
-                                    <th>Description</th>
-=======
                                     <th>Sku</th>
                                     <th>Name</th>
->>>>>>> main
                                     <th>Price</th>
                                     <th>Active</th>
                                     <th>Action</th>
@@ -55,15 +50,9 @@
                                     <td class="images">
                                         <img class="img" src="{{ asset($product->image) }}" alt="">
                                     </td>
-<<<<<<< HEAD
-                                    <td><a href="{{ route('admin.product.product-detail.create') }}">57790102</a></td>
-                                    <td><a href="{{ route('admin.product.product-detail.create') }}">PUMA LS Sun Crew</a></td>
-                                    <td>1.422.000 VND</td>   
-=======
                                     <td>{{ $product->sku }}</td>
                                     <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>
                                     <td>{{ $product->price }}VND</td>
->>>>>>> main
                                     <td>
                                         @if($product->status == 1)
                                             <a href="#" class="badge badge-success">Show</a>
