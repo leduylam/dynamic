@@ -22,14 +22,14 @@
 
 <div class="content mt-3">
 
-    <div class="col-sm-12">
+    {{-- <div class="col-sm-12">
         <div class="alert  alert-success alert-dismissible fade show" role="alert">
             <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    </div>
+    </div> --}}
 
 
     <div class="col-sm-6 col-lg-3">
@@ -41,16 +41,16 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Day</a>
+                            <a class="dropdown-item" href="#">Week</a>
+                            <a class="dropdown-item" href="#">Mon</a>
                         </div>
                     </div>
                 </div>
                 <h4 class="mb-0">
                     <span class="count">10468</span>
                 </h4>
-                <p class="text-light">Customers view</p>
+                <p class="text-light">Order</p>
 
                 <div class="chart-wrapper px-0" style="height:70px;" height="70">
                     <canvas id="widgetChart1"></canvas>
@@ -71,16 +71,16 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Day</a>
+                            <a class="dropdown-item" href="#">Week</a>
+                            <a class="dropdown-item" href="#">Month</a>
                         </div>
                     </div>
                 </div>
                 <h4 class="mb-0">
                     <span class="count">10468</span>
                 </h4>
-                <p class="text-light">Members online</p>
+                <p class="text-light">Products sold</p>
 
                 <div class="chart-wrapper px-0" style="height:70px;" height="70">
                     <canvas id="widgetChart2"></canvas>
@@ -100,16 +100,16 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                         <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Day</a>
+                            <a class="dropdown-item" href="#">Week</a>
+                            <a class="dropdown-item" href="#">Month</a>
                         </div>
                     </div>
                 </div>
                 <h4 class="mb-0">
                     <span class="count">10468</span>
                 </h4>
-                <p class="text-light">Members online</p>
+                <p class="text-light">Total Price</p>
 
             </div>
 
@@ -120,35 +120,8 @@
     </div>
     <!--/.col-->
 
-    <div class="col-sm-6 col-lg-3">
-        <div class="card text-white bg-flat-color-4">
-            <div class="card-body pb-0">
-                <div class="dropdown float-right">
-                    <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton4" data-toggle="dropdown">
-                        <i class="fa fa-cog"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                        <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <h4 class="mb-0">
-                    <span class="count">10468</span>
-                </h4>
-                <p class="text-light">Members online</p>
-
-                <div class="chart-wrapper px-3" style="height:70px;" height="70">
-                    <canvas id="widgetChart4"></canvas>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!--/.col-->
-    <div class="col-xl-6">
+    
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -179,107 +152,11 @@
                 </div>
                 <!--/.row-->
                 <div class="chart-wrapper mt-4">
-                    <canvas id="trafficChart" style="height:200px;" height="200"></canvas>
+                    <canvas id="trafficChart" style="height:300px;" height="200"></canvas>
                 </div>
 
             </div>
-            <div class="card-footer">
-                <ul>
-                    <li>
-                        <div class="text-muted">Visits</div>
-                        <strong>29.703 Users (40%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li class="hidden-sm-down">
-                        <div class="text-muted">Unique</div>
-                        <strong>24.093 Users (20%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="text-muted">Pageviews</div>
-                        <strong>78.706 Views (60%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li class="hidden-sm-down">
-                        <div class="text-muted">New Users</div>
-                        <strong>22.123 Users (80%)</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                    <li class="hidden-sm-down">
-                        <div class="text-muted">Bounce Rate</div>
-                        <strong>40.15%</strong>
-                        <div class="progress progress-xs mt-2" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
-    </div>
-
-    
-
-    <div class="col-xl-6 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Total Price</div>
-                        <div class="stat-digit">1,012</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-xl-3 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Total Order</div>
-                        <div class="stat-digit">961</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-3 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Total Products</div>
-                        <div class="stat-digit">770</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>World</h4>
-            </div>
-            <div class="Vector-map-js">
-                <div id="vmap" class="vmap" style="height: 265px;"></div>
-            </div>
-        </div>
-        <!-- /# card -->
     </div>
 
 

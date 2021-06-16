@@ -34,17 +34,18 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo nhóm vật tư hàng hóa</strong>
+                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo khách hàng</strong>
                             {{-- <a href="{{ route('admin.color.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a> --}}
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Nhóm VT hàng hóa</th>
-                                    <th>Tên nhóm vật tư hàng hóa</th>
+                                    <th>Mã khách hàng</th>
+                                    <th>Tên khách hàng</th>
                                     <th>Số lượng bán</th>
                                     <th>Doanh số bán</th>
+                                    <th>Địa chỉ</th>
                                 </tr>
                                 </thead>
                                 <tbody>

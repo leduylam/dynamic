@@ -128,7 +128,24 @@ Route::group([
         'prefix' => 'report',
         'as' => 'report.'
     ], function () {
-        Route::get('/', [ReportController::class, 'index'])->name('index');
+        Route::group([
+            'prefix' => 'customer-report',
+            'as' => 'customer-report.'
+        ], function(){
+            Route::get('/', [ReportController::class, 'customerReport'])->name('index');
+        });
+        Route::group([
+            'prefix' => 'order-report',
+            'as' => 'order-report.'
+        ], function(){
+            Route::get('/', [ReportController::class, 'orderReport'])->name('index');
+        });
+        Route::group([
+            'prefix' => 'detailed-report',
+            'as' => 'detailed-report.'
+        ], function(){
+            Route::get('/', [ReportController::class, 'detailedReport'])->name('index');
+        });
     });
 });
 ?>

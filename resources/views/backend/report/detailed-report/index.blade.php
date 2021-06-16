@@ -34,19 +34,18 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo đơn hàng</strong>
+                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo khách hàng</strong>
                             {{-- <a href="{{ route('admin.color.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a> --}}
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Số chứng từ</th>
+                                    <th>Mã khách hàng</th>
                                     <th>Tên khách hàng</th>
-                                    <th>Diễn giải</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng tiền hàng</th>
-                                    <th>Ngày hóa đơn</th>
+                                    <th>Số lượng bán</th>
+                                    <th>Doanh số bán</th>
+                                    <th>Địa chỉ</th>
                                 </tr>
                                 </thead>
                                 <tbody>
