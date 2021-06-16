@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
 
 Route::auth();
@@ -120,6 +121,14 @@ Route::group([
             Route::put('/', [ColorController::class, 'update'])->name('update');
             Route::delete('/', [ColorController::class, 'destroy'])->name('destroy');
         });
+    });
+
+    // page báo cáo 
+    Route::group([
+        'prefix' => 'report',
+        'as' => 'report.'
+    ], function () {
+        Route::get('/', [ReportController::class, 'index'])->name('index');
     });
 });
 ?>
