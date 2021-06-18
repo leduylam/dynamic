@@ -24,7 +24,9 @@ class AddProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:255',
+            'sku' => 'required|max:11',
+            'price' => 'required|max:11',
         ];
     }
 }

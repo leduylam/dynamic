@@ -15,5 +15,13 @@ class Product extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'sku', 'price', 'image', 'description', 'content', 'status'];
+    protected $fillable = ['name', 'sku', 'price', 'image', 'description', 'content', 'status', 'category_id'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function images()
+    {
+        return $this->belongsToMany(Image::class, 'product_image')->withTimestamps();
+    }
 }
