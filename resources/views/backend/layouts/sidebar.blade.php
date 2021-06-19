@@ -22,43 +22,55 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Order lists</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Orders Manager</a>
+                        <li><a href="{{ route('admin.order.index') }}">Orders Manager</a>
                         </li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Add new order</a></li>
+                        <li><a href="{{ route('admin.order.create') }}">Add new order</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="widgets.html"> <i class="menu-icon ti-email"></i>Totality </a>
                 </li>
-                <h3 class="menu-title">Managers</h3><!-- /.menu-title -->
-                <li class="">
-                    <a href="{{ route('admin.category.index') }}"> <i class="menu-icon fa fa-table"></i>Categories</a>
-                </li>
-                <li class="">
-                    <a href="{{ route('admin.product.index') }}"> <i class="menu-icon fa fa-table"></i>Products</a>
-                </li>
-                <li class="">
-                    <a href="{{ route('admin.size.index') }}"> <i class="menu-icon fa fa-table"></i>Sizes</a>
-                </li>
-                <li class="">
-                    <a href="{{ route('admin.color.index') }}"> <i class="menu-icon fa fa-table"></i>Colors</a>
-                </li>
+                
 
-
-                <h3 class="menu-title">Báo cáo</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Report</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Báo cáo phân tích</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><a href="{{ route('admin.report.index') }}">Tổng hợp bán hàng</a>
-                        </li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Báo cáo theo khách hàng</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Báo cáo theo đơn hàng</a></li>
+                        <li><a href="{{ route('admin.report.detailed-report.index') }}">Báo cáo chi tiết </a></li>
+                        <li><a href="{{ route('admin.report.order-report.index') }}">Báo cáo theo đơn hàng</a></li>
+                        
+                        <li><a href="{{ route('admin.report.customer-report.index') }}">Báo cáo theo khách hàng</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-email"></i>Totality </a>
+                    <a href="widgets.html"> <i class="menu-icon ti-email"></i>Tổng quan</a>
+                </li>
+
+                <h3 class="menu-title">Managers</h3><!-- /.menu-title -->
+                <li class="">
+                    <a href="{{ route('admin.category.index') }}"> <i class="menu-icon fa fa-table"></i>Categories</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Products Manager</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><a href="{{ route('admin.product.index') }}">Products</a>
+                        </li>
+                        <li><a href="{{ route('admin.size.index') }}">Sizes</a></li>
+                        <li></i><a href="{{ route('admin.color.index') }}">Color</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Quan ly tai khoan</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><a href="{{ route('admin.list') }}">Admins</a>
+                        </li>
+                        <li><a href="">Customers</a></li>
+                    </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

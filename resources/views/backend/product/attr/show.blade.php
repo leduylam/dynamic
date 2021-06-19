@@ -43,31 +43,6 @@
                                             <label for="sku"
                                                    class=" form-control-label"><strong>SKU:</strong></label>&nbsp;<span>57790102</span>
                                         </div>
-                                        <div class="field_wrapper">
-                                            <div>
-                                                <select name="size[]" id="size" style="width: 150px;">
-                                                    <option value="">-- select --</option>
-                                                    <option value="">XS</option>
-                                                    <option value="">S</option>
-                                                    <option value="">M</option>
-                                                    <option value="">L</option>
-                                                    <option value="">XL</option>
-                                                </select>
-                                                <select name="color[]" id="color" style="width: 150px;">
-                                                    <option value="">-- select --</option>
-                                                    <option value="">White</option>
-                                                    <option value="">Black</option>
-                                                    <option value="">Pink</option>
-                                                    <option value="">Green</option>
-                                                    <option value="">Yellow</option>
-                                                </select>
-                                                {{-- <input style="width: 150px;" type="text" name="size[]" id="size" placeholder="Size" value=""/> --}}
-                                                {{-- <input style="width: 150px;" type="text" name="color[]" id="color" placeholder="Color" value=""/> --}}
-                                                <input style="width: 150px;" type="text" name="brand[]" id="brand" placeholder="Brand" value=""/>
-                                                <input style="width: 150px;" type="text" name="model[]" id="model" placeholder="Year Model" value=""/>
-                                                <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -77,14 +52,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
                             </div>
                         </div>
                     </div>

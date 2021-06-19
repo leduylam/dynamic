@@ -319,4 +319,6 @@ class ProductController extends Controller
 
         return $fileName;
     }
+           
+    
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
 
@@ -49,6 +50,7 @@ Route::group([
             Route::post('/attr', [ProductController::class, 'storeAttr'])->name('store.attr');
             Route::put('/', [ProductController::class, 'update'])->name('update');
             Route::delete('/', [ProductController::class, 'destroy'])->name('destroy');
+
         });
     });
 
@@ -123,12 +125,46 @@ Route::group([
         });
     });
 
+    // page Order
+    Route::group([
+        'prefix' => 'order',
+        'as' => 'order.'
+    ], function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/create', [OrderController::class, 'create'])->name('create');
+        Route::post('/', [OrderController::class, 'store'])->name('store');
+        Route::group([
+            'prefix' => '{id}',
+        ], function () {
+            Route::get('/edit', [OrderController::class, 'edit'])->name('edit');
+            Route::put('/', [OrderController::class, 'update'])->name('update');
+            Route::delete('/', [OrderController::class, 'destroy'])->name('destroy');
+        });
+    });
+
     // page báo cáo 
     Route::group([
         'prefix' => 'report',
         'as' => 'report.'
     ], function () {
-        Route::get('/', [ReportController::class, 'index'])->name('index');
+        Route::group([
+            'prefix' => 'customer-report',
+            'as' => 'customer-report.'
+        ], function(){
+            Route::get('/', [ReportController::class, 'customerReport'])->name('index');
+        });
+        Route::group([
+            'prefix' => 'order-report',
+            'as' => 'order-report.'
+        ], function(){
+            Route::get('/', [ReportController::class, 'orderReport'])->name('index');
+        });
+        Route::group([
+            'prefix' => 'detailed-report',
+            'as' => 'detailed-report.'
+        ], function(){
+            Route::get('/', [ReportController::class, 'detailedReport'])->name('index');
+        });
     });
 });
 ?>
