@@ -37,10 +37,10 @@
                             <table id="bootstrap-data-table-export" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width:80px">Size</th>
-                                        <th style="width:80px">Màu</th>
-                                        <th style="width:150px">Thương hiệu</th>
-                                        <th style="width:80px">Year Model</th>
+                                        <th>Size</th>
+                                        <th>Màu</th>
+                                        <th>Thương hiệu</th>
+                                        <th>Year Model</th>
                                         <th style="text-align: center"><a href="#" class="btn btn-success addRow">+</a>
                                         </th>
                                     </tr>
@@ -49,22 +49,16 @@
 
                                     <tr>
                                         <td>
-                                            <select name="size[]" class="form-controll" multiple="multiple">
+                                            <select name=""class="form-control tokenizationSize">
                                                 <option value="">XS</option>
                                                 <option value="">S</option>
                                                 <option value="">M</option>
-                                                <option value="">L</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="color[]" class="form-controll" multiple="multiple">
-                                                <option value="">White</option>
-                                                <option value="">Black</option>
-                                                <option value="">T</option>
-                                                <option value="">L</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="color" id="color">
                                         </td>
-                                        <td><input type="text" name="brand[]" class="form-control"></td>
+                                        <td><input type="text" name="brand[]" id="brand" class="form-control"></td>
                                         <td><input type="text" name="model[]" class="form-control"></td>
                                         <td style="text-align: center"><a href="" class="btn btn-danger">-</a></td>
                                     </tr>
@@ -86,28 +80,12 @@
 @endsection
 @push('after-scripts')
 <script type="text/javascript">
-    $(document).ready(function () {
-            $('.addRow').on('click', function(){
-                addRow();
+    $(document).ready(function(){
+        $("#brand").tokenfield({
+                autocomplete: ['Puma', 'Cobra', 'US Kid Golf', 'Ahead'],
+                delay:100
             });
-            function addRow(){
-                var tr = '  <tr>'+
-                                '<td><input type="text" name="productSku[]" class="form-control"></td>'+
-                                '<td><input type="text" name="productName[]" class="form-control"></td>'+
-                                '<td><input type="text" name="size[]" class="form-control"></td>'+
-                                '<td><input type="text" name="productQty[]" class="form-control"></td>'+
-                                '<td><input type="text" name="price[]" class="form-control"></td>'+
-                                '<td><input type="text" name="totalPrice[]" class="form-control"></td>'+
-                                '<td><input type="text" name="discount[]" class="form-control"></td>'+
-                                '<td style="text-align: center"><a href="" class="btn btn-danger add-remove">-</a></td>'+
-                            '</tr>'
-                            
-
-                $('.appent-add').append(tr);
-            };
-            $('.appent-add').on('click', '.add-remove', function(){
-                $(this).parent().parent().remove();
-            });
-        });
+            showAutocompleteOnFocus: true
+        })
 </script>
 @endpush

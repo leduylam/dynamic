@@ -51,7 +51,6 @@ Route::group([
             Route::put('/', [ProductController::class, 'update'])->name('update');
             Route::delete('/', [ProductController::class, 'destroy'])->name('destroy');
 
-            //Product Detail
         });
     });
 
