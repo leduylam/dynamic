@@ -22,9 +22,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Order lists</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Orders Manager</a>
+                        <li><a href="{{ route('admin.order.index') }}">Orders Manager</a>
                         </li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Add new order</a></li>
+                        <li><a href="{{ route('admin.order.create') }}">Add new order</a></li>
                     </ul>
                 </li>
                 <li>
@@ -39,7 +39,7 @@
                         aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Báo cáo phân tích</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><a href="{{ route('admin.report.detailed-report.index') }}">Báo cáo chi tiết </a></li>
-                        <li><a href="{{ route('admin.report.order-report.index') }}">Báo cáo theo danh mục</a></li>
+                        <li><a href="{{ route('admin.report.order-report.index') }}">Báo cáo theo đơn hàng</a></li>
                         
                         <li><a href="{{ route('admin.report.customer-report.index') }}">Báo cáo theo khách hàng</a></li>
                     </ul>
@@ -67,10 +67,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Quan ly tai khoan</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><a href="{{ route('admin.list') }}">Khach hang</a>
+                        <li><a href="{{ route('admin.list') }}">Admins</a>
                         </li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Báo cáo theo khách hàng</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Báo cáo theo đơn hàng</a></li>
+                        <li><a href="">Customers</a></li>
                     </ul>
                 </li>
             </ul>

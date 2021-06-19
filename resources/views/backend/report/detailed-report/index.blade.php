@@ -14,8 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Table</a></li>
-                        <li class="active">Data table</li>
+                        <li class="active">Report Data</li>
                     </ol>
                 </div>
             </div>
@@ -34,18 +33,23 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo khách hàng</strong>
+                            <strong class="card-title" style="justify-content: center">Báo cáo chi tiết</strong>
                             {{-- <a href="{{ route('admin.color.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a> --}}
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Mã khách hàng</th>
-                                    <th>Tên khách hàng</th>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Tên sản phẩm</>
+                                    <th>Size</th>
+                                    <th>Color</th>
                                     <th>Số lượng bán</th>
+                                    <th>Đơn giá</th>
                                     <th>Doanh số bán</th>
-                                    <th>Địa chỉ</th>
+                                    <th>VTTH</th>
+                                    <th>Tên khách hàng</th>
+                                    
                                 </tr>
                                 </thead>
                                 <tbody>

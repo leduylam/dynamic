@@ -14,8 +14,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Table</a></li>
-                        <li class="active">Data table</li>
+                        <li class="active">Report Data</li>
                     </ol>
                 </div>
             </div>
@@ -34,18 +33,17 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo khách hàng</strong>
+                            <strong class="card-title" style="justify-content: center">Doanh số bán hàng theo danh mục</strong>
                             {{-- <a href="{{ route('admin.color.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a> --}}
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Mã khách hàng</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Số lượng bán</th>
-                                    <th>Doanh số bán</th>
-                                    <th>Địa chỉ</th>
+                                    <th>Category</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền hàng</th>
+                                    <th>Chiết khấu</th>
                                 </tr>
                                 </thead>
                                 <tbody>
