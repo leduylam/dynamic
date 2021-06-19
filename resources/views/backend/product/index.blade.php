@@ -48,7 +48,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td class="images">
-                                        <img class="img" src="{{ asset($product->image) }}" alt="">
+                                        <img src="{{ asset('storage/product/'.$product->image) }}" alt="">
                                     </td>
                                     <td>{{ $product->sku }}</td>
                                     <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>
@@ -61,7 +61,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
+                                        <form action="{{ route('admin.product.destroy', $product->id) }}" method="POST">
                                             <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-sm btn-warning">Update</a>
                                             @csrf
                                             @method('DELETE')

@@ -1,124 +1,313 @@
-@extends('layouts.admin_layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
-<div class="breadcrumbs">
-    <div class="col-sm-4">
-        <div class="page-header float-left">
-            <div class="page-title">
-                {{-- <h1>Add new Category</h1> --}}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    {{-- <h1>Add new Category</h1> --}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
+                        <li><a href="{{ route('admin.product.index') }}">Products table</a></li>
+                        <li class="active">Add New</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-8">
-        <div class="page-header float-right">
-            <div class="page-title">
-                <ol class="breadcrumb text-right">
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('admin.list.product') }}">Products table</a></li>
-                    <li class="active">Add New</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="content mt-3">
-    <div class="animated fadeIn">
-        <form action="" method="post">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header"><strong>Add New Product</strong></div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card-body card-block">
-                                    <div class="form-group">
-                                        <label for="name" class=" form-control-label">Name</label>
-                                        <input type="text" id="name" name="name" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sku" class=" form-control-label">SKU</label>
-                                        <input type="text" id="sku" name="sku" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="category_id" class="form-control-label">Category</label>
-                                        <select class="form-control" id="category_id" name="category_id">
-                                            <option value="">-- Select Category --</option>
-                                            <optgroup label="NFC EAST">
-                                                <option>Dallas Cowboys</option>
-                                                <option>New York Giants</option>
-                                                <option>Philadelphia Eagles</option>
-                                                <option>Washington Redskins</option>
-                                            </optgroup>
-                                            <optgroup label="NFC NORTH">
-                                                <option>Chicago Bears</option>
-                                                <option>Detroit Lions</option>
-                                                <option>Green Bay Packers</option>
-                                                <option>Minnesota Vikings</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price" class=" form-control-label">W/S Price</label>
-                                        <input type="text" id="price" name="price" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description" class=" form-control-label">Description</label>
-                                        <textarea name="description" id="description" class="form-control"
-                                            cols="10"></textarea>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="file-input"
-                                                class=" form-control-label">File
-                                                input</label></div>
-                                        <div class="col-12 col-md-9"><input type="file" id="file-input"
-                                                name="file-input" class="form-control-file"></div>
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <form action="" method="post" id="form_create_product" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header"><strong>Add New Product</strong></div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card-body card-block">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div id="error_data"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class=" form-control-label">Name</label>
+                                            <input type="text" id="name" name="name" value="{{ $product->name }}"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sku" class=" form-control-label">SKU</label>
+                                            <input type="text" id="sku" name="sku" value="{{ $product->sku }}"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price" class=" form-control-label">W/S Price</label>
+                                            <input type="text" id="price" name="price" value="{{ $product->price }}"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description" class=" form-control-label">Description</label>
+                                            <textarea class="form-control description" rows="5"
+                                                      name="description">{{ $product->description }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category_big" class="form-control-label">Category</label>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <select class="form-control" id="category_big" name="category_0">
+                                                        <option value="">-- Select Category --</option>
+                                                        @foreach($categories as $category)
+                                                            <option
+                                                                value="{{ $category->id }}" {{ !empty($category_big) ? ($category_big->id == $category->id ? 'selected' : '') : '' }}>{{ $category->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    @if(!empty($array_category_mid))
+                                                        <select class="form-control" id="category_mid"
+                                                                name="category_1">
+                                                            <option value="">-- Select Category --</option>
+                                                            @foreach($array_category_mid as $mid)
+                                                                <option
+                                                                    value="{{ $mid->id }}" {{ !empty($category_mid) ? ($category_mid->id == $mid->id ? 'selected' : '') : '' }}>{{ $mid->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    @else
+                                                        <select class="form-control" id="category_mid"
+                                                                name="category_1">
+                                                            <option value="">-- Select Category --</option>
+                                                        </select>
+                                                    @endif
+                                                </div>
+                                                <div class="col-4">
+                                                    @if(!empty($array_category_small))
+                                                        <select class="form-control" id="category_small"
+                                                                name="category_2">
+                                                            <option value="">-- Select Category --</option>
+                                                            @foreach($array_category_small as $small)
+                                                                <option
+                                                                    value="{{ $small->id }}" {{ !empty($category_small) ? ($category_small->id == $small->id ? 'selected' : '') : '' }}>{{ $small->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    @else
+                                                        <select class="form-control" id="category_small"
+                                                                name="category_2">
+                                                            <option value="">-- Select Category --</option>
+                                                        </select>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category_big" class="form-control-label">Image</label>
+                                            <div class="mb-3 data_image">
+                                                <input type="file" name="img_url[]" id="files"
+                                                       accept="image/jpeg,image/png,image/jpg"
+                                                       class="form-control inputfile data_content" data-content="0"
+                                                       multiple=""><input type="file" name="img_url[]"
+                                                                          class="form-control inputfile data_content"
+                                                                          multiple="" data-content="">
+                                                <label class="btn btn-success img_data" for="files">商品画像登録</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <output id="result" class="row">
+                                                        @if(isset($product->images))
+                                                            @foreach($product->images()->get() as $image)
+                                                                <span class="pip" onclick="myImage({{ $image->id }})">
+                                                                    <span class="remove">×</span>
+                                                                    <br>
+                                                                    <img name="img_url[]" class="imageThumb"
+                                                                         src="{{ asset('storage/product/'.$image->description) }}"
+                                                                         alt="{{ $image->name }}"
+                                                                         data-id="{{ $image->id }}">
+                                                                    <br>
+                                                                    <span>{{ $image->name }}</span>
+                                                                </span>
+                                                            @endforeach
+                                                        @endif
+                                                    </output>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card-body card-block">
-                                    <div class="form-group">
-                                        <label for="size" class=" form-control-label">Size</label>
-                                        <select name="size" id="size" class="form-control">
-                                            <option value="">-- Select Size --</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="color" class=" form-control-label">Color</label>
-                                        <select name="color" id="color" class="form-control">
-                                            <option value="">-- Select Color --</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="brand" class=" form-control-label">Brand</label>
-                                        <select name="brand" id="brand" class="form-control">
-                                            <option value="">-- Select Brand --</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="model" class=" form-control-label">Year Model</label>
-                                        <input type="text" id="model" name="model" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="content" class=" form-control-label">Description</label>
-                                        <textarea name="content" id="content" class="form-control"
-                                            cols="10"></textarea>
-                                    </div>
-                                </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary btn-sm edit_product">
+                                    <i class="fa fa-dot-circle-o"></i> Submit
+                                </button>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary btn-sm">
-                                <i class="fa fa-dot-circle-o"></i> Submit
-                            </button>
-                            <button type="reset" class="btn btn-danger btn-sm">
-                                <i class="fa fa-ban"></i> Reset
-                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 @endsection
+@push('after-scripts')
+    <script type="text/javascript">
+        function myImage(data) {
+            $("input[alt='" + data + "']").remove();
+            $("input[data-content='" + data + "']").remove();
+        }
+
+        $(document).ready(function () {
+            $('.img_data').click(function (e) {
+                e.preventDefault();
+                $('.data_content').last().click();
+
+                if (window.File && window.FileList && window.FileReader) {
+                    $(".data_image .data_content").on("change", function (e) {
+                        $(".inputfile").after("<input type=\"file\" name=\"img_url[]\" class=\"form-control inputfile data_content\" multiple data-content='' />");
+
+                        var files = e.target.files,
+                            filesLength = files.length;
+                        for (var i = 0; i < filesLength; i++) {
+                            var f = files[i];
+                            var fileReader = new FileReader();
+                            var name_file = f.name;
+                            var idxDot = name_file.lastIndexOf(".") + 1;
+                            var extFile = name_file.substr(idxDot, name_file.length).toLowerCase();
+                            if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+                                fileReader.onload = (function (e) {
+                                    var file = e.target;
+                                    $("<span class=\"pip\">" +
+                                        "<span class=\"remove\">&times;</span><br>" +
+                                        "<input type=\"hidden\" name='\img_url[]\' value=\"" + e.target.result + "\">" +
+                                        "<input type=\"hidden\" name='\img_url[]\' value=\"" + name_file + "\">" +
+                                        "<img name=\"img_url[]\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + name_file + "\"/>" +
+                                        "<br/><span>" + name_file + "</span>" +
+                                        "</span>").insertAfter("#result");
+                                    $(".remove").click(function () {
+                                        $(this).parent(".pip").remove();
+                                    });
+                                    // Old code here
+                                    /*$("<img></img>", {
+                                      class: "imageThumb",
+                                      src: e.target.result,
+                                      title: file.name + " | Click to remove"
+                                    }).insertAfter("#files").click(function(){$(this).remove();});*/
+
+                                });
+                                fileReader.readAsDataURL(f);
+                            } else {
+                                alert("jpg / jpegファイルとpngファイルのみが許可されています！");
+                            }
+
+                        }
+                    });
+                } else {
+                    alert("Your browser doesn't support to File API")
+                }
+            });
+
+            var images = <?php echo json_encode($product->images)?>;
+            $.each(images, function (index, value) {
+                $(".data_image").before("<input type='hidden' name=\"images[]\" value='" + value.id + "' class=\"form-control images_content\" alt='" + value.id + "' multiple />");
+            });
+
+            $(".remove").click(function () {
+                $(this).parent(".pip").remove();
+            });
+
+            $('#category_big').change(function () {
+                var id = $(this).val();
+                var option = '';
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('admin.category.list.mid') }}",
+                    data: {category_id: id},
+                    success: function (data) {
+                        $('#category_mid option').remove();
+                        $('#category_small').find('option')
+                            .remove()
+                            .end()
+                            .append('<option value="">-- Select Category --</option>');
+                        option += `<option value="">-- Select Category --</option>`;
+                        data.forEach(function (val) {
+                            option += `<option value="${val.id}">${val.name}</option>`;
+                        });
+
+                        $('#category_mid').append(option);
+
+                        $('#category_mid').change(function () {
+                            var category_mid = $(this).val();
+                            var option_small = '';
+                            $.ajax({
+                                type: "GET",
+                                url: "{{ route('admin.category.list.small') }}",
+                                data: {category_id_1: id, category_id_2: category_mid},
+                                success: function (result) {
+                                    $('#category_small option').remove();
+                                    option_small += `<option value="">-- Select Category --</option>`;
+                                    result.forEach(function (value) {
+                                        option_small += `<option value="${value.id}">${value.name}</option>`;
+                                    });
+
+                                    $('#category_small').append(option_small);
+                                }
+                            })
+                        })
+                    }
+                })
+            });
+            $('.edit_product').click(function (e) {
+                e.preventDefault();
+                $('.alert-block').remove();
+                var data = $('#form_create_product').serializeArray();
+
+                // push data to object
+                var object = {};
+                $.each(data, function () {
+                    if (object[this.name] !== undefined) {
+                        if (!object[this.name].push) {
+                            object[this.name] = [object[this.name]];
+                        }
+                        object[this.name].push(this.value || '');
+                    } else {
+                        object[this.name] = this.value || '';
+                    }
+                });
+
+                object['_token'] = '{{ csrf_token() }}';
+                object['_method'] = 'PUT';
+                var id = <?php echo json_encode($product->id)?>;
+                url = "{{ url('admin/product/') }}" + '/' + id;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: object,
+                    success: function (data) {
+                        if (data.statusCode == 1) {
+                            alert('Product update success.');
+                            window.location.href = "{{ route('admin.product.index') }}";
+                        }else {
+                            alert('Product update error.');
+                        }
+                    },
+                    error: function (data) {
+                        if (data.status == 422) {
+                            var errors = JSON.parse(data.responseText);
+                            $('#error_data').append('<div class="alert alert-danger alert-block">\n' +
+                                '                        <button type="button" class="close" data-dismiss="alert">×</button>\n' +
+                                '                        <strong id="red"></strong>\n' +
+                                '                    </div>');
+                            $.each(errors.errors, function (key, value) {
+                                $('#red').append('<div>' + value + '</div>');
+                            });
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+@endpush
