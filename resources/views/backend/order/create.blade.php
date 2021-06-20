@@ -23,8 +23,7 @@
 </div>
 <div class="content mt-3">
     <div class="animated fadeIn">
-        <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
+        <form action="" method="post" enctype="multipart/form-data" id="create_order">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -81,24 +80,26 @@
                                         <th style="width:150px;">Mã sản phẩm</th>
                                         <th style="width:300px;">Tên sản phẩm</th>
                                         <th style="width:80px">Size</th>
+                                        <th style="width:80px">Color</th>
                                         <th style="width:80px">Qty</th>
                                         <th style="width:150px">Đơn giá</th>
                                         <th style="width:80px">(-%)</th>
                                         <th style="width:150px">Tổng tiền</th>
-                                        <th style="text-align: center"><a href="#" class="btn btn-success addRow">+</a>
+                                        <th style="text-align: center"><a href="#" class="btn btn-success addRow" data-index="0">+</a>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="appent-add">
 
                                     <tr>
-                                        <td><input type="text" name="productSku[]" class="form-control"></td>
-                                        <td><input type="text" name="productName[]" class="form-control"></td>
-                                        <td><input type="text" name="size[]" class="form-control"></td>
-                                        <td><input type="text" name="productQty[]" class="form-control"></td>
-                                        <td><input type="text" name="price[]" class="form-control"></td>
-                                        <td><input type="text" name="discount[]" class="form-control"></td>
-                                        <td><input type="text" name="totalPrice[]" class="form-control"></td>
+                                        <td><input type="text" name="productSku[0]" class="form-control"></td>
+                                        <td><input type="text" name="productName[0]" class="form-control"></td>
+                                        <td><input type="text" name="size[0]" class="form-control"></td>
+                                        <td><input type="text" name="color[0]" class="form-control"></td>
+                                        <td><input type="text" name="quantity[0]" class="form-control"></td>
+                                        <td><input type="text" name="price[0]" class="form-control"></td>
+                                        <td><input type="text" name="discount[0]" class="form-control"></td>
+                                        <td><input type="text" name="total[0]" class="form-control"></td>
                                         <td style="text-align: center"><a href="" class="btn btn-danger">-</a></td>
                                     </tr>
 
@@ -112,29 +113,31 @@
 
                 </div>
             </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>
 @endsection
 @push('after-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
             $('.addRow').on('click', function(){
-                addRow();
+                var i = $(this).attr('data-index');
+                i++;
+                addRow(i);
+                $(this).attr('data-index', i);
             });
-            function addRow(){
-                var tr = '  <tr>'+
-                                '<td><input type="text" name="productSku[]" class="form-control"></td>'+
-                                '<td><input type="text" name="productName[]" class="form-control"></td>'+
-                                '<td><input type="text" name="size[]" class="form-control"></td>'+
-                                '<td><input type="text" name="productQty[]" class="form-control"></td>'+
-                                '<td><input type="text" name="price[]" class="form-control"></td>'+
-                                '<td><input type="text" name="totalPrice[]" class="form-control"></td>'+
-                                '<td><input type="text" name="discount[]" class="form-control"></td>'+
-                                '<td style="text-align: center"><a href="" class="btn btn-danger add-remove">-</a></td>'+
-                            '</tr>'
-                            
+            function addRow(i){
+                var tr = '  <tr data-index="'+ i +'">'+
+                                '<td><input type="text" name="productSku['+ i +']" class="form-control"></td>'+
+                                '<td><input type="text" name="productName['+ i +']" class="form-control"></td>'+
+                                '<td><input type="text" name="size['+ i +']" class="form-control"></td>'+
+                                '<td><input type="text" name="productQty['+ i +']" class="form-control"></td>'+
+                                '<td><input type="text" name="price['+ i +']" class="form-control"></td>'+
+                                '<td><input type="text" name="totalPrice['+ i +']" class="form-control"></td>'+
+                                '<td><input type="text" name="discount['+ i +']" class="form-control"></td>'+
+                                '<td style="text-align: center"><a class="btn btn-danger add-remove" data-index="' + i + '">-</a></td>'+
+                            '</tr>';
+
 
                 $('.appent-add').append(tr);
             };
