@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
     /**
      * @var string
      */
     protected $table = 'products';
+
     /**
      * @var array
      */
@@ -23,5 +25,13 @@ class Product extends Model
     public function images()
     {
         return $this->belongsToMany(Image::class, 'product_image')->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function details()
+    {
+        return $this->hasMany(ProductDetail::class, 'product_id');
     }
 }

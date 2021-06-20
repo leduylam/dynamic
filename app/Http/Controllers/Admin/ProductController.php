@@ -7,9 +7,12 @@ use App\Http\Requests\Product\AddProductRequest;
 use App\Http\Requests\Product\EditProductRequest;
 use App\Models\Category;
 use App\Models\CategoryProduct;
+use App\Models\Color;
 use App\Models\Image;
+use App\Models\ProductDetail;
 use App\Models\ProductImage;
-use Illuminate\Http\Request;
+use App\Models\Size;
+use App\Models\Stock;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -39,8 +42,10 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::where('parent_id_1', 0)->where('parent_id_2', 0)->get();
+        $sizes = Size::all();
+        $colors = Color::all();
 
-        return view('backend.product.create', compact('categories'));
+        return view('backend.product.create', compact('categories', 'sizes', 'colors'));
     }
 
     /**
@@ -94,6 +99,9 @@ class ProductController extends Controller
                     }
                 }
 
+                // create product detail
+               $this->createOrUpdateProductDetail($request->all(), $product);
+
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollback();
@@ -132,12 +140,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $colors = Color::all();
+        $sizes = Size::all();
         $category_big = array();
         $category_mid = array();
         $category_small = array();
         $array_category_small = array();
         $array_category_mid = array();
-        $product = Product::with('images')->find($id);
+        $product = Product::with('images','details')->find($id);
         $categories = Category::where('parent_id_1', 0)->where('parent_id_2', 0)->get();
         $list_category = json_decode($product->category_id);
         if (!empty($list_category)) {
@@ -156,6 +166,13 @@ class ProductController extends Controller
             }
         }
 
+        // get stock
+        if (!empty($product->details->toArray())) {
+            foreach ($product->details as $index => $detail) {
+                $product->details[$index]['stock'] = !empty($detail->stock) ? $detail->stock->quantity : null;
+            }
+        }
+
         return view('backend.product.edit', compact(
             'product',
             'categories',
@@ -163,7 +180,9 @@ class ProductController extends Controller
             'category_mid',
             'category_small',
             'array_category_small',
-            'array_category_mid'
+            'array_category_mid',
+            'colors',
+            'sizes'
         ));
     }
 
@@ -178,7 +197,7 @@ class ProductController extends Controller
             DB::beginTransaction();
             try {
                 // update product
-                $product = Product::find($id);
+                $product = Product::with('details')->find($id);
                 $data = $request->only($product->getFillable());
                 $category = array();
                 foreach ($request->all() as $key => $value) {
@@ -242,6 +261,20 @@ class ProductController extends Controller
                     }
                 }
 
+                // create or update product_detail and stock
+                if (!empty($product->details->toArray())) {
+                    foreach ($product->details as $detail) {
+                        $stock = Stock::where('product_detail_id', $detail->id)->first();
+                        if (!empty($stock)) {
+                            $stock->delete();
+                        }
+                    }
+
+                    $product->details()->delete();
+                }
+
+                $this->createOrUpdateProductDetail($request->all(), $product);
+
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollback();
@@ -286,16 +319,6 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Delete category successfully');
     }
 
-    public function createAttr()
-    {
-        return view('backend.product.attr.create');
-    }
-
-    public function storeAttr(Request $request, $id)
-    {
-        //
-    }
-
     /**
      * @param $image
      * @return string
@@ -319,6 +342,38 @@ class ProductController extends Controller
 
         return $fileName;
     }
-           
-    
+
+    /**
+     * @param $request
+     * @param $product
+     * @return bool
+     */
+    public function createOrUpdateProductDetail($request, $product)
+    {
+        if (!empty($request['size']) || !empty($request['color'])
+            || !empty($request['brand']) || !empty($request['model'])
+            || !empty($request['quantity']) || !empty($request['price_detail'])) {
+            foreach ($request['size'] as $index => $value) {
+                $product_detail = new ProductDetail();
+                $product_detail['product_id'] = $product->id;
+                $product_detail['size'] = $value;
+                $product_detail['brand'] = !empty($request['brand']) ? $request['brand'][$index] : null;
+                $product_detail['color'] = !empty($request['color']) ? $request['color'][$index] : null;
+                $product_detail['model'] = !empty($request['model']) ? $request['model'][$index] : null;
+                $product_detail['price'] = !empty($request['price_detail']) ? $request['price_detail'][$index] : null;
+                $product_detail['rating'] = null;
+                $product_detail->save();
+
+                // create stock
+                if (!empty($request['quantity'])) {
+                    $stock = new Stock();
+                    $stock['product_detail_id'] = $product_detail->id;
+                    $stock['quantity'] = !empty($request['quantity']) ? $request['quantity'][$index] : null;
+                    $stock->save();
+                }
+            }
+        }
+
+        return true;
+    }
 }
