@@ -112,7 +112,7 @@
 
                                         <tr>
                                             <td>
-                                                <select name="size[]" id="" class="form-control">
+                                                <select name="size[]" class="form-control">
                                                     <option value="">--size--</option>
                                                     <option value="">XS</option>
                                                     <option value="">S</option>
@@ -121,7 +121,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="color[]" id="" class="form-control">
+                                                <select name="color[]" class="form-control">
                                                     <option value="">--color--</option>
                                                     <option value="">White</option>
                                                     <option value="">Black</option>
@@ -304,7 +304,7 @@
             function addRow(){
                 var tr = '<tr>'+
                             '<td>'+
-                                '<select name="size[]" id="" class="form-control">'+
+                                '<select name="size[]" class="form-control">'+
                                     '<option value="">--size--</option>'+
                                     '<option value="">XS</option>'+
                                     '<option value="">S</option>'+
@@ -313,7 +313,7 @@
                                 '</select>'+
                             '</td>'+
                             '<td>'+
-                                '<select name="color[]" id="" class="form-control">'+
+                                '<select name="color[]" class="form-control">'+
                                     '<option value="">--color--</option>'+
                                     '<option value="">White</option>'+
                                     '<option value="">Black</option>'+
@@ -323,7 +323,7 @@
                             '</td>'+
                             '<td><input type="text" name="brand[]" class="form-control"></td>'+
                             '<td><input type="text" name="model[]" class="form-control"></td>'+
-                            '<td style="text-align: center"><a href="" class="btn btn-danger">-</a></td>'+
+                            '<td style="text-align: center"><a href="" class="btn btn-danger add-remove">-</a></td>'+
                         '</tr>'
                             
                 $('.appent-add').append(tr);

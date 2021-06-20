@@ -17,7 +17,7 @@
 
     //WidgetChart 1
     var ctx = document.getElementById( "widgetChart1" );
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
@@ -74,7 +74,7 @@
 
     //WidgetChart 2
     var ctx = document.getElementById( "widgetChart2" );
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
@@ -133,7 +133,7 @@
 
     //WidgetChart 3
     var ctx = document.getElementById( "widgetChart3" );
-    ctx.height = 70;
+    // ctx.height = 70;
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
