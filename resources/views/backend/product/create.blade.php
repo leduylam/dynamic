@@ -333,7 +333,6 @@
                             '<td><input type="text" name="quantity['+ i +']" class="form-control"></td>'+
                             '<td style="text-align: center"><a class="btn btn-danger add-remove" data-index="' + i + '">-</a></td>'+
                         '</tr>';
-
                 $('.appent-add').append(tr);
 
                 $('.add-remove').click(function () {

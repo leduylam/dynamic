@@ -1,3 +1,4 @@
+
 ( function ( $ ) {
     "use strict";
 
@@ -25,18 +26,11 @@ function random (min, max) {
     var data1 = []
     var data2 = []
     var data3 = []
-    var category1 = []
-    var category2 = []
-    var category3 = []
+
     for (var i = 0; i <= elements; i++) {
-      data1.push(random(50000000, 200000000))
-      data2.push(random(80000000, 400000000))
+      data1.push(random(50, 200))
+      data2.push(random(80, 100))
       data3.push(65)
-    }
-    for (var i = 0; i <= elements; i++) {
-      category1.push(random(50, 200))
-      category2.push(random(80, 400))
-      category3.push(65)
     }
 
 
@@ -46,7 +40,7 @@ function random (min, max) {
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
-            labels: ['Apparel', 'Accessories', 'Shoe', 'USKID'],
+            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S'],
             datasets: [
             {
               label: 'My First dataset',
@@ -107,8 +101,8 @@ function random (min, max) {
                       ticks: {
                         beginAtZero: true,
                         maxTicksLimit: 5,
-                        stepSize: Math.ceil(500000000 / 5),
-                        max: 500000000
+                        stepSize: Math.ceil(250 / 5),
+                        max: 250
                       },
                       gridLines: {
                         display: true
@@ -128,13 +122,13 @@ function random (min, max) {
         }
     } );
 
-    //Product by Category
-    var ctx = document.getElementById( "productByCategory" );
+    //Traffic Chart
+    var ctx = document.getElementById( "productChart" );
     //ctx.height = 200;
     var myChart = new Chart( ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['Apparel', 'Accessories', 'Shoe', 'USKID'],
+            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S'],
             datasets: [
             {
               label: 'My First dataset',
@@ -142,7 +136,7 @@ function random (min, max) {
               borderColor: brandInfo,
               pointHoverBackgroundColor: '#fff',
               borderWidth: 2,
-              data: category1
+              data: data1
           },
           {
               label: 'My Second dataset',
@@ -150,7 +144,7 @@ function random (min, max) {
               borderColor: brandSuccess,
               pointHoverBackgroundColor: '#fff',
               borderWidth: 2,
-              data: category2
+              data: data2
           },
           {
               label: 'My Third dataset',
@@ -159,7 +153,7 @@ function random (min, max) {
               pointHoverBackgroundColor: '#fff',
               borderWidth: 1,
               borderDash: [8, 5],
-              data: category3
+              data: data3
           }
           ]
         },
@@ -184,7 +178,6 @@ function random (min, max) {
             legend: {
                 display: false
             },
-            
             responsive: true,
             scales: {
                 xAxes: [{
@@ -196,12 +189,12 @@ function random (min, max) {
                       ticks: {
                         beginAtZero: true,
                         maxTicksLimit: 5,
-                        stepSize: Math.ceil(500 / 10),
-                        max: 500 ,
+                        stepSize: Math.ceil(250 / 5),
+                        max: 250
                       },
                       gridLines: {
-                        display: true,
-                      },
+                        display: true
+                      }
                 } ]
             },
             elements: {
@@ -216,6 +209,7 @@ function random (min, max) {
 
         }
     } );
+    
 
 
 } )( jQuery );

@@ -158,12 +158,13 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="card-title mb-0">Product by Category</h4>
+                        <h4 class="card-title mb-0">TOP 5 Order by Customer</h4>
                         <div class="small text-muted">October 2017</div>
                     </div>
                     <!--/.col-->
@@ -189,12 +190,18 @@
                 </div>
                 <!--/.row-->
                 <div class="chart-wrapper mt-4">
-                    <canvas id="productByCategory" style="height:200px;" height="200"></canvas>
+                    <canvas id="productChart" style="height:200px;" height="200"></canvas>
                 </div>
 
             </div>
         </div>
     </div>
+    
 
 </div> <!-- .content -->
 @endsection
+@push('dashboard-scripts')
+    <script src="{{ asset('admin/vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/widgets.js') }}"></script>
+@endpush
