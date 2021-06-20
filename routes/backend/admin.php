@@ -46,8 +46,6 @@ Route::group([
         ], function () {
             Route::get('/show', [ProductController::class, 'show'])->name('show');
             Route::get('/edit', [ProductController::class, 'edit'])->name('edit');
-            Route::get('/attr', [ProductController::class, 'createAttr'])->name('create.attr');
-            Route::post('/attr', [ProductController::class, 'storeAttr'])->name('store.attr');
             Route::put('/', [ProductController::class, 'update'])->name('update');
             Route::delete('/', [ProductController::class, 'destroy'])->name('destroy');
 
@@ -142,7 +140,7 @@ Route::group([
         });
     });
 
-    // page báo cáo 
+    // page báo cáo
     Route::group([
         'prefix' => 'report',
         'as' => 'report.'

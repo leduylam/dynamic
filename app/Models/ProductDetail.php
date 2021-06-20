@@ -15,16 +15,23 @@ class ProductDetail extends Model
     /**
      * @var array
      */
-    protected $fillable = ['product_id', 'size', 'brand', 'color', 'model', 'rating'];
+    protected $fillable = ['product_id', 'size', 'brand', 'color', 'model', 'rating', 'price'];
     /**
      * @var array
      */
-    protected $with = ['product'];
+    protected $with = ['product', 'stock'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function product(){
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function stock(){
+        return $this->hasOne(Stock::class);
     }
 }

@@ -103,37 +103,36 @@
                                             <th>Color</th>
                                             <th>Brand</th>
                                             <th>Model</th>
-                                            <th style="text-align: center"><a href="#"
-                                                    class="btn btn-success addRow">+</a>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th style="text-align: center"><a
+                                                    class="btn btn-success addRow" data-index="0">+</a>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="appent-add">
-
                                         <tr>
                                             <td>
-                                                <select name="size[]" class="form-control">
+                                                <select name="size[0]" class="form-control">
                                                     <option value="">--size--</option>
-                                                    <option value="">XS</option>
-                                                    <option value="">S</option>
-                                                    <option value="">M</option>
-                                                    <option value="">L</option>
+                                                    @foreach($sizes as $size)
+                                                        <option value="{{ $size->id }}"> {{ $size->size }}</option>
+                                                    @endforeach
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="color[]" class="form-control">
+                                                <select name="color[0]" class="form-control">
                                                     <option value="">--color--</option>
-                                                    <option value="">White</option>
-                                                    <option value="">Black</option>
-                                                    <option value="">M</option>
-                                                    <option value="">L</option>
+                                                    @foreach($colors as $color)
+                                                        <option value="{{ $color->id }}">{{ $color->color }}</option>
+                                                    @endforeach
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="brand[]" class="form-control"></td>
-                                            <td><input type="text" name="model[]" class="form-control"></td>
-                                            <td style="text-align: center"><a href="" class="btn btn-danger">-</a></td>
+                                            <td><input type="text" name="brand[0]" class="form-control"></td>
+                                            <td><input type="text" name="model[0]" class="form-control"></td>
+                                            <td><input type="text" name="price_detail[0]" class="form-control"></td>
+                                            <td><input type="text" name="quantity[0]" class="form-control"></td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -256,7 +255,6 @@
                 e.preventDefault();
                 $('.alert-block').remove();
                 var data = $('#form_create_product').serializeArray();
-
                 // push data to object
                 var object = {};
                 $.each(data, function() {
@@ -297,40 +295,51 @@
                         }
                     }
                 })
-            })
+            });
+
             $('.addRow').on('click', function(){
-                addRow();
+                var i = $(this).attr('data-index');
+                i++;
+                addRow(i);
+                $(this).attr('data-index', i);
             });
-            function addRow(){
-                var tr = '<tr>'+
+            function addRow(i){
+                var sizes = <?php echo json_encode($sizes)?>;
+                var option_size = '';
+                sizes.forEach(function (val) {
+                    option_size = option_size + '<option value="'+ val.id +'">'+ val.size +'</option>';
+                });
+                var colors = <?php echo json_encode($colors)?>;
+                var option_color = '';
+                colors.forEach(function (val) {
+                    option_color = option_color + '<option value="'+ val.id +'">'+ val.color +'</option>';
+                });
+                var tr = '<tr data-index="'+ i +'">'+
                             '<td>'+
-                                '<select name="size[]" class="form-control">'+
+                                '<select name="size['+ i +']" id="" class="form-control">'+
                                     '<option value="">--size--</option>'+
-                                    '<option value="">XS</option>'+
-                                    '<option value="">S</option>'+
-                                    '<option value="">M</option>'+
-                                    '<option value="">L</option>'+
+                                    option_size +
                                 '</select>'+
                             '</td>'+
                             '<td>'+
-                                '<select name="color[]" class="form-control">'+
+                                '<select name="color['+ i +']" id="" class="form-control">'+
                                     '<option value="">--color--</option>'+
-                                    '<option value="">White</option>'+
-                                    '<option value="">Black</option>'+
-                                    '<option value="">M</option>'+
-                                    '<option value="">L</option>'+
+                                    option_color +
                                 '</select>'+
                             '</td>'+
-                            '<td><input type="text" name="brand[]" class="form-control"></td>'+
-                            '<td><input type="text" name="model[]" class="form-control"></td>'+
-                            '<td style="text-align: center"><a href="" class="btn btn-danger add-remove">-</a></td>'+
-                        '</tr>'
-                            
+                            '<td><input type="text" name="brand['+ i +']" class="form-control"></td>'+
+                            '<td><input type="text" name="model['+ i +']" class="form-control"></td>'+
+                            '<td><input type="text" name="price_detail['+ i +']" class="form-control"></td>'+
+                            '<td><input type="text" name="quantity['+ i +']" class="form-control"></td>'+
+                            '<td style="text-align: center"><a class="btn btn-danger add-remove" data-index="' + i + '">-</a></td>'+
+                        '</tr>';
                 $('.appent-add').append(tr);
+
+                $('.add-remove').click(function () {
+                    var index = $(this).attr('data-index');
+                    $('tr[data-index="'+ index +'"]').remove();
+                })
             };
-            $('.appent-add').on('click', '.add-remove', function(){
-                $(this).parent().parent().remove();
-            });
         })
 </script>
 @endpush
