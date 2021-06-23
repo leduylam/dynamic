@@ -40,7 +40,10 @@ class CategoryController extends Controller
 
         // save img category
         if (!empty($data['image'])) {
-            $image = $this->uploadImage($request['image']);
+            // $image = $this->uploadImage($request['image']);
+            $path = $request->file('image')->store('categories', 's3');
+            \Storage::disk('s3')->setVisibility($path, 'public');
+            $image = basename($path);
         }
 
         $data['image'] = !empty($image) ? $image : null;

@@ -54,7 +54,7 @@
                                         <td>{{ $category->id }}</td>
                                         <td class="images">
                                             <a href="{{ route('admin.category.show', $category->id) }}">
-                                                <img src="{{ asset($category->image) }}" alt="">
+                                                <img src="{{ \Storage::disk('s3')->url('categories/' .$category->image) }}" alt="">
                                             </a>
                                         </td>
                                         <td><a href="{{ route('admin.category.show', $category->id) }}">{{ $category->name }}</a></td>

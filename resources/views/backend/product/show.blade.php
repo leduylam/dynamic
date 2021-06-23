@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong>Add Attributes</strong>
-                                <a href="{{ route('admin.product.create.attr', $product->id) }}" class="btn btn-primary btn-sm" style="float: right; margin-left:5px;">Add Attribute</a>
+                                {{-- <a href="{{ route('admin.product.create.attr', $product->id) }}" class="btn btn-primary btn-sm" style="float: right; margin-left:5px;">Add Attribute</a> --}}
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
