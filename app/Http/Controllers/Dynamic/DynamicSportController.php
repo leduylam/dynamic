@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class DynamicSportController extends Controller
 {
     public function home(){
-        return view('dynamicsportsvn.home');
+        return view('welcome');
     }
 }

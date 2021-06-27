@@ -535,7 +535,8 @@ input:focus::-moz-placeholder {
 @media (min-width: 1200px) and (max-width: 1400px) {
   /* line 281, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
   .header-btn {
-    padding: 25px 21px !important;
+    padding: 20px 16px !important;
+    font-size: 14px;
   }
 }
 
@@ -3490,8 +3491,8 @@ input:focus {
 
 /* line 50, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-area .header-top .header-info-left .contact-now li {
-  color: #212121;
-  font-size: 12px;
+  color: #fff;
+  font-size: 14px;
   text-transform: capitalize;
 }
 
@@ -3782,7 +3783,7 @@ input:focus {
 
 /* line 293, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .top-bg {
-  background: #212121;
+  background: #274085;
 }
 
 /* line 300, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
@@ -8981,7 +8982,12 @@ del {
 .card_area .product_count_area {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.card_area .product-qty-text{
+  position: absolute;
+  margin-top: 10px !important;
 }
 
 /* line 168, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_single_product.scss */
