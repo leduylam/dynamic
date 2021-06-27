@@ -129,6 +129,8 @@ Route::group([
         'as' => 'order.'
     ], function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/customer', [OrderController::class, 'customer'])->name('customer');
+        Route::get('/product', [OrderController::class, 'product'])->name('product');
         Route::get('/create', [OrderController::class, 'create'])->name('create');
         Route::post('/', [OrderController::class, 'store'])->name('store');
         Route::group([
