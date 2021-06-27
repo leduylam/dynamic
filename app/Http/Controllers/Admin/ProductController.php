@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\AddProductRequest;
 use App\Http\Requests\Product\EditProductRequest;
 use App\Models\Category;
-use App\Models\CategoryProduct;
 use App\Models\Color;
 use App\Models\Image;
 use App\Models\ProductDetail;

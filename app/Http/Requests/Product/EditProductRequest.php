@@ -25,8 +25,19 @@ class EditProductRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'sku' => 'required|max:11',
+            'sku' => 'required|max:11|custom_unique_sku_edit:'.$this->id,
             'price' => 'required|max:11',
+            'quantity.*' => 'required|integer',
+            'price_detail.*' => 'required|integer',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function messages() {
+        return [
+            'sku.custom_unique_sku_edit' => 'Sku already exists.',
         ];
     }
 }
