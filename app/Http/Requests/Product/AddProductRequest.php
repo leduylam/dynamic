@@ -25,8 +25,10 @@ class AddProductRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'sku' => 'required|max:11',
+            'sku' => 'required|max:11|unique:products',
             'price' => 'required|max:11',
+            'quantity.*' => 'required|integer',
+            'price_detail.*' => 'required|integer',
         ];
     }
 }
