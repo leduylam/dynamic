@@ -30,7 +30,7 @@
                 <li>
                     <a href="widgets.html"> <i class="menu-icon ti-email"></i>Totality </a>
                 </li>
-                
+
 
                 <h3 class="menu-title">Report</h3><!-- /.menu-title -->
 
@@ -40,7 +40,7 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><a href="{{ route('admin.report.detailed-report.index') }}">Báo cáo chi tiết </a></li>
                         <li><a href="{{ route('admin.report.order-report.index') }}">Báo cáo theo đơn hàng</a></li>
-                        
+
                         <li><a href="{{ route('admin.report.customer-report.index') }}">Báo cáo theo khách hàng</a></li>
                     </ul>
                 </li>
@@ -59,7 +59,8 @@
                         <li><a href="{{ route('admin.product.index') }}">Products</a>
                         </li>
                         <li><a href="{{ route('admin.size.index') }}">Sizes</a></li>
-                        <li></i><a href="{{ route('admin.color.index') }}">Color</a></li>
+                        <li><a href="{{ route('admin.color.index') }}">Color</a></li>
+                        <li><a href="{{ route('admin.stock.index') }}">Stock</a></li>
                     </ul>
                 </li>
 

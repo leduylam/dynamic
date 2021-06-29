@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\StockController;
 
 Route::auth();
 
@@ -40,6 +41,7 @@ Route::group([
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
         Route::post('/', [ProductController::class, 'store'])->name('store');
+        Route::post('/import',[ProductController::class,'import'])->name('import');
 
         Route::group([
             'prefix' => '{id}',
@@ -165,6 +167,15 @@ Route::group([
         ], function(){
             Route::get('/', [ReportController::class, 'detailedReport'])->name('index');
         });
+    });
+
+    Route::group([
+        'prefix' => 'stock',
+        'as' => 'stock.'
+    ], function () {
+        Route::get('/', [StockController::class, 'index'])->name('index');
+        Route::put('/{id}', [StockController::class, 'update'])->name('update');
+        Route::delete('/{id}', [StockController::class, 'destroy'])->name('destroy');
     });
 });
 ?>
