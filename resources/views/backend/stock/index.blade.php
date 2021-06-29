@@ -1,4 +1,4 @@
-@extends('layouts.admin_layouts.app')
+@extends('backend.layouts.app')
 
 @section('content')
 <div class="breadcrumbs">
@@ -30,7 +30,6 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Data Table</strong>
-                        <a href="{{ route('admin.create.product') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -38,20 +37,17 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>Categories</th>
-                                    <th>Active</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($stocks as $index => $stock)
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>Systdaaaaaaem Architect</td>
-                                    <td>Show / Hide</td>
+                                    <td>{{ $stock->name }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning">Update</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <input type="text" name="quantity[{{ $stock->id }}]" data-quantity="{{ $stock->quantity }}" data-index="{{ $stock->id }}" class="update_stock" value="{{ $stock->quantity }}">
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -61,3 +57,44 @@
     </div><!-- .animated -->
 </div><!-- .content -->
 @endsection
+@push('after-scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.update_stock').change(function () {
+                var id = $(this).attr('data-index');
+                var quantity = $(this).val();
+                var stock = $(this).attr('data-quantity');
+                var object = {};
+                object['quantity'] = quantity;
+                object['_token'] = '{{ csrf_token() }}';
+                object['_method'] = 'PUT';
+                var url = "{{ url('admin/stock/') }}" + '/' + id;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: object,
+                    success: function (data) {
+                        if (data.statusCode == 1) {
+                            alert('Stock updated success.');
+                            window.location.href = "{{ route('admin.stock.index') }}";
+                        } else {
+                            alert('Stock updated error.');
+                        }
+                    },
+                    error: function (data) {
+                        if (data.status == 422) {
+                            var errors = JSON.parse(data.responseText);
+                            var error = '';
+                            $.each(errors.errors, function (key, value) {
+                                error += value;
+                            });
+
+                            $('input[name="quantity['+ id +']"]').val(stock);
+                            alert(error);
+                        }
+                    }
+                })
+            });
+        })
+    </script>
+@endpush
