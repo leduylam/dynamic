@@ -1,6 +1,6 @@
 .img {
     width: 100px;
-    height: 150px;
+    height: auto;
 }
 .inputfile {
     width: 0.1px;
