@@ -15,7 +15,6 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
                         <li class="active">Report Data</li>
-                        
                     </ol>
                 </div>
             </div>
@@ -36,54 +35,48 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-4">
-                                    <strong class="card-title">Doanh số bán hàng theo khách hàng</strong>
+                                    <strong class="card-title">Doanh số bán hàng nhóm VTHH</strong>
                                 </div>
                                 <div class="col-8 ">
                                     <div class="sort" style="float: right">
                                         <form action="/action_page.php">
                                             <label for="birthday">Từ:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="sort-by-date" name="sort-by-date">
                                             <label for="birthday" style="margin-left:10px;">Đến:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="sort-by-date" name="sort-by-date">
                                             <input type="submit">
                                           </form>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Mã khách hàng</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Số lượng bán</th>
-                                    <th>Doanh số bán</th>
-                                    <th>Địa chỉ</th>
+                                    <th>STT</th>
+                                    <th>Nhóm VTHH</th>
+                                    <th>SL bán</th>
+                                    <th>Doanh thu</th>
                                     <th>Xem chi tiết</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th colspan="2">Tổng</th>
-                                        <th>1150</th>
-                                        <th>50.000 $</th>
+                                        <th>200</th>
+                                        <th>1.651.254.151 VND</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr>
+                                        <td>1 </td>
                                         <td>
-                                            <a href="{{ route('admin.report.customer-report.show') }}">ICC</a>
+                                            <a href="{{ route('admin.report.category-report.show') }}">Trang phục Puma</a>
                                         </td>
-                                        <td>
-                                            <a href="{{ route('admin.report.customer-report.show') }}">Công ty cổ phần ICC</a>
-                                        </td>
-                                        <td>1150</td>
-                                        <td>50.000 $</td>
-                                        <td>221 Phạm Văn Đồng</td>
-                                        <td style="text-align:center"><a href="{{ route('admin.report.customer-report.show') }}"><i class="fa fa-eye" style="font-size:33px;"></i></a></td>
+                                        <td>200</td>
+                                        <td>1.651.254.151 VND</td>
+                                        <td style="text-align:center"><a href="{{ route('admin.report.category-report.show') }}"><i class="fa fa-eye" style="font-size:33px"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>

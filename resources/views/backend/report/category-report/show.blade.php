@@ -36,7 +36,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-4">
-                                    <strong class="card-title">Doanh số bán hàng theo khách hàng</strong>
+                                    <strong class="card-title">Chi tiết bán hàng theo khách hàng</strong>
                                 </div>
                                 <div class="col-8 ">
                                     <div class="sort" style="float: right">
@@ -50,43 +50,50 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>Mã khách hàng</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Số lượng bán</th>
-                                    <th>Doanh số bán</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Xem chi tiết</th>
+                                <tr class="dsc-table">
+                                    <th>Số chứng từ </th> {{--Mã đơn hàng--}}
+                                    <th>Ngày chứng từ </th> {{--Ngày tạo đơn hàng--}}
+                                    <th>Mã sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Size</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Giảm giá</th>
+                                    <th>Doanh thu thực</th>
+                                    <th>Nhóm VTHH</th>
                                 </tr>
                                 </thead>
-                                <tfoot>
+                                <tfoot class="dsc-table">
                                     <tr>
-                                        <th colspan="2">Tổng</th>
-                                        <th>1150</th>
-                                        <th>50.000 $</th>
+                                        <th colspan="5">Tổng</th>
+                                        <th>70</th>
+                                        <th>29.541.145</th>
+                                        <th></th>
+                                        <th>28.541.145</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
-                                <tbody>
+                                <tbody class="dsc-table">
                                     <tr>
-                                        <td>
-                                            <a href="{{ route('admin.report.customer-report.show') }}">ICC</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.report.customer-report.show') }}">Công ty cổ phần ICC</a>
-                                        </td>
-                                        <td>1150</td>
-                                        <td>50.000 $</td>
-                                        <td>221 Phạm Văn Đồng</td>
-                                        <td style="text-align:center"><a href="{{ route('admin.report.customer-report.show') }}"><i class="fa fa-eye" style="font-size:33px;"></i></a></td>
+                                        <td>BG21-00129</td>
+                                        <td>21/05/2021</td>
+                                        <td>053537 01</td>{{--Mã sản phẩm nối với mã màu--}}
+                                        <td>Thắt lưng Stroel belt</td>
+                                        <td>Free size</td>
+                                        <td>50</td>
+                                        <td>20.000.000</td>
+                                        <td>1.000.000</td>
+                                        <td>19.000.000</td>
+                                        <td>Thắt lưng Puma</td>
                                     </tr>
-                                </tbody>
+                                </tbody> 
                             </table>
+                        </div>
+                        <div class="card-footer">
                         </div>
                     </div>
                 </div>

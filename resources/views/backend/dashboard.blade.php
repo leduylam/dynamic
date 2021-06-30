@@ -39,18 +39,16 @@
                     <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton1" data-toggle="dropdown">
                         <i class="fa fa-cog"></i>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <div class="dropdown-menu" style="background: #20a8d8; border:none;" aria-labelledby="dropdownMenuButton1">
                         <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Day</a>
-                            <a class="dropdown-item" href="#">Week</a>
-                            <a class="dropdown-item" href="#">Mon</a>
+                            <input type="date" name="" id="">
                         </div>
                     </div>
                 </div>
                 <h4 class="mb-0">
-                    <span class="count">10468</span>
+                    <span class="">120.212.109 VND</span>&nbsp;&nbsp;<i class="fa fa-long-arrow-down"></i>
                 </h4>
-                <p class="text-light">Order</p>
+                <p class="text-light">11/02/2021</p>
 
                 <div class="chart-wrapper px-0" style="height:70px;" height="70">
                     <canvas id="widgetChart1"></canvas>
@@ -69,18 +67,16 @@
                     <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton2" data-toggle="dropdown">
                         <i class="fa fa-cog"></i>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <div class="dropdown-menu" style="background: #63c2de; border:none;" aria-labelledby="dropdownMenuButton2">
                         <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Day</a>
-                            <a class="dropdown-item" href="#">Week</a>
-                            <a class="dropdown-item" href="#">Month</a>
+                            <input type="month" name="" id="">
                         </div>
                     </div>
                 </div>
                 <h4 class="mb-0">
-                    <span class="count">10468</span>
+                    <span class="">10.009.903.329 VND</span>&nbsp;&nbsp;<i class="fa fa-long-arrow-up"></i>
                 </h4>
-                <p class="text-light">Products sold</p>
+                <p class="text-light">May - 2021</p>
 
                 <div class="chart-wrapper px-0" style="height:70px;" height="70">
                     <canvas id="widgetChart2"></canvas>
@@ -95,22 +91,19 @@
         <div class="card text-white bg-flat-color-3">
             <div class="card-body pb-0">
                 <div class="dropdown float-right">
-                    <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton3" data-toggle="dropdown">
-                        <i class="fa fa-cog"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                        <div class="dropdown-menu-content">
-                            <a class="dropdown-item" href="#">Day</a>
-                            <a class="dropdown-item" href="#">Week</a>
-                            <a class="dropdown-item" href="#">Month</a>
-                        </div>
-                    </div>
+                    <select name="" id="" style="background: #ffc107; color:#fff; border:none">
+                        <option value="">2021</option>
+                        <option value="">2022</option>
+                        <option value="">2023</option>
+                        <option value="">2024</option>
+                        <option value="">2025</option>
+                    </select>
                 </div>
                 <h4 class="mb-0">
-                    <span class="count">10468</span>
+                    <span class="">67.124.432.654 VND</span>&nbsp;&nbsp;<i class="fa fa-long-arrow-up"></i>
                 </h4>
-                <p class="text-light">Total Price</p>
-
+                <p class="text-light" style="float: left">01/01/2021 -</p>
+                <p class="text-light" style="margin-left: 10px"> &nbsp;31/12/2021</p>
             </div>
 
             <div class="chart-wrapper px-0" style="height:70px;" height="70">
@@ -126,17 +119,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="card-title mb-0">TOP 5 Order by Customer</h4>
-                        <div class="small text-muted">October 2017</div>
+                        <h4 class="card-title mb-0"><a href="{{ route('admin.report.customer-report.index') }}">Doanh số theo khách hàng (Top 5)</a> </h4>
+                        <div class="small text-muted">October 2021</div>
                     </div>
                     <!--/.col-->
                     <div class="col-sm-8 hidden-sm-down">
                         <button type="button" class="btn btn-primary float-right bg-flat-color-1"><i class="fa fa-cloud-download"></i></button>
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-                                <label class="btn btn-outline-secondary">
-                                    <input type="radio" name="options" id="option1"> Day
-                                </label>
                                 <label class="btn btn-outline-secondary active">
                                     <input type="radio" name="options" id="option2" checked=""> Month
                                 </label>
@@ -164,17 +154,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="card-title mb-0">TOP 5 Order by Customer</h4>
-                        <div class="small text-muted">October 2017</div>
+                        <h4 class="card-title mb-0"><a href="{{ route('admin.report.category-report.index') }}">Doanh số theo Category (Top 5)</a> </h4>
+                        <div class="small text-muted">October 2021</div>
                     </div>
                     <!--/.col-->
                     <div class="col-sm-8 hidden-sm-down">
                         <button type="button" class="btn btn-primary float-right bg-flat-color-1"><i class="fa fa-cloud-download"></i></button>
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-                                <label class="btn btn-outline-secondary">
-                                    <input type="radio" name="options" id="option1"> Day
-                                </label>
                                 <label class="btn btn-outline-secondary active">
                                     <input type="radio" name="options" id="option2" checked=""> Month
                                 </label>

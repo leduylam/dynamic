@@ -55,7 +55,7 @@
                                     <div class="col col-md-3"><label for="file-input" class=" form-control-label">File
                                             input</label></div>
                                     <div class="col-12 col-md-9">
-                                        <img style="width: 70px;height: 70px; margin-bottom: 10px" src="{{ asset($category->image) }}" alt="{{ $category->name }}">
+                                        <img style="width: 70px;height: 70px; margin-bottom: 10px" src="{{ \Storage::disk('s3')->url('categories/' .$category->image) }}" alt="{{ $category->name }}">
                                         <input type="file" id="file-input" name="image"
                                                                         class="form-control-file">
                                     </div>

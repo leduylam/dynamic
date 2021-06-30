@@ -81,42 +81,35 @@
                                     <th>Active</th>
                                     <th>Action</th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($products as $product)
-                                    <tr>
-                                        <td class="images">
-                                            @if(!empty($product->image))
-                                                <img src="{{ asset('storage/product/'.$product->image) }}" alt="">
-                                            @endif
-                                        </td>
-                                        <td>{{ $product->sku }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a>
-                                        </td>
-                                        <td>{{ $product->price }}VND</td>
-                                        <td>
-                                            @if($product->status == 1)
-                                                <a href="#" class="badge badge-success">Show</a>
-                                            @else
-                                                <a href="#" class="badge badge-secondary">Hide</a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('admin.product.destroy', $product->id) }}"
-                                                  method="POST">
-                                                <a href="{{ route('admin.product.edit', $product->id) }}"
-                                                   class="btn btn-sm btn-warning">Update</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                            </thead>
+                            <tbody>
+                            @foreach($products as $product)
+                                <tr>
+                                    <td class="images">
+                                        <img src="{{ \Storage::disk('s3')->url('product/'.$product->image) }}" alt="">
+                                    </td>
+                                    <td>{{ $product->sku }}</td>
+                                    <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>
+                                    <td>{{ $product->price }}VND</td>
+                                    <td>
+                                        @if($product->status == 1)
+                                            <a href="#" class="badge badge-success">Show</a>
+                                        @else
+                                            <a href="#" class="badge badge-secondary">Hide</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('admin.product.destroy', $product->id) }}" method="POST">
+                                            <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-sm btn-warning">Update</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

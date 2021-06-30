@@ -33,44 +33,65 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title" style="justify-content: center">Báo cáo chi tiết</strong>
-                            {{-- <a href="{{ route('admin.color.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a> --}}
+                            <div class="row">
+                                <div class="col-4">
+                                    <strong class="card-title">Báo cáo chi tiết theo mặt hàng</strong>
+                                </div>
+                                <div class="col-8 ">
+                                    <div class="sort" style="float: right">
+                                        <form action="/action_page.php">
+                                            <label for="birthday">Từ:</label>
+                                            <input type="date" id="birthday" name="birthday">
+                                            <label for="birthday" style="margin-left:10px;">Đến:</label>
+                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="submit">
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Mã sản phẩm</th>
-                                    <th>Tên sản phẩm</>
+                                    <th>STT</th>
+                                    <th>Mã hàng</th>
+                                    <th>Tên sản phẩm</th>
                                     <th>Size</th>
-                                    <th>Color</th>
-                                    <th>Số lượng bán</th>
-                                    <th>Đơn giá</th>
-                                    <th>Doanh số bán</th>
-                                    <th>VTTH</th>
-                                    <th>Tên khách hàng</th>
-                                    
+                                    <th>Màu</th>
+                                    <th>Model</th>
+                                    <th>Số lượng</th>
+                                    <th>Doanh thu</th>
+                                    <th>Giảm giá</th>
+                                    <th>Doanh thu thực</th>
+                                    <th>Thương hiệu</th>
                                 </tr>
                                 </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="6">Tổng</th>
+                                        <th>15</th>
+                                        <th>1.740.375 VND</th>
+                                        <th>187,018 VND</th>
+                                        <th>1,553,357 VND</th>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
-                                    {{-- @if(!empty($colors))
-                                        @foreach($colors as $color)
-                                            <tr>
-                                                <td>{{ $color->id }}</td>
-                                                <td>{{ $color->color }}</td>
-                                                <td>{{ $color->description }}</td>
-                                                <td>
-                                                    <form action="{{ route('admin.color.destroy', $color->id) }}" method="POST">
-                                                        <a href="{{ route('admin.color.edit', $color->id) }}" class="btn btn-sm btn-outline-secondary">Update</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif --}}
-                                
+                                    <tr>
+                                        <td>1</td>
+                                        <td>599434</td>
+                                        <td>MATTR VOLITION FLANKED GOLF POLO</td>
+                                        <td>XS</td>
+                                        <td>01</td>
+                                        <td>2021</td>
+                                        <td>15</td>
+                                        <td>1.740.375 VND</td>
+                                        <td>187,018 VND</td>
+                                        <td>1,553,357 VND</td>
+                                        <td>PUMA</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -153,13 +153,15 @@ Route::group([
             'prefix' => 'customer-report',
             'as' => 'customer-report.'
         ], function(){
-            Route::get('/', [ReportController::class, 'customerReport'])->name('index');
+            Route::get('/', [ReportController::class, 'index'])->name('index');
+            Route::get('/show', [ReportController::class, 'show'])->name('show');
         });
         Route::group([
-            'prefix' => 'order-report',
-            'as' => 'order-report.'
+            'prefix' => 'category-report',
+            'as' => 'category-report.'
         ], function(){
-            Route::get('/', [ReportController::class, 'orderReport'])->name('index');
+            Route::get('/', [ReportController::class, 'categoryReport'])->name('index');
+            Route::get('/show', [ReportController::class, 'showCategoryReport'])->name('show');
         });
         Route::group([
             'prefix' => 'detailed-report',
