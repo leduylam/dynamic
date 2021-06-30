@@ -6,7 +6,7 @@
     <title>Dynamic Sport </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
+    {{-- <link rel="manifest" href="site.webmanifest"> --}}
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
     <!-- CSS here -->
@@ -21,12 +21,13 @@
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('dynamic/assets/css/main.css') }}">
 </head>
 
 <body>
 
 <!-- Preloader Start -->
-<div id="preloader-active">
+{{-- <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
             <div class="preloader-circle"></div>
@@ -35,7 +36,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Preloader Start -->
 
 @include('dynamicsportsvn.layouts.header')
@@ -78,6 +79,6 @@
 <!-- Jquery Plugins, main Jquery -->
 <script src="{{ asset('dynamic/assets/js/plugins.js') }}"></script>
 <script src="{{ asset('dynamic/assets/js/main.js') }}"></script>
-
+@stack('slide-product')
 </body>
 </html>

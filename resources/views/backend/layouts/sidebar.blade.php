@@ -38,8 +38,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Báo cáo phân tích</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><a href="{{ route('admin.report.detailed-report.index') }}">Báo cáo chi tiết </a></li>
-                        <li><a href="{{ route('admin.report.order-report.index') }}">Báo cáo theo đơn hàng</a></li>
+                        <li><a href="{{ route('admin.report.detailed-report.index') }}">Báo cáo theo mặt hàng </a></li>
+                        <li><a href="{{ route('admin.report.category-report.index') }}">Báo cáo theo danh mục</a></li>
                         
                         <li><a href="{{ route('admin.report.customer-report.index') }}">Báo cáo theo khách hàng</a></li>
                     </ul>

@@ -39,11 +39,18 @@ class CategoryController extends Controller
         $data = $request->all();
 
         // save img category
-        if (!empty($data['image'])) {
-            // $image = $this->uploadImage($request['image']);
-            $path = $request->file('image')->store('categories', 's3');
-            \Storage::disk('s3')->setVisibility($path, 'public');
-            $image = basename($path);
+        // if (!empty($data['image'])) {
+        //     // $image = $this->uploadImage($request['image']);
+        //     $path = $request->file('image')->store('categories', 's3');
+        //     \Storage::disk('s3')->setVisibility($path, 'public');
+        //     $image = basename($path);
+        // }
+        if(!empty($data['image'])){
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filepath = $name;
+            \Storage::disk('s3')->put('categories/'.$filepath, file_get_contents($file));
+            $image = $name;
         }
 
         $data['image'] = !empty($image) ? $image : null;
@@ -88,10 +95,20 @@ class CategoryController extends Controller
         $data = $request->all();
         $category = Category::find($id);
 
-        if (!empty($request['image'])) {
-            $image = $this->uploadImage($request['image']);
-            // delete img old
-            \File::delete(public_path() . '/' . $category['image']);
+        // if (!empty($data['image'])) {
+        //     // $image = $this->uploadImage($request['image']);
+        //     $path = $request->file('image')->store('categories', 's3');
+        //     \Storage::disk('s3')->delete($category->image);
+        //     \Storage::disk('s3')->setVisibility($path, 'public');
+        //     $image = basename($path);
+        // }
+        if(!empty($data['image'])){
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filepath = $name;
+            \Storage::disk('s3')->delete($category->image);
+            \Storage::disk('s3')->put('categories/'.$filepath, file_get_contents($file));
+            $image = $name;
         }
 
         $data['image'] = !empty($image) ? $image : $category['image'];
@@ -109,7 +126,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         // delete image
-        \File::delete(public_path() . '/' . $category['image']);
+        \Storage::disk('s3')->delete($category->image);
         $category->delete();
 
         return redirect()->route('admin.category.index')->with('success', 'Delete category successfully');
@@ -119,12 +136,12 @@ class CategoryController extends Controller
      * @param $image
      * @return string
      */
-    public function uploadImage($image)
-    {
-        $name = time() . '.' . $image->getClientOriginalExtension();
-        $image->move('picture', $name);
-        return sprintf('picture/%s', $name);
-    }
+    // public function uploadImage($image)
+    // {
+    //     $name = time() . '.' . $image->getClientOriginalExtension();
+    //     $image->move('picture', $name);
+    //     return sprintf('picture/%s', $name);
+    // }
 
     public function showMid($id)
     {
@@ -154,8 +171,12 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $data['parent_id_1'] = $id;
-        if (!empty($request['image'])) {
-            $image = $this->uploadImage($request['image']);
+        if(!empty($data['image'])){
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filepath = $name;
+            \Storage::disk('s3')->put('categories/mid/'.$filepath, file_get_contents($file));
+            $image = $name;
         }
 
         $data['image'] = !empty($image) ? $image : null;
@@ -187,11 +208,13 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category_parent_id = $category->parent_id_1;
         $data = $request->all();
-        if (!empty($request['image'])) {
-            $image = $this->uploadImage($request['image']);
-
-            // delete img old
-            \File::delete(public_path() . '/' . $category['image']);
+        if(!empty($data['image'])){
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filepath = $name;
+            \Storage::disk('s3')->delete($category->image);
+            \Storage::disk('s3')->put('categories/mid/'.$filepath, file_get_contents($file));
+            $image = $name;
         }
 
         $data['image'] = !empty($image) ? $image : $category['image'];
@@ -216,7 +239,8 @@ class CategoryController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function showSmall($id) {
+    public function showSmall($id) 
+    {
         $category = Category::find($id);
 
         return view('backend.category.small.show', compact('category'));
@@ -231,8 +255,12 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $category = Category::find($id);
-        if (!empty($request['image'])) {
-            $image = $this->uploadImage($request['image']);
+        if(!empty($data['image'])){
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filepath = $name;
+            \Storage::disk('s3')->put('categories/small/'.$filepath, file_get_contents($file));
+            $image = $name;
         }
 
         $data['parent_id_1'] = $category['parent_id_1'];
@@ -267,11 +295,13 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $parent_mid_id = $category['parent_id_2'];
         $data = $request->all();
-        if (!empty($request['image'])) {
-            $image = $this->uploadImage($request['image']);
-
-            // delete img old
-            \File::delete(public_path() . '/' . $category['image']);
+        if(!empty($data['image'])){
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filepath = $name;
+            \Storage::disk('s3')->delete($category->image);
+            \Storage::disk('s3')->put('categories/small/'.$filepath, file_get_contents($file));
+            $image = $name;
         }
 
         $data['image'] = !empty($image) ? $image : $category['image'];

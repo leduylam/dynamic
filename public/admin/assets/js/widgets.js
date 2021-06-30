@@ -21,7 +21,7 @@
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021', '05/01/2021', '06/01/2021', '07/01/2021'],
             type: 'line',
             datasets: [ {
                 data: [65, 59, 84, 84, 51, 55, 40],
@@ -137,7 +137,7 @@
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
             type: 'line',
             datasets: [ {
                 data: [78, 81, 80, 45, 34, 12, 40],
