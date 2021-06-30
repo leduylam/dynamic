@@ -3,18 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Stock\EditStockRequest;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $stocks = Stock::with('productDetail')->get();
+        foreach ($stocks as $index => $stock){
+            $name = $stock->productDetail->product->name.'/'.$stock->productDetail->size.'/'.$stock->productDetail->color.'('.$stock->productDetail->price.')';
+            $stocks[$index]['name'] = $name;
+        }
+
+        return view('backend.stock.index', compact('stocks'));
     }
 
     /**
@@ -61,15 +67,27 @@ class StockController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(EditStockRequest $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $stock = Stock::find($id);
+            $stock['quantity'] = !empty($request['quantity']) ? $request['quantity'] : $stock['quantity'];
+            $stock->save();
+
+            return response()->json([
+               'statusCode' => 1,
+               'data' => null
+            ], 200);
+        }
+
+        return response()->json([
+           'statusCode' => '0',
+           'data' => null
+        ], 500);
     }
 
     /**
@@ -80,6 +98,6 @@ class StockController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }

@@ -56,3 +56,6 @@ input[type="file"] {
     background: white;
     color: black;
 }
+.modal-backdrop {
+    position: inherit !important;
+}

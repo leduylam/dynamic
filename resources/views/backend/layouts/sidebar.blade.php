@@ -30,7 +30,7 @@
                 <li>
                     <a href="widgets.html"> <i class="menu-icon ti-email"></i>Totality </a>
                 </li>
-                
+
 
                 <h3 class="menu-title">Report</h3><!-- /.menu-title -->
 
@@ -59,7 +59,8 @@
                         <li><a href="{{ route('admin.product.index') }}">Products</a>
                         </li>
                         <li><a href="{{ route('admin.size.index') }}">Sizes</a></li>
-                        <li></i><a href="{{ route('admin.color.index') }}">Color</a></li>
+                        <li><a href="{{ route('admin.color.index') }}">Color</a></li>
+                        <li><a href="{{ route('admin.stock.index') }}">Stock</a></li>
                     </ul>
                 </li>
 
