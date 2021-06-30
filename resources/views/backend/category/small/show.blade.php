@@ -48,7 +48,7 @@
                                     <td>{{ $category->id }}</td>
                                     <td class="category_image">
                                         <a href="{{ route('admin.category.show.small', $category->id) }}">
-                                            <img class="img" src="{{ asset($category->image) }}" alt="">
+                                            <img class="img" src="{{ \Storage::disk('s3')->url('categories/small/'.$category->image) }}" alt="">
                                         </a>
                                     </td>
                                     <td><a href="{{ route('admin.category.show.small', $category->id) }}">{{ $category->name }}</a></td>

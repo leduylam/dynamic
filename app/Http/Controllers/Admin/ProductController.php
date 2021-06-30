@@ -235,7 +235,7 @@ class ProductController extends Controller
                 if (!empty($img_diff)) {
                     $image_name = Image::whereIn('id', $img_diff)->get();
                     foreach ($image_name as $item) {
-                        \File::delete(public_path() . '/storage/product/' . $item->description);
+                        \Storage::disk('s3')->delete('product/' . $item->description);
                     }
 
                     Image::whereIn('id', $img_diff)->delete();
@@ -306,7 +306,7 @@ class ProductController extends Controller
         $images = $product->images->pluck('id')->toArray();
         $image_name = Image::whereIn('id', $images)->get();
         foreach ($image_name as $item) {
-            \File::delete(public_path() . '/storage/product/' . $item->description);
+            \Storage::disk('s3')->delete($item->description);
         }
 
         Image::whereIn('id', $images)->delete();
@@ -329,7 +329,7 @@ class ProductController extends Controller
         preg_match('/.([0-9]+) /', microtime(), $m);
         $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
         $content = explode(',', $content)[1];
-        $storage = Storage::disk('public');
+        $storage = Storage::disk('s3');
 
         $checkDirectory = $storage->exists($folder);
 

@@ -38,9 +38,9 @@ function random (min, max) {
     var ctx = document.getElementById( "trafficChart" );
     //ctx.height = 200;
     var myChart = new Chart( ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S'],
+            labels: ['GOLF LAND', 'TAT GOLF', 'ICC', 'EPGA', 'Linking'],
             datasets: [
             {
               label: 'My First dataset',
@@ -50,23 +50,6 @@ function random (min, max) {
               borderWidth: 2,
               data: data1
           },
-          {
-              label: 'My Second dataset',
-              backgroundColor: 'transparent',
-              borderColor: brandSuccess,
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 2,
-              data: data2
-          },
-          {
-              label: 'My Third dataset',
-              backgroundColor: 'transparent',
-              borderColor: brandDanger,
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 1,
-              borderDash: [8, 5],
-              data: data3
-          }
           ]
         },
         options: {
@@ -128,33 +111,16 @@ function random (min, max) {
     var myChart = new Chart( ctx, {
         type: 'bar',
         data: {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S'],
+            labels: ['Puma Cap', 'Greg Norman Pant', 'Puma Pant', 'Puma Show', 'Ahead Cap'],
             datasets: [
-            {
-              label: 'My First dataset',
-              backgroundColor: convertHex(brandInfo, 10),
-              borderColor: brandInfo,
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 2,
-              data: data1
-          },
           {
-              label: 'My Second dataset',
-              backgroundColor: 'transparent',
-              borderColor: brandSuccess,
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 2,
-              data: data2
+            label: 'My First dataset',
+            backgroundColor: convertHex(brandInfo, 10),
+            borderColor: brandInfo,
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: data1
           },
-          {
-              label: 'My Third dataset',
-              backgroundColor: 'transparent',
-              borderColor: brandDanger,
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 1,
-              borderDash: [8, 5],
-              data: data3
-          }
           ]
         },
         options: {

@@ -175,6 +175,363 @@
                                             <a style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</a>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <div class="d-flex">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="" style="color:#506172">09287326</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="{{ route('product.product-detail') }}" style="color:#506172">Áo Puma golf</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">XS</span>
+                                                    <ul class="list">
+                                                        <li class="option">XS</li>
+                                                        <li class="option">S</li>
+                                                        <li class="option">M</li>
+                                                        <li class="option">L</li>
+                                                        <li class="option">XL</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">02</span>
+                                                    <ul class="list">
+                                                        <li class="option">03</li>
+                                                        <li class="option">01</li>
+                                                        <li class="option">04</li>
+                                                        <li class="option">05</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 đ</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 VND</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
+                                                  class="input-text qty input-number" />
+                                                <button
+                                                  class="increase input-number-increment items-count" type="button">
+                                                  <i class="ti-angle-up"></i>
+                                                </button>
+                                                <button
+                                                  class="reduced input-number-decrement items-count" type="button">
+                                                  <i class="ti-angle-down"></i>
+                                                </button> -->
+                                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                                <input class="input-number" type="text" value="1" min="0" max="10">
+                                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                              </div>
+                                        </td>
+                                        <td>
+                                            <a style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <div class="d-flex">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="" style="color:#506172">09287326</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="{{ route('product.product-detail') }}" style="color:#506172">Áo Puma golf</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">XS</span>
+                                                    <ul class="list">
+                                                        <li class="option">XS</li>
+                                                        <li class="option">S</li>
+                                                        <li class="option">M</li>
+                                                        <li class="option">L</li>
+                                                        <li class="option">XL</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">02</span>
+                                                    <ul class="list">
+                                                        <li class="option">03</li>
+                                                        <li class="option">01</li>
+                                                        <li class="option">04</li>
+                                                        <li class="option">05</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 đ</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 VND</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
+                                                  class="input-text qty input-number" />
+                                                <button
+                                                  class="increase input-number-increment items-count" type="button">
+                                                  <i class="ti-angle-up"></i>
+                                                </button>
+                                                <button
+                                                  class="reduced input-number-decrement items-count" type="button">
+                                                  <i class="ti-angle-down"></i>
+                                                </button> -->
+                                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                                <input class="input-number" type="text" value="1" min="0" max="10">
+                                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                              </div>
+                                        </td>
+                                        <td>
+                                            <a style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <div class="d-flex">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="" style="color:#506172">09287326</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="{{ route('product.product-detail') }}" style="color:#506172">Áo Puma golf</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">XS</span>
+                                                    <ul class="list">
+                                                        <li class="option">XS</li>
+                                                        <li class="option">S</li>
+                                                        <li class="option">M</li>
+                                                        <li class="option">L</li>
+                                                        <li class="option">XL</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">02</span>
+                                                    <ul class="list">
+                                                        <li class="option">03</li>
+                                                        <li class="option">01</li>
+                                                        <li class="option">04</li>
+                                                        <li class="option">05</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 đ</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 VND</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
+                                                  class="input-text qty input-number" />
+                                                <button
+                                                  class="increase input-number-increment items-count" type="button">
+                                                  <i class="ti-angle-up"></i>
+                                                </button>
+                                                <button
+                                                  class="reduced input-number-decrement items-count" type="button">
+                                                  <i class="ti-angle-down"></i>
+                                                </button> -->
+                                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                                <input class="input-number" type="text" value="1" min="0" max="10">
+                                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                              </div>
+                                        </td>
+                                        <td>
+                                            <a style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <div class="d-flex">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="" style="color:#506172">09287326</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <a href="{{ route('product.product-detail') }}" style="color:#506172">Áo Puma golf</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">XS</span>
+                                                    <ul class="list">
+                                                        <li class="option">XS</li>
+                                                        <li class="option">S</li>
+                                                        <li class="option">M</li>
+                                                        <li class="option">L</li>
+                                                        <li class="option">XL</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media select-itms">
+                                                <div class="media-body nice-select">
+                                                    <span class="current">02</span>
+                                                    <ul class="list">
+                                                        <li class="option">03</li>
+                                                        <li class="option">01</li>
+                                                        <li class="option">04</li>
+                                                        <li class="option">05</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 đ</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p>1.287.326 VND</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
+                                                  class="input-text qty input-number" />
+                                                <button
+                                                  class="increase input-number-increment items-count" type="button">
+                                                  <i class="ti-angle-up"></i>
+                                                </button>
+                                                <button
+                                                  class="reduced input-number-decrement items-count" type="button">
+                                                  <i class="ti-angle-down"></i>
+                                                </button> -->
+                                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                                <input class="input-number" type="text" value="1" min="0" max="10">
+                                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                              </div>
+                                        </td>
+                                        <td>
+                                            <a style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</a>
+                                        </td>
+                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </form>

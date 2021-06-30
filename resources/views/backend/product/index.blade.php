@@ -48,7 +48,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td class="images">
-                                        <img src="{{ asset('storage/product/'.$product->image) }}" alt="">
+                                        <img src="{{ \Storage::disk('s3')->url('product/'.$product->image) }}" alt="">
                                     </td>
                                     <td>{{ $product->sku }}</td>
                                     <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>

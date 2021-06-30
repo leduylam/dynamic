@@ -52,7 +52,7 @@
                                         <td>{{ $category->id }}</td>
                                         <td class="category_image">
                                             <a href="{{ route('admin.category.show', $category->id) }}">
-                                                <img class="img" src="{{ asset($category->image) }}" alt="">
+                                                <img class="img" src="{{ \Storage::disk('s3')->url('categories/'.$category->image) }}" alt="">
                                             </a>
                                         </td>
                                         <td><a href="{{ route('admin.category.show', $category->id) }}">{{ $category->name }}</a></td>
@@ -96,7 +96,7 @@
                                         <td>{{ $mid->id }}</td>
                                         <td class="category_image">
                                             <a href="{{ route('admin.category.show.mid', $mid->id) }}">
-                                                <img class="img" src="{{ asset($mid->image) }}" alt="">
+                                                <img class="img" src="{{ \Storage::disk('s3')->url('categories/mid/'.$mid->image) }}" alt="">
                                             </a>
                                         </td>
                                         <td><a href="{{ route('admin.category.show.mid', $mid->id) }}">{{ $mid->name }}</a></td>

@@ -113,7 +113,7 @@
                                                        multiple=""><input type="file" name="img_url[]"
                                                                           class="form-control inputfile data_content"
                                                                           multiple="" data-content="">
-                                                <label class="btn btn-success img_data" for="files">商品画像登録</label>
+                                                <label class="btn btn-success img_data" for="files">Upload</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -126,7 +126,7 @@
                                                                     <span class="remove">×</span>
                                                                     <br>
                                                                     <img name="img_url[]" class="imageThumb"
-                                                                         src="{{ asset('storage/product/'.$image->description) }}"
+                                                                         src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}"
                                                                          alt="{{ $image->name }}"
                                                                          data-id="{{ $image->id }}">
                                                                     <br>
