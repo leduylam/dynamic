@@ -27,6 +27,16 @@
             <div class="row">
 
                 <div class="col-md-12">
+                    @if ($message = \Illuminate\Support\Facades\Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+                        @if ($message = \Illuminate\Support\Facades\Session::get('error'))
+                            <div class="alert alert-danger">
+                                <p>{!! $message !!}</p>
+                            </div>
+                        @endif
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
