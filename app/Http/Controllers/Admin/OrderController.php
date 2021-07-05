@@ -119,7 +119,7 @@ class OrderController extends Controller
             if (!empty($product)) {
                 if (!empty($product->details->toArray())) {
                     foreach ($product->details as $key => $item) {
-                        $product->details[$key]['detail'] = $product->name . '/' . $item->size . '/' . $item->color . '(' . $item->stock->quantity . ')';
+                        $product->details[$key]['detail'] = $product->name . '/' . $item->size->size . '/' . $item->color->color . '(' . $item->stock->quantity . ')';
                         $product->details[$key]['quantity'] = $item->stock->quantity;
                     }
                 }
@@ -155,13 +155,16 @@ class OrderController extends Controller
         $order->shipping_start_date = !empty($order->shipping_start_date) ? strtotime($order->shipping_start_date) : '';
         if (!empty($order->orderItems->toArray())) {
             foreach ($order->orderItems as $index => $item) {
-                $product_details = ProductDetail::where('product_id', $item->product->product_id)->get();
+                $product_id = ProductDetail::find($item->product_detail_id);
+                $product_details = ProductDetail::where('product_id', $product_id->product_id)->get();
+                $product = Product::find($product_id->product_id);
+                $order->orderItems[$index]['sku'] = $product->sku;
                 $array = array();
                 if (!empty($product_details->toArray())) {
                     foreach ($product_details as $key => $product_detail) {
                         $array[] = [
                             'id' => $product_detail->id,
-                            'product_detail' => $product_detail->product->name . '/'. $product_detail->size .'/' .$product_detail->color.'('. $product_detail->stock->quantity.')',
+                            'product_detail' => $product_detail->product->name . '/'. $product_detail->size->size .'/' .$product_detail->color->color.'('. $product_detail->stock->quantity.')',
                             'stock' => $product_detail->stock->quantity,
                             'price' => $product_detail->price,
                         ];
@@ -296,6 +299,7 @@ class OrderController extends Controller
                     }
                 }
 
+                $product = ProductDetail::find($product_detail_id);
                 $stock = Stock::where('product_detail_id', $product_detail_id)->first();
                 if (!empty($stock) && $stock['quantity'] >= $quantity) {
                     $order_item = new OrderItem();
@@ -304,6 +308,7 @@ class OrderController extends Controller
                     $order_item['quantity'] = $quantity;
                     $order_item['price'] = $total_amount;
                     $order_item['discount'] = $discount;
+                    $order_item['product_id'] = $product->product_id;
                     $order_item->save();
 
                     // stock product

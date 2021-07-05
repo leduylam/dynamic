@@ -39,18 +39,16 @@
                                 </div>
                                 <div class="col-8 ">
                                     <div class="sort" style="float: right">
-                                        <form action="/action_page.php">
+                                        <form action="{{ route('admin.report.detailed-report.index') }}" method="GET">
                                             <label for="birthday">Từ:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="birthday" name="date_start" value="{{ !empty($_GET['date_start']) ? $_GET['date_start'] : \Carbon\Carbon::now()->format('Y-m-d') }}">
                                             <label for="birthday" style="margin-left:10px;">Đến:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="birthday" name="date_end">
                                             <input type="submit">
                                           </form>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -72,26 +70,28 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="6">Tổng</th>
-                                        <th>15</th>
-                                        <th>1.740.375 VND</th>
-                                        <th>187,018 VND</th>
-                                        <th>1,553,357 VND</th>
+                                        <th>{{ $all_quantity }}</th>
+                                        <th>{{ $all_amount }} VND</th>
+                                        <th>{{ $all_amount - $all_total_amount }} VND</th>
+                                        <th>{{ $all_total_amount }} VND</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>599434</td>
-                                        <td>MATTR VOLITION FLANKED GOLF POLO</td>
-                                        <td>XS</td>
-                                        <td>01</td>
-                                        <td>2021</td>
-                                        <td>15</td>
-                                        <td>1.740.375 VND</td>
-                                        <td>187,018 VND</td>
-                                        <td>1,553,357 VND</td>
-                                        <td>PUMA</td>
-                                    </tr>
+                                    @foreach($array as $index => $item)
+                                        <tr>
+                                            <td>{{ $index }}</td>
+                                            <td>{{ $item['sku'] }}</td>
+                                            <td>{{ $item['name'] }}</td>
+                                            <td>{{ $item['size'] }}</td>
+                                            <td>{{ $item['color'] }}</td>
+                                            <td>{{ $item['model'] }}</td>
+                                            <td>{{ $item['quantity'] }}</td>
+                                            <td>{{ $item['amount'] }}VND</td>
+                                            <td>{{ $item['amount'] - $item['total_amount'] }} VND</td>
+                                            <td>{{ $item['total_amount'] }} VND</td>
+                                            <td>{{ $item['brand'] }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

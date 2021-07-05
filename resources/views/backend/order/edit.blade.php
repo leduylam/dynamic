@@ -132,7 +132,7 @@
                                                 <td><input type="text" name="product_sku[{{ $index }}]"
                                                            class="form-control product_sku"
                                                            data-index="{{ $index }}"
-                                                           value="{{ $item->product->product->sku }}"></td>
+                                                           value="{{ $item->sku }}"></td>
                                                 <td>
                                                     <select name="product_name[{{ $index }}]" id="product_detail_id"
                                                             class="form-control product_detail_id"
@@ -147,7 +147,7 @@
                                                            class="form-control quantity" data-index="{{ $index }}"
                                                            value="{{ $item->quantity }}"></td>
                                                 <td><input type="text" name="price[{{ $index }}]" class="form-control"
-                                                           value="{{ $item->product->price }}"
+                                                           value="{{ $item->price }}"
                                                            readonly></td>
                                                 <td><input type="text" name="discount[{{ $index }}]"
                                                            value="{{ $item->discount }}"
