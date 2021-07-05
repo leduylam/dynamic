@@ -113,7 +113,7 @@
                                     <tbody class="appent-add">
                                         <tr>
                                             <td>
-                                                <select name="size[0]" class="form-control">
+                                                <select name="size_id[0]" class="form-control">
                                                     <option value="">--size--</option>
                                                     @foreach($sizes as $size)
                                                         <option value="{{ $size->id }}"> {{ $size->size }}</option>
@@ -121,7 +121,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="color[0]" class="form-control">
+                                                <select name="color_id[0]" class="form-control">
                                                     <option value="">--color--</option>
                                                     @foreach($colors as $color)
                                                         <option value="{{ $color->id }}">{{ $color->color }}</option>
@@ -316,13 +316,13 @@
                 });
                 var tr = '<tr data-index="'+ i +'">'+
                             '<td>'+
-                                '<select name="size['+ i +']" id="" class="form-control">'+
+                                '<select name="size_id['+ i +']" id="" class="form-control">'+
                                     '<option value="">--size--</option>'+
                                     option_size +
                                 '</select>'+
                             '</td>'+
                             '<td>'+
-                                '<select name="color['+ i +']" id="" class="form-control">'+
+                                '<select name="color_id['+ i +']" id="" class="form-control">'+
                                     '<option value="">--color--</option>'+
                                     option_color +
                                 '</select>'+

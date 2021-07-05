@@ -15,7 +15,7 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
                         <li class="active">Report Data</li>
-                        
+
                     </ol>
                 </div>
             </div>
@@ -40,11 +40,11 @@
                                 </div>
                                 <div class="col-8 ">
                                     <div class="sort" style="float: right">
-                                        <form action="/action_page.php">
+                                        <form action="{{ url('admin/report/category-report/show/'.$id) }}" method="GET">
                                             <label for="birthday">Từ:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="birthday" name="date_start">
                                             <label for="birthday" style="margin-left:10px;">Đến:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="birthday" name="date_end">
                                             <input type="submit">
                                           </form>
                                     </div>
@@ -70,27 +70,29 @@
                                 <tfoot class="dsc-table">
                                     <tr>
                                         <th colspan="5">Tổng</th>
-                                        <th>70</th>
-                                        <th>29.541.145</th>
+                                        <th>{{ $quantity }}</th>
+                                        <th>{{ $amount }}</th>
                                         <th></th>
-                                        <th>28.541.145</th>
+                                        <th>{{ $total_amount }}</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody class="dsc-table">
-                                    <tr>
-                                        <td>BG21-00129</td>
-                                        <td>21/05/2021</td>
-                                        <td>053537 01</td>{{--Mã sản phẩm nối với mã màu--}}
-                                        <td>Thắt lưng Stroel belt</td>
-                                        <td>Free size</td>
-                                        <td>50</td>
-                                        <td>20.000.000</td>
-                                        <td>1.000.000</td>
-                                        <td>19.000.000</td>
-                                        <td>Thắt lưng Puma</td>
-                                    </tr>
-                                </tbody> 
+                                    @foreach($data as $item)
+                                        <tr>
+                                            <td>{{ $item['sku'] }}</td>
+                                            <td>{{ $item['order_date'] }}</td>
+                                            <td>{{ $item['sku_product'] }}</td>{{--Mã sản phẩm nối với mã màu--}}
+                                            <td>{{ $item['name'] }}</td>
+                                            <td>{{ $item['size'] .'/'.$item['color'] }}</td>
+                                            <td>{{ $item['quantity'] }}</td>
+                                            <td>{{ $item['amount'] }}</td>
+                                            <td>{{ $item['amount'] - $item['total_amount'] }}</td>
+                                            <td>{{ $item['total_amount'] }}</td>
+                                            <td>{{ $item['category'] }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                         <div class="card-footer">

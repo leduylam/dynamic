@@ -15,7 +15,7 @@
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Dashboard</a></li>
                         <li class="active">Report Data</li>
-                        
+
                     </ol>
                 </div>
             </div>
@@ -40,18 +40,18 @@
                                 </div>
                                 <div class="col-8 ">
                                     <div class="sort" style="float: right">
-                                        <form action="/action_page.php">
+                                        <form action="{{ route('admin.report.customer-report.index') }}" method="GET">
                                             <label for="birthday">Từ:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="birthday" name="date_start" value="{{ !empty($_GET['date_start']) ? $_GET['date_start'] : \Carbon\Carbon::now()->format('Y-m-d') }}">
                                             <label for="birthday" style="margin-left:10px;">Đến:</label>
-                                            <input type="date" id="birthday" name="birthday">
+                                            <input type="date" id="birthday" name="date_end" value="{{ !empty($_GET['date_end']) ? $_GET['date_end'] : \Carbon\Carbon::now()->format('Y-m-d') }}">
                                             <input type="submit">
                                           </form>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -68,23 +68,25 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="2">Tổng</th>
-                                        <th>1150</th>
-                                        <th>50.000 $</th>
+                                        <th>{{ $all_quantity }}</th>
+                                        <th>{{ $all_amount }} $</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('admin.report.customer-report.show') }}">ICC</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.report.customer-report.show') }}">Công ty cổ phần ICC</a>
-                                        </td>
-                                        <td>1150</td>
-                                        <td>50.000 $</td>
-                                        <td>221 Phạm Văn Đồng</td>
-                                        <td style="text-align:center"><a href="{{ route('admin.report.customer-report.show') }}"><i class="fa fa-eye" style="font-size:33px;"></i></a></td>
-                                    </tr>
+                                    @foreach($data as $item)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('admin.report.customer-report.show', $item['id']) }}">{{ $item['sku'] }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.report.customer-report.show',$item['id']) }}">{{ $item['name'] }}</a>
+                                            </td>
+                                            <td>{{ $item['quantity'] }}</td>
+                                            <td>{{ $item['total_amount'] }} $</td>
+                                            <td>{{ $item['address'] }}</td>
+                                            <td style="text-align:center"><a href="{{ route('admin.report.customer-report.show', $item['id']) }}"><i class="fa fa-eye" style="font-size:33px;"></i></a></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

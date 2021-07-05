@@ -15,11 +15,11 @@ class ProductDetail extends Model
     /**
      * @var array
      */
-    protected $fillable = ['product_id', 'size', 'brand', 'color', 'model', 'rating', 'price'];
+    protected $fillable = ['product_id', 'size_id', 'brand', 'color_id', 'model', 'rating', 'price'];
     /**
      * @var array
      */
-    protected $with = ['product', 'stock'];
+    protected $with = ['product', 'stock', 'size', 'color'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -33,5 +33,21 @@ class ProductDetail extends Model
      */
     public function stock(){
         return $this->hasOne(Stock::class);
+    }
+
+
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'size_id');
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
     }
 }

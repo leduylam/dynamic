@@ -15,8 +15,8 @@ class AddPriceTableProductDetail extends Migration
     {
         Schema::table('product_details', function (Blueprint $table) {
             $table->integer('price')->nullable();
-            $table->string('size')->nullable()->change();
-            $table->string('color')->nullable()->change();
+            $table->string('size_id')->nullable()->change();
+            $table->string('color_id')->nullable()->change();
             $table->string('model')->nullable()->change();
             $table->string('brand')->nullable()->change();
             $table->integer('rating')->nullable()->change();
