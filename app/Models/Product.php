@@ -27,6 +27,17 @@ class Product extends Model
         return $this->belongsToMany(Image::class, 'product_image')->withTimestamps();
     }
 
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class, 'product_details', 'product_id', 'size');
+    }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, 'product_details', 'product_id', 'color');
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

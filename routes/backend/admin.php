@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\CustomerController;
 
 Route::auth();
 
@@ -179,5 +180,16 @@ Route::group([
         Route::put('/{id}', [StockController::class, 'update'])->name('update');
         Route::delete('/{id}', [StockController::class, 'destroy'])->name('destroy');
     });
+
+    // Page Customer
+    Route::group([
+        'prefix' => 'customer',
+        'as' => 'customer.'
+    ], function () {
+        Route::get('/list', [CustomerController::class, 'listCustomer'])->name('list');
+        Route::get('/create', [CustomerController::class, 'create'])->name('create');
+        Route::post('/store', [CustomerController::class, 'store'])->name('store');
+    });
+    
 });
 ?>

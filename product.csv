@@ -1,4 +1,4 @@
 Sku,Product_detail_id,Color Id,Size Id,Name,Description,Mode,Brand,Category_big,Category_mid,Category_small,Price,Stock
-P004,,1,2,P004,test,test,test,1,6,7,3000,190
-P003,12,2,1,P003,test,test,test,1,6,7,3000,190
-P003,,2,1,P005,test,test,test,1,6,7,3000,190
+P004,,1,2,P004,test,test,test,1,2,3,3000,190
+P003,,2,1,P003,test,test,test,1,2,3,3000,190
+P003,,2,1,P005,test,test,test,1,2,3,3000,190

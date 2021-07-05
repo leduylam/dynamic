@@ -27,11 +27,15 @@ class ProductDetail extends Model
     public function product(){
         return $this->belongsTo(Product::class, 'product_id');
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function stock(){
         return $this->hasOne(Stock::class);
     }
+
+    public function stocks(){
+        return hasMany(Stock::class, 'product_detail_id');
+    }
+    
 }

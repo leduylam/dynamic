@@ -70,7 +70,7 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><a href="{{ route('admin.list') }}">Admins</a>
                         </li>
-                        <li><a href="">Customers</a></li>
+                        <li><a href="{{ route('admin.customer.list') }}">Customers</a></li>
                     </ul>
                 </li>
             </ul>

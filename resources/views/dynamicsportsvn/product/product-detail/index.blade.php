@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>product Details</h2>
+                            <h2>{{ $product->sku }}</h2>
                         </div>
                     </div>
                 </div>
@@ -22,9 +22,14 @@
     <div class="product_image_area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
-                    
+                <div class="col-lg-6" style="padding-bottom: 50px">
+                    @foreach ($product->images as $item => $image)
                     <div class="mySlides">
+                        <div class="numbertext">1 / 6</div>
+                            <img src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}" style="width:100%; height:450px;">
+                    </div>
+                    @endforeach
+                    {{-- <div class="mySlides">
                         <div class="numbertext">1 / 6</div>
                             <img src="{{ asset('dynamic/assets/img/categori/product1.png') }}" style="width:100%">
                     </div>
@@ -36,7 +41,7 @@
                     <div class="mySlides">
                         <div class="numbertext">3 / 6</div>
                             <img src="{{ asset('dynamic/assets/img/categori/product3.png') }}" style="width:100%">
-                    </div>
+                    </div> --}}
                     
                     <!-- Next and previous buttons -->
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -45,41 +50,37 @@
                     
                     <!-- Thumbnail images -->
                     <div class="row">
+                        @foreach ($product->images as $item => $image)
                         <div class="column">
-                            <img class="demo cursor" src="{{ asset('dynamic/assets/img/categori/product1.png') }}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                            <img class="demo cursor" src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}" style="width:100%; height:56px;" onclick="currentSlide({{ $image->id }})" alt="The Woods">
                         </div>
-                        <div class="column">
-                            <img class="demo cursor" src="{{ asset('dynamic/assets/img/categori/product2.png') }}" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
-                        </div>
-                        <div class="column">
-                            <img class="demo cursor" src="{{ asset('dynamic/assets/img/categori/product3.png') }}" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-                        </div>
+                        @endforeach
+                        
                     </div>
                 </div>
-                <div class="col-lg-7">
+                <div class="col-lg-6" style="padding-bottom: 50px">
                     <div class="single_product_text" style="margin: 0;">
-                        <h3>Foam filling cotton slow rebound pillows</h3>
-                        <h4 style="margin-top: 35px;">VND 621.754</h4>
+                        <h3>{{ $product->name }}</h3>
                         <div style="border:1px solid #eee;"></div>
                         <p>
-                             r organic sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences. Dramatically synthesize integrated schemas. with optimal networks.
+                             {{ $product->description }}
                         </p>
-
-                        <p style="font-size: 18px; font-weight:500">Thương hiệu: <span style="color:red; font-weight:300">Puma</span> </p>
-                        <p>SKU: 0234276</p>
+                        <p>SKU: {{ $product->sku }}</p>
+                        
+                        <p style="font-size: 18px; font-weight:500">Thương hiệu: <span style="color:red; font-weight:300"></span> </p>
                         <div class="row">
                             <div class="col-lg-3 col-pd-3">
                                 <h4>Size:</h4>
                                 <div class="media select-itms">
-                                    
                                     <div class="media-body nice-select">
-                                        <span class="current">02</span>
+                                        @if ($product->sizes)
+                                        <span class="current">Size</span>
                                         <ul class="list">
-                                            <li class="option">03</li>
-                                            <li class="option">01</li>
-                                            <li class="option">04</li>
-                                            <li class="option">05</li>
+                                            @foreach ($product->sizes as $item => $size)
+                                            <li class="option">{{ $size->size }}</li>
+                                            @endforeach
                                         </ul>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -88,17 +89,20 @@
                                 <h4>Color:</h4>
                                 <div class="media select-itms">
                                     <div class="media-body nice-select">
-                                        <span class="current">02</span>
+                                        @if (!empty($product->colors))
+                                        <span class="current">Color</span>
                                         <ul class="list">
-                                            <li class="option">03</li>
-                                            <li class="option">01</li>
-                                            <li class="option">04</li>
-                                            <li class="option">05</li>
+                                            @foreach ($product->colors as $item => $color)
+                                            <li class="option">{{ $color->description }}</li>
+                                            @endforeach
                                         </ul>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        
                         
                         <div class="dsc-product">
                             
@@ -109,7 +113,7 @@
                                     <input class="product_count_item input-number dsc_input_number" type="text" value="1" min="1" max="100">
                                     <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                                 </div>
-                                <p style=" margin:0; padding:20px; text-align: right;">6 pcs in stock</p>
+                                
                             </div>
                             <div class="d-flex mt-1 align-items-center">
                                 <a href="#" class="btn_3" style="padding: 14px 80px;">add to cart</a>
@@ -118,10 +122,24 @@
                         </div>
                     </div>
                 </div>
+                <div style="border-bottom: 1px solid #e8e8e8; width:100%;"></div>
             </div>
         </div>
     </div>
     <!--================End Single Product Area =================-->
+    <section class="sample-text-area">
+		<div class="container box_1170">
+			<h3 class="text-heading">Specification</h3>
+			<p class="sample-text">92% Polyester, 8% Elastane</p>
+			<p class="sample-text">Circular Knit</p>
+			<p class="sample-text">UV Resistant 50 UPF</p>
+			<p class="sample-text">Moisture wicking</p>
+			<p class="sample-text">4 way stretch</p>
+			<p class="sample-text">Volition Lockup logo on back</p>
+			<p class="sample-text">Flag Graphic on chest</p>
+			<p class="sample-text">Style #: {{ $product->sku }}</p>
+		</div>
+	</section>
 @endsection
 @push('slide-product')
     <script>
