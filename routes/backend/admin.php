@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\MultiLanguageController;
 
@@ -186,6 +187,19 @@ Route::group([
         Route::get('/', [StockController::class, 'index'])->name('index');
         Route::put('/{id}', [StockController::class, 'update'])->name('update');
         Route::delete('/{id}', [StockController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group([
+       'prefix' => 'user',
+       'as' => 'user.'
+    ], function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/add', [UserController::class, 'create'])->name('create');
+        Route::get('/{id}', [UserController::class, 'show'])->name('show');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [UserController::class, 'update'])->name('update');
+        Route::delete('/{id}',[UserController::class,'destroy'])->name('destroy');
     });
 });
 ?>
