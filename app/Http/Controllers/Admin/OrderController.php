@@ -273,6 +273,8 @@ class OrderController extends Controller
         $array = array();
         if (!empty($request['product_name'])) {
             foreach ($request['product_name'] as $key => $value) {
+                $product_category = ProductDetail::find($value);
+                $category = json_decode($product_category->product->category_id);
                 $array[$value][$key] = [
                     'product_item' => $value,
                     'sku' => $request['product_sku'][$key],
@@ -280,18 +282,20 @@ class OrderController extends Controller
                     'price' => $request['price'][$key],
                     'discount' => $request['discount'][$key],
                     'total_amount' => $request['total_product_detail'][$key],
+                    'category_id' => end($category),
                 ];
             }
         }
 
         if (!empty($array)) {
-            foreach ($array as $item) {
+            foreach ($array as $index => $item) {
+                $key = '';
                 $total_amount = 0;
                 $quantity = 0;
                 $discount = 0;
                 $product_detail_id = '';
                 if (!empty($item)) {
-                    foreach ($item as $value) {
+                    foreach ($item as $key => $value) {
                         $total_amount += !empty($value['total_amount']) ? $value['total_amount'] : 0;
                         $quantity += !empty($value['quantity']) ? $value['quantity'] : 0;
                         $discount += !empty($value['discount']) ? $value['discount'] : 0;
@@ -309,6 +313,7 @@ class OrderController extends Controller
                     $order_item['price'] = $total_amount;
                     $order_item['discount'] = $discount;
                     $order_item['product_id'] = $product->product_id;
+                    $order_item['category_id'] = $array[$index][$key]['category_id'];
                     $order_item->save();
 
                     // stock product

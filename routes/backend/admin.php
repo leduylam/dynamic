@@ -9,8 +9,14 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\MultiLanguageController;
 
 Route::auth();
+Route::group([
+    'middleware' => 'locale',
+], function () {
+    Route::get('lang/{lang}', [MultiLanguageController::class,'index'])->name('index');
+});
 
 Route::group([
     'middleware' => 'auth',
@@ -18,7 +24,9 @@ Route::group([
 ], function () {
     // page home
     Route::get('/dashboard', [AdminController::class,'index'])->name('index');
-
+    Route::get('/time_day',[AdminController::class,'timeDay'])->name('day');
+    Route::get('/time_month',[AdminController::class,'timeMonth'])->name('month');
+    Route::get('/time_year',[AdminController::class,'timeYear'])->name('year');
     // page admins
     Route::get('/list', [AdminController::class, 'listAdmin'])->name('list');
     Route::get('/create', [AdminController::class, 'create'])->name('create');

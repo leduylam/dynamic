@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\LocaleMiddleware;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Color;
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(LocaleMiddleware::class);
     }
 
     /**

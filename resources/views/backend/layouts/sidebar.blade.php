@@ -40,14 +40,10 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><a href="{{ route('admin.report.detailed-report.index') }}">Báo cáo theo mặt hàng </a></li>
                         <li><a href="{{ route('admin.report.category-report.index') }}">Báo cáo theo danh mục</a></li>
-                        
+
                         <li><a href="{{ route('admin.report.customer-report.index') }}">Báo cáo theo khách hàng</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-email"></i>Tổng quan</a>
-                </li>
-
                 <h3 class="menu-title">Managers</h3><!-- /.menu-title -->
                 <li class="">
                     <a href="{{ route('admin.category.index') }}"> <i class="menu-icon fa fa-table"></i>Categories</a>
