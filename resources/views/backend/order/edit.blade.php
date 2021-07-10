@@ -389,10 +389,10 @@
 
             $('.discount').on('keyup', function () {
                 var total_amount = 0;
+                var index = $(this).attr('data-index');
                 var price = $('input[name="price[' + index + ']"]').val();
                 var quantity = $('input[name="quantity_product_detail[' + index + ']"]').val();
                 total_amount = price * quantity;
-                var index = $(this).attr('data-index');
                 var discount = $('input[name="discount[' + index + ']"]').val();
                 if (total_amount) {
                     discount = $(this).val();
