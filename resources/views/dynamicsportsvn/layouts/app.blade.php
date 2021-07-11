@@ -79,6 +79,6 @@
 <!-- Jquery Plugins, main Jquery -->
 <script src="{{ asset('dynamic/assets/js/plugins.js') }}"></script>
 <script src="{{ asset('dynamic/assets/js/main.js') }}"></script>
-@stack('slide-product')
+@stack('after-js')
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <header>
     <!-- Header Start -->
     <div class="header-area">
@@ -36,7 +37,7 @@
                         <!-- Logo -->
                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset('dynamic/assets/img/logo/logo.png') }}" alt=""></a>
+                                <a href=""><img src="{{ asset('dynamic/assets/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -44,96 +45,33 @@
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li class=""><a href="#">Nam</a>
-                                            <ul class="submenu">
-                                                <li><a href="{{ route('product.product-table') }}"> Puma</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
+                                        @if (!empty($categories))
+                                            @foreach($categories as $category)
+                                            @if(!empty($category['parent_id_1'] == 0))
+                                            <li class="category_big"><a href="#">{{ $category['name'] }}</a>
+                                                
+                                                <ul class="submenu dsc-submenu">
+                                                @foreach($categories as $mid)
+                                                @if($mid['parent_id_1'] == $category['id'] && !$mid['parent_id_2'] == $category['id'])
+                                                <li><a href="{{ route('product.product-table') }}"> {{ $mid['name'] }}</a>
+                                                    
+                                                    <ul class="submenu dsc-submenu" style="left: 100%">
+                                                        @foreach($categories as $small)
+                                                            @if($small['parent_id_2'] == $mid['id'])
+                                                            <li><a href="Catagori.html">{{ $small['name'] }}</a></li>
+                                                            @endif
+                                                        @endforeach
                                                     </ul>
                                                 </li>
-                                                <li><a href="product_list.html"> Greg Norman</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class=""><a href="#">Nữ</a>
-                                            <ul class="submenu">
-                                                <li><a href="{{ route('product.product-table') }}"> Puma</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="product_list.html"> Greg Norman</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class=""><a href="#">Trẻ em</a>
-                                            <ul class="submenu">
-                                                <li><a href="{{ route('product.product-table') }}"> Puma</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="product_list.html"> Greg Norman</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class=""><a href="#">Phụ kiện</a>
-                                            <ul class="submenu">
-                                                <li><a href="{{ route('product.product-table') }}"> Puma</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="product_list.html"> Greg Norman</a>
-                                                    <ul class="submenu" style="left: 100%">
-                                                        <li><a href="Catagori.html">Quần Short </a></li>
-                                                        <li><a href="Catagori.html">Quần dài </a></li>
-                                                        <li><a href="Catagori.html">Áo Polo </a></li>
-                                                        <li><a href="Catagori.html">Áo Thu Đông </a></li>
-                                                        <li><a href="Catagori.html">Áo Khoác </a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                                @endif
+                                                @endforeach
+                                                </ul>
+                                            </li>
+                                            @endif
+                                        @endforeach
+                                        @endif
+                                        
+                                        <li><a href="index.html">Clubs</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -153,7 +91,7 @@
                                         <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
                                 </li>
-                                <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Sign in</a></li>
+                                <li class="d-none d-lg-block"> <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a></li>
                             </ul>
                         </div>
                         <!-- Mobile Menu -->
@@ -167,3 +105,5 @@
     </div>
     <!-- Header End -->
 </header>
+
+

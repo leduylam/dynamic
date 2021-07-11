@@ -27,7 +27,6 @@ class ProductDetail extends Model
     public function product(){
         return $this->belongsTo(Product::class, 'product_id');
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

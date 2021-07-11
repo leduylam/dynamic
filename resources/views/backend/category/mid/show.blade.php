@@ -33,6 +33,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
+                            <strong class="card-title" style="justify-content: center">{{ $category->name }}</strong>
                             <a href="{{ route('admin.category.create.small', $category->id) }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
                         </div>
                         <div class="card-body">

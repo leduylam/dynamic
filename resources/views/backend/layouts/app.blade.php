@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('admin/vendors/themify-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/selectFX/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
 
 
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -55,6 +57,11 @@
 <script src="{{ asset('admin/vendors/popper.js/dist/umd/popper.min.js') }}"></script>
 <script src="{{ asset('admin/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+<script src="{{ asset('admin/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+{{-- <script src="{{ asset('admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('admin/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script> --}}
+<script src="{{ asset('admin/assets/js/init-scripts/data-table/datatables-init.js') }}"></script>
 @stack('dashboard-scripts')
 
 @stack('after-scripts')

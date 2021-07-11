@@ -230,8 +230,7 @@ class CategoryController extends Controller
     public function createSmall($id)
     {
         $category = Category::find($id);
-        $category_big = Category::find($category->parent_id_1)->first();
-
+        $category_big = Category::find($category->parent_id_1);
         return view('backend.category.small.create', compact('category', 'category_big'));
     }
 

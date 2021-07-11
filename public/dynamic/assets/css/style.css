@@ -26,7 +26,7 @@
 -------------------------------------------------
 */
 /*-------------   Color variabel  --------------*/
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,600,700,800|Poppins:400,500,600,700|Yellowtail&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 /* line 37, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_color.scss */
 .white-bg {
   background: #ffffff;
@@ -207,7 +207,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Playfair Display", serif;
+  font-family: "Roboto", serif;
   color: #0b1c39;
   margin-top: 0px;
   font-style: normal;
@@ -301,7 +301,7 @@ a {
 
 /* line 83, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a:hover {
-  color: #fff;
+  color: #ff003c;
 }
 
 /* line 86, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -315,7 +315,6 @@ a:hover,
 /* line 92, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a,
 button {
-  color: #fff;
   outline: medium none;
 }
 
@@ -3521,15 +3520,20 @@ input:focus {
   font-size: 16px;
   color: #000000;
   display: inline-block;
-  text-transform: capitalize;
+  text-transform: uppercase;
   padding: 39px 18px;
   display: block;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
+}
+.dsc-submenu li a{
+  font-size: 16px;
+  font-weight: 400;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -3608,8 +3612,9 @@ input:focus {
 .header-bottom .main-menu ul ul.submenu > li > a {
   padding: 6px 10px !important;
   font-size: 14px;
+  font-weight: 400;
   color: #0b1c39;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 /* line 149, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
@@ -13031,5 +13036,6 @@ input:focus {
     font-size: 30px;
   }
 }
+
 
 /*# sourceMappingURL=style.css.map */

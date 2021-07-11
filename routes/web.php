@@ -17,3 +17,4 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/', function () {
     return view('welcome');
 });
+include('frontend/web.php');

@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Size;
 use App\Models\User;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 
@@ -208,5 +209,8 @@ class AppServiceProvider extends ServiceProvider
 
             return true;
         });
+
+        $categories = Category::all();
+        View::share('categories', $categories);
     }
 }
