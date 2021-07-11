@@ -15,14 +15,6 @@ use App\Models\Stock;
 
 class ProductController extends Controller
 {
-    public function listing($name){
-        $categoryCount = Category::where(['name' => $name, 'status' => 1])->count();
-        if ($categoryCount > 0) {
-            $categoryDetails = Category::categoryDetail($name);
-            $categoryProduct = Product::where('category_id', $categoryDetails['catIds'])->where('status', 1)->get()->toArray();
-            // echo "<pre>"; print_r($categoryDetails); die;
-        }
-    }
     public function index(){
         $categories = Category::all();
         $products = Product::all();

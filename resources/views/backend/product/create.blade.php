@@ -113,7 +113,7 @@
                                     <tbody class="appent-add">
                                         <tr>
                                             <td>
-                                                <select name="size[0]" class="form-control">
+                                                <select name="size_id[0]" class="form-control">
                                                     <option value="">--size--</option>
                                                     @foreach($sizes as $size)
                                                         <option value="{{ $size->id }}"> {{ $size->size }}</option>
@@ -121,7 +121,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="color[0]" class="form-control">
+                                                <select name="color_id[0]" class="form-control">
                                                     <option value="">--color--</option>
                                                     @foreach($colors as $color)
                                                         <option value="{{ $color->id }}">{{ $color->color }}</option>
@@ -309,37 +309,43 @@
             sizes.forEach(function (val) {
                 option_size = option_size + '<option value="'+ val.id +'">'+ val.size +'</option>';
             });
-            var colors = <?php echo json_encode($colors)?>;
-            var option_color = '';
-            colors.forEach(function (val) {
-                option_color = option_color + '<option value="'+ val.id +'">'+ val.color +'</option>';
-            });
-            var tr = '<tr data-index="'+ i +'">'+
-                        '<td>'+
-                            '<select name="size['+ i +']" id="" class="form-control">'+
-                                '<option value="">--size--</option>'+
-                                option_size +
-                            '</select>'+
-                        '</td>'+
-                        '<td>'+
-                            '<select name="color['+ i +']" id="" class="form-control">'+
-                                '<option value="">--color--</option>'+
-                                option_color +
-                            '</select>'+
-                        '</td>'+
-                        '<td><input type="text" name="brand['+ i +']" class="form-control"></td>'+
-                        '<td><input type="text" name="model['+ i +']" class="form-control"></td>'+
-                        '<td><input type="text" name="price_detail['+ i +']" class="form-control"></td>'+
-                        '<td><input type="text" name="quantity['+ i +']" class="form-control"></td>'+
-                        '<td style="text-align: center"><a class="btn btn-danger add-remove" data-index="' + i + '">-</a></td>'+
-                    '</tr>';
-            $('.appent-add').append(tr);
-
+            function addRow(i){
+                var sizes = <?php echo json_encode($sizes)?>;
+                var option_size = '';
+                sizes.forEach(function (val) {
+                    option_size = option_size + '<option value="'+ val.id +'">'+ val.size +'</option>';
+                });
+                var colors = <?php echo json_encode($colors)?>;
+                var option_color = '';
+                colors.forEach(function (val) {
+                    option_color = option_color + '<option value="'+ val.id +'">'+ val.color +'</option>';
+                });
+                var tr = '<tr data-index="'+ i +'">'+
+                            '<td>'+
+                                '<select name="size_id['+ i +']" id="" class="form-control">'+
+                                    '<option value="">--size--</option>'+
+                                    option_size +
+                                '</select>'+
+                            '</td>'+
+                            '<td>'+
+                                '<select name="color_id['+ i +']" id="" class="form-control">'+
+                                    '<option value="">--color--</option>'+
+                                    option_color +
+                                '</select>'+
+                            '</td>'+
+                            '<td><input type="text" name="brand['+ i +']" class="form-control"></td>'+
+                            '<td><input type="text" name="model['+ i +']" class="form-control"></td>'+
+                            '<td><input type="text" name="price_detail['+ i +']" class="form-control"></td>'+
+                            '<td><input type="text" name="quantity['+ i +']" class="form-control"></td>'+
+                            '<td style="text-align: center"><a class="btn btn-danger add-remove" data-index="' + i + '">-</a></td>'+
+                        '</tr>';
+                $('.appent-add').append(tr);
+            }
             $('.add-remove').click(function () {
                 var index = $(this).attr('data-index');
                 $('tr[data-index="'+ index +'"]').remove();
-            })
+            });
         };
-    })
+    });
 </script>
 @endpush

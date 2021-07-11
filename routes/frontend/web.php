@@ -18,7 +18,7 @@ use App\Http\Controllers\Dynamic\LoginController;
         'as' => 'product.'
     ], function(){
         Route::get('/', [ProductController::class, 'index'])->name('index');
-        Route::get('/{name}', [ProductController::class, 'listing']);
+        
         
         
         Route::get('product-table/', [ProductController::class, 'tableProduct'])->name('product-table');

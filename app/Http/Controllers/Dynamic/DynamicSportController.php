@@ -13,6 +13,8 @@ class DynamicSportController extends Controller
 {
     public function home(){
         $categories = Category::get();
+        // dd($categories);
+        
         $category = Category::where('parent_id_1', 0)->orderBy('name')->first();
         $products = Product::with('images')->paginate(8);
         foreach ($products as $index => $product) {

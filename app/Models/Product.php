@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class
+Product extends Model
 {
     use HasFactory;
 
@@ -29,12 +30,12 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->belongsToMany(Size::class, 'product_details', 'product_id', 'size');
+        return $this->belongsToMany(Size::class, 'product_details', 'product_id', 'size_id');
     }
 
     public function colors()
     {
-        return $this->belongsToMany(Color::class, 'product_details', 'product_id', 'color');
+        return $this->belongsToMany(Color::class, 'product_details', 'product_id', 'color_id');
     }
 
 

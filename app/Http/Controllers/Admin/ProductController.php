@@ -352,15 +352,15 @@ class ProductController extends Controller
      */
     public function createOrUpdateProductDetail($request, $product)
     {
-        if (!empty($request['size']) || !empty($request['color'])
+        if (!empty($request['size_id']) || !empty($request['color_id'])
             || !empty($request['brand']) || !empty($request['model'])
             || !empty($request['quantity']) || !empty($request['price_detail'])) {
-            foreach ($request['size'] as $index => $value) {
+            foreach ($request['size_id'] as $index => $value) {
                 $product_detail = new ProductDetail();
                 $product_detail['product_id'] = $product->id;
-                $product_detail['size'] = $value;
+                $product_detail['size_id'] = $value;
                 $product_detail['brand'] = !empty($request['brand']) ? $request['brand'][$index] : null;
-                $product_detail['color'] = !empty($request['color']) ? $request['color'][$index] : null;
+                $product_detail['color_id'] = !empty($request['color_id']) ? $request['color_id'][$index] : null;
                 $product_detail['model'] = !empty($request['model']) ? $request['model'][$index] : null;
                 $product_detail['price'] = !empty($request['price_detail']) ? $request['price_detail'][$index] : null;
                 $product_detail['rating'] = null;
@@ -427,8 +427,8 @@ class ProductController extends Controller
                     if (!empty($item[1])) {
                         $product_detail = ProductDetail::find($item[1]);
                         if ($product_detail) {
-                            $product_detail['color'] = !empty($item[2]) ? $item[2]: $product_detail->color;
-                            $product_detail['size'] = !empty($item[3]) ? $item[3] : $product_detail->size;
+                            $product_detail['color_id'] = !empty($item[2]) ? $item[2]: $product_detail->color;
+                            $product_detail['size_id'] = !empty($item[3]) ? $item[3] : $product_detail->size;
                             $product_detail['model'] = !empty($item[6]) ? $item[6] : $product_detail->model;
                             $product_detail['brand'] = !empty($item[7]) ? $item[7]: $product_detail->brand;
                             $product_detail['price'] = !empty($item[11]) ? $item[11] : $product_detail->price;
@@ -575,8 +575,8 @@ class ProductController extends Controller
     {
         $product_detail = new ProductDetail();
         $product_detail['product_id'] = $product['id'];
-        $product_detail['color'] = !empty($item[2]) ? $item[2] : null;
-        $product_detail['size'] = !empty($item[3]) ? $item[3] : null;
+        $product_detail['color_id'] = !empty($item[2]) ? $item[2] : null;
+        $product_detail['size_id'] = !empty($item[3]) ? $item[3] : null;
         $product_detail['price'] = !empty($item[11]) ? $item[11] : null;
         $product_detail['model'] = !empty($item[6]) ? $item[6] : null;
         $product_detail['brand'] = !empty($item[7]) ? $item[7] : null;

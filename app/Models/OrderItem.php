@@ -7,13 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
-    use HasFactory;
-
     protected $table = 'order_items';
+    protected $fillable = ['order_id', 'product_detail_id','category_id', 'quantity', 'price', 'discount','product_id'];
 
-    protected $fillable = ['order_id', 'product_detail_id', 'quantity', 'price', 'discount'];
-
-    protected $with = ['product'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -22,11 +18,13 @@ class OrderItem extends Model
         return $this->belongsTo(Order::class, 'order_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function product()
+    public function productDetail()
     {
-        return $this->belongsTo(ProductDetail::class, 'product_detail_id');
+        return $this->belongsTo(ProductDetail::class,'product_detail_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

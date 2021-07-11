@@ -157,18 +157,18 @@
                                                 @foreach($product->details as $index => $detail)
                                                     <tr data-index="{{ $index }}">
                                                         <td>
-                                                            <select name="size[{{ $index }}]" class="form-control">
+                                                            <select name="size_id[{{ $index }}]" class="form-control">
                                                                 <option value="">--size--</option>
                                                                 @foreach($sizes as $size)
-                                                                    <option value="{{ $size->id }}" {{ !empty($detail->size) ? ($detail->size == $size->id ? 'selected' : '') : ''  }}> {{ $size->size }}</option>
+                                                                    <option value="{{ $size->id }}" {{ !empty($detail->size_id) ? ($detail->size_id == $size->id ? 'selected' : '') : ''  }}> {{ $size->size }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
                                                         <td>
-                                                            <select name="color[{{ $index }}]" class="form-control">
+                                                            <select name="color_id[{{ $index }}]" class="form-control">
                                                                 <option value="">--color--</option>
                                                                 @foreach($colors as $color)
-                                                                    <option value="{{ $color->id }}" {{ !empty($detail->color) ? ($detail->color == $color->id ? 'selected' : '') : '' }}>{{ $color->color }}</option>
+                                                                    <option value="{{ $color->id }}" {{ !empty($detail->color_id) ? ($detail->color_id == $color->id ? 'selected' : '') : '' }}>{{ $color->color }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
@@ -184,7 +184,7 @@
                                             @else
                                                 <tr>
                                                     <td>
-                                                        <select name="size[0]" class="form-control">
+                                                        <select name="size_id[0]" class="form-control">
                                                             <option value="">--size--</option>
                                                             @foreach($sizes as $size)
                                                                 <option value="{{ $size->id }}"> {{ $size->size }}</option>
@@ -192,7 +192,7 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select name="color[0]" class="form-control">
+                                                        <select name="color_id[0]" class="form-control">
                                                             <option value="">--color--</option>
                                                             @foreach($colors as $color)
                                                                 <option value="{{ $color->id }}">{{ $color->color }}</option>
@@ -403,13 +403,13 @@
                 });
                 var tr = '<tr data-index="'+ i +'">'+
                     '<td>'+
-                    '<select name="size['+ i +']" id="" class="form-control">'+
+                    '<select name="size_id['+ i +']" id="" class="form-control">'+
                     '<option value="">--size--</option>'+
                     option_size +
                     '</select>'+
                     '</td>'+
                     '<td>'+
-                    '<select name="color['+ i +']" id="" class="form-control">'+
+                    '<select name="color_id['+ i +']" id="" class="form-control">'+
                     '<option value="">--color--</option>'+
                     option_color +
                     '</select>'+

@@ -12,13 +12,13 @@
                     <div class="row d-flex align-items-center justify-content-between">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
                             <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                <img src="{{ \Storage::disk('s3')->url('categories/'.$category->image) }}" alt="">
+                                {{-- <img src="{{ \Storage::disk('s3')->url('categories/'.$category->image) }}" alt=""> --}}
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
                             <div class="hero__caption">
                                 <span data-animation="fadeInRight" data-delay=".4s">60% Discount</span>
-                                <h1 data-animation="fadeInRight" data-delay=".6s">Winter <br> {{ $category->name }}</h1>
+                                <h1 data-animation="fadeInRight" data-delay=".6s">Winter <br> </h1>
                                 <p data-animation="fadeInRight" data-delay=".8s">Best Cloth Collection By 2020!</p>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInRight" data-delay="1s">
@@ -96,7 +96,7 @@
                         <div class="category-img">
                             <img src="{{ asset('dynamic/assets/img/categori/cat3.jpg') }}" alt="">
                             <div class="category-caption">
-                                <h2>{{ $category->name }} Cloth</h2>
+                                {{-- <h2>{{ $category->name }} Cloth</h2> --}}
                                 <span class="best"><a href="#">Best New Deals</a></span>
                                 <span class="collection">New Collection</span>
                             </div>
@@ -127,6 +127,7 @@
                 <!-- card one -->
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row">
+                        @if (!empty($products))
                         @foreach ($products as $product)
                         <div class="col-lg-3">
                             @foreach ($product->images as $item)
@@ -152,6 +153,8 @@
                             <h4 style="margin-top:40px;"><a href="{{ route('product.product-detail', $product->id) }}" style="font-size:16px;">{{ $product->name }}</a></h4>
                         </div>
                         @endforeach
+                        @endif
+                        
                         
                     </div>
                 </div>
@@ -246,7 +249,7 @@
 
 </main>
 @endsection
-@push('slide-product')
+@push('after-js')
     <script>
 
         var slideIndex = 1;

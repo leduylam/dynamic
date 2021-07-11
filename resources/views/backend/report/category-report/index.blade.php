@@ -39,11 +39,11 @@
                                 </div>
                                 <div class="col-8 ">
                                     <div class="sort" style="float: right">
-                                        <form action="/action_page.php">
+                                        <form action="{{ route('admin.report.category-report.index') }}">
                                             <label for="birthday">Từ:</label>
-                                            <input type="date" id="sort-by-date" name="sort-by-date">
+                                            <input type="date" id="sort-by-date" name="date_start" value="{{ !empty($_GET['date_start']) ? $_GET['date_start'] : \Carbon\Carbon::now()->format('Y-m-d') }}">
                                             <label for="birthday" style="margin-left:10px;">Đến:</label>
-                                            <input type="date" id="sort-by-date" name="sort-by-date">
+                                            <input type="date" id="sort-by-date" name="date_end" value="{{ !empty($_GET['date_end']) ? $_GET['date_end'] : \Carbon\Carbon::now()->format('Y-m-d') }}">
                                             <input type="submit">
                                           </form>
                                     </div>
@@ -64,20 +64,22 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="2">Tổng</th>
-                                        <th>200</th>
-                                        <th>1.651.254.151 VND</th>
+                                        <th>{{ $all_quantity }}</th>
+                                        <th>{{ $all_amount }} VND</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr>
-                                        <td>1 </td>
-                                        <td>
-                                            <a href="{{ route('admin.report.category-report.show') }}">Trang phục Puma</a>
-                                        </td>
-                                        <td>200</td>
-                                        <td>1.651.254.151 VND</td>
-                                        <td style="text-align:center"><a href="{{ route('admin.report.category-report.show') }}"><i class="fa fa-eye" style="font-size:33px"></i></a></td>
-                                    </tr>
+                                    @foreach($category_reports as $index => $category)
+                                        <tr>
+                                            <td>{{ $index }} </td>
+                                            <td>
+                                                <a href="{{ url('admin/report/category-report/show/'.$category['id'].'?date_start='. (!empty($_GET['date_start']) ? $_GET['date_start'] : ''). '&date_end='.(!empty($_GET['date_end']) ? $_GET['date_end'] :'')) }}">{{ $category['name'] }}</a>
+                                            </td>
+                                            <td>{{ $category['quantity'] }}</td>
+                                            <td>{{ $category['total_amount'] }} VND</td>
+                                            <td style="text-align:center"><a href="{{ url('admin/report/category-report/show/'.$category['id'].'?date_start='. (!empty($_GET['date_start']) ? $_GET['date_start'] : ''). '&date_end='.(!empty($_GET['date_end']) ? $_GET['date_end'] :'')) }}"><i class="fa fa-eye" style="font-size:33px"></i></a></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
