@@ -58,6 +58,59 @@ class AppServiceProvider extends ServiceProvider
             return true;
         });
 
+        /**
+         * user unique email
+         */
+        Validator::extend('user_unique_email', function ($attribute, $value, $parameters) {
+            $item = User::where('email', $value)->first();
+
+            if (!empty($item)) {
+                return false;
+            }
+
+            return true;
+        });
+
+        /**
+         * custom unique email
+         */
+        Validator::extend('user_unique_email_edit', function ($attribute, $value, $parameters) {
+            $current_user_id = $parameters[0];
+            $item = User::where('email', $value)->first();
+            if (!empty($item)) {
+                if ($current_user_id != $item->id) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
+        Validator::extend('user_unique_sku', function ($attribute, $value, $parameters) {
+            $item = User::where('sku', $value)->first();
+
+            if (!empty($item)) {
+                return false;
+            }
+
+            return true;
+        });
+
+        /**
+         * custom unique email
+         */
+        Validator::extend('user_unique_sku_edit', function ($attribute, $value, $parameters) {
+            $current_user_id = $parameters[0];
+            $item = User::where('sku', $value)->first();
+            if (!empty($item)) {
+                if ($current_user_id != $item->id) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
         Validator::extend('custom_unique_sku_edit', function ($attribute, $value, $parameters) {
             $id = $parameters[0];
             $item = Product::where('sku', $value)->first();
@@ -113,7 +166,7 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::extend('check_category_mid', function ($attribute, $value, $parameters) {
             $item = Category::where('parent_id_1', $parameters[0])->where('parent_id_2', 0)->pluck('id')->toArray();
-            if (in_array($value,$item)) {
+            if (in_array($value, $item)) {
                 return true;
             }
 
