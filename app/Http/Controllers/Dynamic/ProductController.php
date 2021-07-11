@@ -16,7 +16,7 @@ use App\Models\Stock;
 class ProductController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+        
         $products = Product::all();
         foreach ($products as $index => $product) {
             $image_id = ProductImage::where('product_id', $product->id)->orderBy('created_at', 'desc')->first();
@@ -25,11 +25,10 @@ class ProductController extends Controller
                 $products[$index]['image'] = $image->description;
             }
         }
-        return view('dynamicsportsvn.product.index', compact('categories', 'products'));
+        return view('dynamicsportsvn.product.index', compact('products'));
     }
 
     public function tableProduct(){
-        $categories = Category::all();
         $products = Product::with('images', 'details', 'colors', 'sizes')->get();
         foreach ($products as $index => $product) {
             $image_id = ProductImage::where('product_id', $product->id)->orderBy('created_at', 'desc')->first();
@@ -40,11 +39,10 @@ class ProductController extends Controller
         }
         $products = json_decode(json_encode($products));
         // echo "<pre>"; print_r($products); die;
-        return view('dynamicsportsvn.product.table-product', compact('categories', 'products'));
+        return view('dynamicsportsvn.product.table-product', compact('products'));
     }
 
     public function productDetail($id){
-        $categories = Category::all();
         $colors = Color::all();
         $sizes = Size::all();
         $product = Product::with('images','details', 'sizes', 'colors')->find($id);
@@ -61,6 +59,6 @@ class ProductController extends Controller
         
         $stocks = json_decode($stocks);
         // echo "<pre>"; print_r($stocks); die;
-        return view('dynamicsportsvn.product.product-detail.index', compact('categories', 'product', 'colors', 'sizes', 'stocks'));
+        return view('dynamicsportsvn.product.product-detail.index', compact('product', 'colors', 'sizes', 'stocks'));
     }
 }

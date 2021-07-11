@@ -17,9 +17,4 @@ class Category extends Model
      */
     protected $fillable = ['sku', 'name', 'parent_id_1', 'parent_id_2', 'image', 'description', 'status'];
 
-    public function parentId1(){
-        return $this->hasMany('App\Models\Category', 'parent_id_1');
-    }
-
-   
 }

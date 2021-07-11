@@ -12,7 +12,6 @@ use App\Models\Image;
 class DynamicSportController extends Controller
 {
     public function home(){
-        $categories = Category::get();
         // dd($categories);
         
         $category = Category::where('parent_id_1', 0)->orderBy('name')->first();
@@ -28,6 +27,6 @@ class DynamicSportController extends Controller
             }
         }
         // echo "<pre>"; print_r($category); die;
-        return view('welcome', compact('categories', 'products', 'category'));
+        return view('welcome', compact('products', 'category'));
     }
 }

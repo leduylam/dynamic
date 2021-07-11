@@ -10,7 +10,6 @@ class LoginController extends Controller
 {
     public function login()
     {
-        $categories = Category::get();
-        return view('dynamicsportsvn.customer.login', compact('categories'));
+        return view('dynamicsportsvn.customer.login');
     }
 }
