@@ -93,8 +93,10 @@
                     <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
 
                     <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
-
-                    <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="nav-link" type="submit" style="background: none; border: none"><i class="fa fa-power-off"></i> Logout</button>
+                    </form>
                 </div>
             </div>
 

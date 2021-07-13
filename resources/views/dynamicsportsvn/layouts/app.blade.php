@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/fontawesome-all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('dynamic/assets/css/style.css') }}">
