@@ -39,6 +39,7 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
         $data['remember_token'] = md5(uniqid(mt_rand(), true));
+        $data['status'] = 1;
         User::create($data);
 
         return redirect()->route('admin.user.index')->with('success', 'User created successfully.');

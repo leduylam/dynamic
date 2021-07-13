@@ -23,7 +23,7 @@
         <div class="row product-btn d-flex justify-content-between">
                 <div class="properties__button">
                     <!--Nav Button  -->
-                    <nav>                                                                                                
+                    <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">New</a>
@@ -56,32 +56,19 @@
                 <div class="row">
                     @foreach($products as $product)
                     <div class="col-xl-3 col-lg-3 col-md-6">
-                        
+
                         <div class="single-product mb-60">
                             <div class="product-img">
-                                <img src="{{ \Storage::disk('s3')->url('product/'.$product->image) }}" alt="">
+                                <img style="width: 200px; height: 200px;" src="{{ \Storage::disk('s3')->url('product/'.$product->image) }}" alt="">
                                 <div class="new-product">
                                     <span>New</span>
                                 </div>
                             </div>
                             <div class="product-caption">
-                                {{-- <div class="product-ratting">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star low-star"></i>
-                                    <i class="far fa-star low-star"></i>
-                                </div> --}}
                                 <h4><a href="{{ route('product.product-detail', $product->id) }}">{{ $product->name }}</a></h4>
-                                {{-- <div class="price">
-                                    <ul>
-                                        <li>$40.00</li>
-                                        <li class="discount">$60.00</li>
-                                    </ul>
-                                </div> --}}
                             </div>
                         </div>
-                        
+
                     </div>
                     @endforeach
                 </div>
@@ -183,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-product mb-60">
                             <div class="product-img">
@@ -263,7 +250,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-product mb-60">
                             <div class="product-img">
@@ -441,7 +428,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single-product mb-60">
                             <div class="product-img">
