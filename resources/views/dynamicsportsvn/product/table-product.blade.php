@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>Product Catagori</h2>
+                            <h2>Product Category</h2>
                         </div>
                     </div>
                 </div>
@@ -23,12 +23,12 @@
         <div class="row product-btn d-flex justify-content-between">
                 <div class="select-this d-flex">
                     <div class="featured">
-                        <span>Thương hiệu: </span>
+                        <span></span>
                     </div>
                     <form name="sortByBrand" id="sortByBrand" action="">
                         <div class="select-itms">
                             <select name="sort" id="sort">
-                                <option value="">Puma</option>
+                                <option value="">Thương hiệu</option>
                                 <option value="">Greg Norman</option>
                                 <option value="">Fenix</option>
                                 <option value="">Ahead</option>
@@ -38,15 +38,15 @@
                 </div>
                 <div class="select-this d-flex">
                     <div class="featured">
-                        <span>Size: </span>
+                        <span></span>
                     </div>
                     <form action="#">
                         <div class="select-itms">
                             <select name="select" id="select1">
-                                <option value="">XS</option>
-                                <option value="">S</option>
-                                <option value="">M</option>
-                                <option value="">L</option>
+                                <option value="">Size</option>
+                                @foreach ($sizes as $item => $size)
+                                <option value="">{{ $size->size }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </form>
@@ -89,33 +89,8 @@
                                 <tbody>
                                     @foreach ($products as $item => $product)
                                     <tr>
-                                        <td>
-                                            <div class="media">
-                                                <div class="d-flex">
-                                                    @if (!empty($product->images))
-                                                    @foreach ($product->images as $item)
-                                                    <div class="mySlides">
-                                                        <div class="numbertext"></div>
-                                                            <img src="{{ \Storage::disk('s3')->url('product/'.$item->description) }}" style="width:100%; height:70px;">
-                                                    </div>
-                                                    @endforeach
-                                                    <!-- Next and previous buttons -->
-                                                    <a class="prev" style="position: absolute; left:200px;" onclick="plusSlides(-1)">&#10094;</a>
-                                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                                                
-                                                    
-                                                    <!-- Thumbnail images -->
-                                                    <div class="row">
-                                                        @foreach ($product->images as $item)
-                                                        <div class="column">
-                                                            <img class="demo cursor" src="{{ \Storage::disk('s3')->url('product/'.$item->description) }}" style="width:100%; display:none" onclick="currentSlide({{ $item->id }})" alt="The Woods">
-                                                        </div>
-                                                        @endforeach
-                                                    </div>
-                                                        
-                                                    @endif
-                                                </div>
-                                            </div>
+                                        <td class="images">
+                                            <img src="{{ \Storage::disk('s3')->url('product/'.$product->image) }}" style="width:80px;" alt="">
                                         </td>
                                         <td>
                                             <div class="media">

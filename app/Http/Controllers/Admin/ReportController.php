@@ -25,13 +25,17 @@ class ReportController extends Controller
         }else {
             $products = OrderItem::orderBy('id','desc')->groupBy('product_id')->pluck('product_id')->toArray();
         }
-
+        
         $category_reports = [];
         $all_quantity = 0;
         $all_amount = 0;
         if (!empty($products)) {
             foreach ($products as $index => $product) {
                 $product_name = Product::find($product);
+                $category = json_decode($product_name->category_id);
+                $category = end($category);
+                $category_name = Category::find($category);
+                // dd($category_name);
                 $quantity = 0;
                 $total_amount = 0;
                 $order_items = OrderItem::where('product_id', $product)->get();
@@ -43,7 +47,7 @@ class ReportController extends Controller
                 $all_quantity += $quantity;
                 $all_amount += $total_amount;
                 $category_reports[$index] = [
-                    'name' => $product_name->name,
+                    'name' => $category_name->name,
                     'quantity' => $quantity,
                     'total_amount' => $total_amount,
                     'id' => $product_name->id,
@@ -74,7 +78,8 @@ class ReportController extends Controller
             foreach ($products as $index => $product) {
                 $product_detail = ProductDetail::find($product->product_detail_id);
                 $category = $product_detail->product->category_id;
-                $category = json_decode($category)[0];
+                $category = json_decode($category);
+                $category = end($category);
                 $category_name = Category::find($category);
                 $data[$index] = [
                     'sku' => $product->order->sku,

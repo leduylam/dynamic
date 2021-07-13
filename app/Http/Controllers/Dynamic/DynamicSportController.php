@@ -6,27 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Banner;
 use App\Models\ProductImage;
 use App\Models\Image;
 
 class DynamicSportController extends Controller
 {
     public function home(){
-        // dd($categories);
+        $getCategory = Category::where(['parent_id_1' => 0, 'parent_id_2' => 0])->get();
+        // dd($getCategory);
+        $banner = Banner::where('status', 1)->first();
         
-        $category = Category::where('parent_id_1', 0)->orderBy('name')->first();
-        $products = Product::with('images')->paginate(8);
+        $products = Product::orderBy('id', 'Desc')->limit(8)->get();
         foreach ($products as $index => $product) {
             $image_id = ProductImage::where('product_id', $product->id)->orderBy('created_at', 'desc')->first();
             if (!empty($image_id)) {
                 $image = Image::find($image_id->image_id);
-                if($image['image_id'] == $image_id){
-                    $products[$index]['image'] = $image->description;
-                }
-                
+                $products[$index]['image'] = $image->description;
             }
         }
-        // echo "<pre>"; print_r($category); die;
-        return view('welcome', compact('products', 'category'));
+        $products = json_decode(json_encode($products));
+        return view('welcome', compact('products', 'banner', 'getCategory'));
     }
+
 }

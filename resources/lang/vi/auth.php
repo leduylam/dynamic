@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'dashboard' => 'Trang chủ',
+    'dashboard' => 'Bảng điều khiển',
     'hello' => 'Xin chao'
 ];

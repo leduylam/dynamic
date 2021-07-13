@@ -12,17 +12,17 @@
                     <div class="row d-flex align-items-center justify-content-between">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
                             <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                {{-- <img src="{{ \Storage::disk('s3')->url('categories/'.$category->image) }}" alt=""> --}}
+                                <img src="{{ \Storage::disk('s3')->url('banner/'.$banner->image) }}" alt="">
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
                             <div class="hero__caption">
-                                <span data-animation="fadeInRight" data-delay=".4s">60% Discount</span>
-                                <h1 data-animation="fadeInRight" data-delay=".6s">Winter <br> </h1>
-                                <p data-animation="fadeInRight" data-delay=".8s">Best Cloth Collection By 2020!</p>
+                                {{-- <span data-animation="fadeInRight"  data-delay=".4s">60% Discount</span> --}}
+                                <h1 data-animation="fadeInRight" style="font-size: 60px;" data-delay=".6s">{{ $banner->title }}</h1>
+                                <p data-animation="fadeInRight" data-delay=".8s"> {{ $banner->alt }} </p>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInRight" data-delay="1s">
-                                    <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                    <a href=" {{ $banner->link }} " class="btn hero-btn">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -67,42 +67,24 @@
                 </div>
             </div>
             <div class="row">
+
+                
+                @foreach ($getCategory as $category)
                 <div class="col-xl-4 col-lg-6">
                     <div class="single-category mb-30">
                         <div class="category-img">
-                            <img src="{{ asset('dynamic/assets/img/categori/cat1.jpg') }}" alt="">
+                            <img src="{{ \Storage::disk('s3')->url('categories/'.$category['image']) }}" style="height:240px;" alt="">
                             <div class="category-caption">
-                                <h2>Owmen`s</h2>
-                                <span class="best"><a href="#">Best New Deals</a></span>
-                                <span class="collection">New Collection</span>
+                                <h2>{{ $category['name'] }}</h2>
+                                <span class="best"><a href="{{ route('product.index') }}">Best New Deals</a></span>
+                                <span class="collection">{{ $category['description']}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6">
-                    <div class="single-category mb-30">
-                        <div class="category-img text-center">
-                            <img src="{{ asset('dynamic/assets/img/categori/cat2.jpg') }}" alt="">
-                            <div class="category-caption">
-                                <span class="collection">Discount!</span>
-                                <h2>Winter Cloth</h2>
-                            <p>New Collection</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6">
-                    <div class="single-category mb-30">
-                        <div class="category-img">
-                            <img src="{{ asset('dynamic/assets/img/categori/cat3.jpg') }}" alt="">
-                            <div class="category-caption">
-                                {{-- <h2>{{ $category->name }} Cloth</h2> --}}
-                                <span class="best"><a href="#">Best New Deals</a></span>
-                                <span class="collection">New Collection</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                
+                
             </div>
         </div>
     </section>
@@ -129,28 +111,33 @@
                     <div class="row">
                         @if (!empty($products))
                         @foreach ($products as $product)
-                        <div class="col-lg-3">
-                            @foreach ($product->images as $item)
-                            <div class="mySlides">
-                                <div class="numbertext"></div>
-                                    <img src="{{ \Storage::disk('s3')->url('product/'.$item->description) }}" style="width:100%; height:300px">
-                            </div>
-                            @endforeach
-                            <!-- Next and previous buttons -->
-                            <a class="prev" style="position: absolute; width: 15px; top: 125px" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" style="position: absolute; width: 15px; top: 125px" onclick="plusSlides(1)">&#10095;</a>
+                        <div class="col-xl-3 col-lg-3 col-md-6">
                         
-                            
-                            <!-- Thumbnail images -->
-                            <div class="row">
-                                @foreach ($product->images as $item)
-                                <div class="column">
-                                    <img class="demo cursor" src="{{ \Storage::disk('s3')->url('product/'.$item->description) }}" style="width:100%; height:40px" onclick="currentSlide({{ $item->id }})" alt="The Woods">
+                            <div class="single-product mb-60">
+                                <div class="product-img">
+                                    <img src="{{ \Storage::disk('s3')->url('product/'.$product->image) }}" height="262px;" alt="">
+                                    <div class="new-product">
+                                        <span>New</span>
+                                    </div>
                                 </div>
-                                @endforeach
+                                <div class="product-caption">
+                                    {{-- <div class="product-ratting">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star low-star"></i>
+                                        <i class="far fa-star low-star"></i>
+                                    </div> --}}
+                                    <h4><a href="{{ route('product.product-detail', $product->id) }}">{{ $product->name }}</a></h4>
+                                    <div class="price">
+                                        <ul>
+                                            <li> {{ $product->sku }} </li>
+                                            {{-- <li class="discount">$60.00</li> --}}
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <h4 style="margin-top:40px;"><a href="{{ route('product.product-detail', $product->id) }}" style="font-size:16px;">{{ $product->name }}</a></h4>
                         </div>
                         @endforeach
                         @endif
@@ -249,37 +236,3 @@
 
 </main>
 @endsection
-@push('after-js')
-    <script>
-
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        // Next/previous controls
-        function plusSlides(n) {
-        showSlides(slideIndex += n);
-        }
-
-        // Thumbnail image controls
-        function currentSlide(n) {
-        showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
-        var captionText = document.getElementById("caption");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-        }
-    </script>
-@endpush

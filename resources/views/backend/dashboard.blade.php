@@ -115,7 +115,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="card-title mb-0"><a href="{{ route('admin.report.customer-report.index') }}">Doanh số theo khách hàng (Top 5)</a> </h4>
+                        <h4 class="card-title mb-0"><a href="{{ route('admin.report.customer-report.index') }}">{{__('message.top_customer')}}</a> </h4>
                         <div class="small text-muted">{{ \Carbon\Carbon::now()->format('Y/m') }}</div>
                         <div></div>
                     </div>
@@ -155,7 +155,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="card-title mb-0"><a href="{{ route('admin.report.category-report.index') }}">Doanh số theo Category (Top 5)</a> </h4>
+                        <h4 class="card-title mb-0"><a href="{{ route('admin.report.category-report.index') }}">{{__('message.top_category')}}</a> </h4>
                         <div class="small text-muted">{{ \Carbon\Carbon::now()->format('Y/m') }}</div>
                     </div>
                     <!--/.col-->

@@ -313,7 +313,6 @@ class ProductController extends Controller
         }
 
         Image::whereIn('id', $images)->delete();
-
         // delete product
         $product->images()->detach();
         $product->delete();

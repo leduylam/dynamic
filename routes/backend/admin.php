@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\MultiLanguageController;
 
 Route::auth();
@@ -61,6 +62,17 @@ Route::group([
             Route::delete('/', [ProductController::class, 'destroy'])->name('destroy');
 
         });
+    });
+
+
+    //Page Banner
+    Route::group([
+        'prefix' => 'banner',
+        'as' => 'banner.'
+    ], function(){
+        Route::get('/', [BannerController::class, 'index'])->name('index');
+        Route::get('/create', [BannerController::class, 'create'])->name('create');
+        Route::post('/', [BannerController::class, 'store'])->name('store');
     });
 
     //page category
