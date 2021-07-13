@@ -149,7 +149,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard()->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->route('/product');
+            return redirect()->route('product.index');
         }
 
         return back()->withInput($request->only('email', 'remember'));
