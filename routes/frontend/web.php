@@ -36,4 +36,5 @@ Route::group([
     ], function(){
         Route::get('/', [OrderController::class, 'index'])->name('index');
     });
+    });
 ?>
