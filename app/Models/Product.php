@@ -37,8 +37,7 @@ Product extends Model
     {
         return $this->belongsToMany(Color::class, 'product_details', 'product_id', 'color_id');
     }
-
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -46,4 +45,5 @@ Product extends Model
     {
         return $this->hasMany(ProductDetail::class, 'product_id');
     }
+    
 }

@@ -34,18 +34,18 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title" style="justify-content: center">Categories table</strong>
-                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-sm" style="float: right">Add new</a>
+                        <strong class="card-title" style="justify-content: center">{{ __('category/index.title')}}</strong>
+                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-sm" style="float: right">{{ __('category/index.add')}}</a>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Images</th>
-                                    <th>Category Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>{{ __('category/index.image')}}</th>
+                                    <th>{{ __('category/index.name')}}</th>
+                                    <th>{{ __('category/index.status')}}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>

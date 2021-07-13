@@ -44,8 +44,8 @@
                                     <strong class="card-title">Product Manage</strong>
                                 </div>
                                 <div class="col col-md-3">
-                                    <a href="#" class="btn btn-success btn-sm ml-1" title="import file"
-                                       data-toggle="modal" data-target="#import-file" style="width: 170px;">Import product</a>
+                                    <a href="#" class="btn btn-primary btn-sm" title="import file"
+                                       data-toggle="modal" data-target="#import-file">Import product</a>
                                         <div class="modal fade" id="import-file" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -100,7 +100,7 @@
                                     </td>
                                     <td>{{ $product->sku }}</td>
                                     <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>
-                                    <td>{{ $product->price }}VND</td>
+                                    <td>{{ number_format($product->price) }}    VND</td>
                                     <td>
                                         @if($product->status == 1)
                                             <a href="#" class="badge badge-success">Show</a>

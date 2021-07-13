@@ -24,7 +24,9 @@
                             </div>
                             <div class="header-info-right">
                                 <ul>
-                                    <li><a href="login.html">My Account </a></li>
+                                    @if (Auth::check())
+                                        <li><a href="login.html">My Account </a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -37,7 +39,7 @@
                         <!-- Logo -->
                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                             <div class="logo">
-                                <a href=""><img src="{{ asset('dynamic/assets/img/logo/logo.png') }}" alt=""></a>
+                                <a href="{{ route('welcome') }}"><img src="{{ asset('dynamic/assets/img/logo/logo.png') }}" width="175px" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -48,17 +50,17 @@
                                         @if (!empty($categories))
                                             @foreach($categories as $category)
                                             @if(!empty($category['parent_id_1'] == 0))
-                                            <li class="category_big"><a href="#">{{ $category['name'] }}</a>
+                                            <li class="category_big"><a href="{{ route('product.index', $category['id']) }}">{{ $category['name'] }}</a>
                                                 
                                                 <ul class="submenu dsc-submenu">
                                                 @foreach($categories as $mid)
                                                 @if($mid['parent_id_1'] == $category['id'] && !$mid['parent_id_2'] == $category['id'])
-                                                <li><a href="{{ route('product.product-table') }}"> {{ $mid['name'] }}</a>
+                                                <li><a href="{{ route('product.index', $mid['id']) }}"> {{ $mid['name'] }}</a>
                                                     
                                                     <ul class="submenu dsc-submenu" style="left: 100%">
                                                         @foreach($categories as $small)
                                                             @if($small['parent_id_2'] == $mid['id'])
-                                                            <li><a href="Catagori.html">{{ $small['name'] }}</a></li>
+                                                            <li><a href="{{ route('product.index', $small['id']) }}">{{ $small['name'] }}</a></li>
                                                             @endif
                                                         @endforeach
                                                     </ul>
@@ -71,7 +73,7 @@
                                         @endforeach
                                         @endif
                                         
-                                        <li><a href="index.html">Clubs</a></li>
+                                        <li><a href="  ">Order Form</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -87,9 +89,12 @@
                                     </div>
                                 </li>
                                 <li>
+                                    @if (Auth::check())
                                     <div class="shopping-card">
-                                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                        <a href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
+                                    @endif
+                                    
                                 </li>
                                 <li class="d-none d-lg-block"> <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a></li>
                             </ul>
@@ -106,4 +111,44 @@
     <!-- Header End -->
 </header>
 
+@push('category')
+    <script type="text/javascript">
+        $('#category_big').change(function () {
+            var id = $(this).val();
+            var option = '';
+            $.ajax({
+                type: "GET",
+                url: "{{ route('admin.category.list.mid') }}",
+                data: {category_id: id},
+                success: function (data) {
+                    $('#category_mid option').remove();
+                    option += `<option value="">-- Select Category --</option>`;
+                    data.forEach(function (val) {
+                        option += `<option value="${val.id}">${val.name}</option>`;
+                    });
 
+                    $('#category_mid').append(option);
+
+                    $('#category_mid').change(function () {
+                        var category_mid = $(this).val();
+                        var option_small = '';
+                        $.ajax({
+                            type: "GET",
+                            url: "{{ route('admin.category.list.small') }}",
+                            data: {category_id_1: id, category_id_2: category_mid},
+                            success: function (result) {
+                                $('#category_small option').remove();
+                                option_small += `<option value="">-- Select Category --</option>`;
+                                result.forEach(function (value) {
+                                    option_small += `<option value="${value.id}">${value.name}</option>`;
+                                });
+
+                                $('#category_small').append(option_small);
+                            }
+                        })
+                    })
+                }
+            })
+        });
+    </script>
+@endpush
