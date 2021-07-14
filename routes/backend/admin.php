@@ -21,7 +21,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => 'auth:admin',
     'as' => 'admin.',
 ], function () {
     // page home

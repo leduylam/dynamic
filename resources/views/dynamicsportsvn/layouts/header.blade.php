@@ -9,14 +9,22 @@
                         <div class="row d-flex justify-content-end align-items-center">
                             <div class="header-info-left d-flex">
                                 <div class="flag">
-                                    <img src="{{ asset('dynamic/assets/img/icon/header_icon.png') }}" alt="">
+                                    @if(\Illuminate\Support\Facades\Session::get('website_language') == 'vi')
+                                        <i class="flag-icon flag-icon-vn"></i>
+                                    @else
+                                        <i class="flag-icon flag-icon-us"></i>
+                                    @endif
                                 </div>
                                 <div class="select-this">
                                     <form action="#">
                                         <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">VN</option>
-                                                <option value="">USA</option>
+                                            <select name="select" id="select1" onChange="window.location.href=this.value">
+                                                <option value="{{ route('index', ['vi']) }}" {{ \Illuminate\Support\Facades\Session::get('website_language') == 'vi' ? 'selected' : '' }}>
+                                                    VN
+                                                </option>
+                                                <option value="{{ route('index', ['en']) }}" {{ \Illuminate\Support\Facades\Session::get('website_language') == 'en' ? 'selected' : '' }}>
+                                                    USA
+                                                </option>
                                             </select>
                                         </div>
                                     </form>
@@ -24,9 +32,13 @@
                             </div>
                             <div class="header-info-right">
                                 <ul>
-                                    @if (Auth::check())
-                                        <li><a href="login.html">My Account </a></li>
-                                    @endif
+                                    <li>
+                                        @if(auth()->user())
+                                            <a href="{{ route('customer.login') }}">{{ auth()->user()->name }}</a>
+                                        @else
+                                            <a href="{{ route('customer.login') }}">My Account </a>
+                                        @endif
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -51,12 +63,12 @@
                                             @foreach($categories as $category)
                                             @if(!empty($category['parent_id_1'] == 0))
                                             <li class="category_big"><a href="{{ route('product.index', $category['id']) }}">{{ $category['name'] }}</a>
-                                                
+
                                                 <ul class="submenu dsc-submenu">
                                                 @foreach($categories as $mid)
                                                 @if($mid['parent_id_1'] == $category['id'] && !$mid['parent_id_2'] == $category['id'])
                                                 <li><a href="{{ route('product.index', $mid['id']) }}"> {{ $mid['name'] }}</a>
-                                                    
+
                                                     <ul class="submenu dsc-submenu" style="left: 100%">
                                                         @foreach($categories as $small)
                                                             @if($small['parent_id_2'] == $mid['id'])
@@ -72,7 +84,7 @@
                                             @endif
                                         @endforeach
                                         @endif
-                                        
+
                                         <li><a href="  ">Order Form</a></li>
                                     </ul>
                                 </nav>
@@ -94,9 +106,12 @@
                                         <a href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
                                     @endif
-                                    
+
                                 </li>
-                                <li class="d-none d-lg-block"> <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a></li>
+                                <li class="d-none d-lg-block">
+                                    @if(!auth())
+                                        <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a></li>
+                                    @endif
                             </ul>
                         </div>
                         <!-- Mobile Menu -->
