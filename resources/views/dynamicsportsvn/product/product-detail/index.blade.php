@@ -1,6 +1,6 @@
 @extends('dynamicsportsvn.layouts.app')
-@section('css')
-    <style type="text/css">
+
+<style type="text/css">
         /* Hide the images by default */
 
         img {
@@ -86,7 +86,6 @@
         }
 
     </style>
-@endsection
 @section('content')
     <!-- slider Area Start-->
     <div class="slider-area ">
@@ -113,13 +112,12 @@
                 <div class="col-lg-6" style="padding-bottom: 50px">
                     <!-- Full-width images with number text -->
                     @if (!empty($product->images))
-                        @foreach ($product->images as $image)
-                            <div class="mySlides">
-                                <div class="numbertext">1 / 6</div>
-                                <img src="{{ \Storage::disk('s3')->url('product/' . $image->description) }}"
-                                    style="width:100%">
-                            </div>
-                        @endforeach
+                    @foreach ($product->images as $image)
+                      <div class="mySlides">
+                        <div class="numbertext">1 / 6</div>
+                        <img src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}" style="width:100%">
+                    </div>
+                    @endforeach
 
                     @endif
                     <!-- Next and previous buttons -->
@@ -134,13 +132,12 @@
                     <!-- Thumbnail images -->
                     <div class="row">
 
-                        @foreach ($product->images as $image)
-                            <div class="column">
-                                <img class="demo cursor"
-                                    src="{{ \Storage::disk('s3')->url('product/' . $image->description) }}"
-                                    style="width:100%" onclick="currentSlide({{ $image->id }})" alt="">
-                            </div>
-                        @endforeach
+                      @foreach ($product->images as $image)
+                      <div class="column">
+                        <img class="demo cursor" src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}"
+                            style="width:100%" onclick="currentSlide({{ $image->id }})" alt="">
+                    </div>
+                      @endforeach
 
 
                     </div>

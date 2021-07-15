@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dynamic\DynamicSportController;
 use App\Http\Controllers\Dynamic\ProductController;
-use App\Http\Controllers\Dynamic\CategoryController;
 use App\Http\Controllers\Dynamic\OrderController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dynamic\UserController;

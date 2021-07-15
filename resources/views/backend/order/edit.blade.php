@@ -138,9 +138,11 @@
                                                             class="form-control product_detail_id"
                                                             data-index="{{ $index }}">
                                                         <option> -- product detail --</option>
-                                                        @foreach($item->product_details as $value)
-                                                            <option value="{{ $value['id'] }}" {{ $value['id'] == $item->product_detail_id ? 'selected' : '' }} data-stock="{{ $value['stock'] }}" data-price="{{ $value['price'] }}"> {{ $value['product_detail'] }}</option>
-                                                        @endforeach
+                                                        @if(!empty($item->product_details->toArray))
+                                                            @foreach($item->product_details as $value)
+                                                                <option value="{{ $value['id'] }}" {{ $value['id'] == $item->product_detail_id ? 'selected' : '' }} data-stock="{{ $value['stock'] }}" data-price="{{ $value['price'] }}"> {{ $value['product_detail'] }}</option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </td>
                                                 <td><input type="text" name="quantity_product_detail[{{ $index }}]"

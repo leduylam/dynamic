@@ -32,6 +32,8 @@ class LoginController extends Controller
 
     protected $redirectAfterLogout = '/admin/login';
 
+    protected $redirectAfterLogoutUser = '/product';
+
     /**
      * Create a new controller instance.
      *
@@ -141,6 +143,11 @@ class LoginController extends Controller
             : redirect($this->redirectAfterLogout);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function userLogin(Request $request)
     {
         $this->validate($request, [
@@ -153,5 +160,22 @@ class LoginController extends Controller
         }
 
         return back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function userLogout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect($this->redirectAfterLogoutUser);
     }
 }

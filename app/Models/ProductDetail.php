@@ -15,7 +15,7 @@ class ProductDetail extends Model
     /**
      * @var array
      */
-    protected $fillable = ['product_id', 'size_id', 'brand', 'color_id', 'model', 'rating', 'price'];
+    protected $fillable = ['product_id', 'size_id', 'brand', 'color_id', 'model', 'rating'];
     /**
      * @var array
      */
