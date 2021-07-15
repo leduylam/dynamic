@@ -25,7 +25,7 @@ class ReportController extends Controller
         }else {
             $products = OrderItem::orderBy('id','desc')->groupBy('product_id')->pluck('product_id')->toArray();
         }
-        
+
         $category_reports = [];
         $all_quantity = 0;
         $all_amount = 0;
@@ -89,14 +89,14 @@ class ReportController extends Controller
                     'size' => $product_detail->size->size,
                     'color' => $product_detail->color->color,
                     'quantity' => $product->quantity,
-                    'total_amount' => $product->price,
-                    'amount' => $product->quantity * $product_detail->price,
+                    'total_amount' => $product_detail->product->price,
+                    'amount' => $product->quantity * $product_detail->product->price,
                     'category' => $category_name->name,
                 ];
 
                 $quantity += $product->quantity;
                 $total_amount += $product->price;
-                $amount += $product->quantity * $product_detail->price;
+                $amount += $product->quantity * $product->price;
             }
         }
 
@@ -187,12 +187,11 @@ class ReportController extends Controller
                             'size' => !empty($product->size) ? $product->size->size : '',
                             'quantity' => $item->quantity,
                             'total_amount' => $item->price,
-                            'amount' => $item->quantiy * $item->price,
+                            'amount' => $item->quantity * $item->price,
                             'discount' => $item->discount,
                             'category_name' => $category_name->name,
                             'user_name' => $user->name,
                         ];
-
                     }
                 }
             }
@@ -243,7 +242,7 @@ class ReportController extends Controller
                     $quantity += $item['quantity'];
                     $discount += $item['discount'];
                     $product = ProductDetail::find($item->product_detail_id);
-                    $amount += $product['price'] * $item['quantity'];
+                    $amount += $product->product->price * $item['quantity'];
                     $total_amount += $item['price'];
                     $array[$index] = [
                         'sku' => !empty($product) ? $product->product->sku : '',
