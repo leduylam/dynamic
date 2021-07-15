@@ -102,7 +102,7 @@ class ProductController extends Controller
                 }
 
                 // create product detail
-               $this->createOrUpdateProductDetail($request->all(), $product);
+                $this->createOrUpdateProductDetail($request->all(), $product);
 
                 DB::commit();
             } catch (\Exception $e) {
@@ -149,7 +149,7 @@ class ProductController extends Controller
         $category_small = array();
         $array_category_small = array();
         $array_category_mid = array();
-        $product = Product::with('images','details')->find($id);
+        $product = Product::with('images', 'details')->find($id);
         $categories = Category::where('parent_id_1', 0)->where('parent_id_2', 0)->get();
         $list_category = json_decode($product->category_id);
         if (!empty($list_category)) {
@@ -196,6 +196,11 @@ class ProductController extends Controller
     public function update(EditProductRequest $request, $id)
     {
         if ($request->ajax()) {
+            $validate = $this->validateProduct($request->all());
+            if (!empty($validate)) {
+                return redirect()->back()->with('error', $validate);
+            }
+
             DB::beginTransaction();
             try {
                 // update product
@@ -265,14 +270,31 @@ class ProductController extends Controller
 
                 // create or update product_detail and stock
                 if (!empty($product->details->toArray())) {
-                    foreach ($product->details as $detail) {
-                        $stock = Stock::where('product_detail_id', $detail->id)->first();
-                        if (!empty($stock)) {
-                            $stock->delete();
-                        }
-                    }
+                    if (!empty($request['product_detail'])) {
+                        $product_detail = $product->details->pluck('id')->toArray();
+                        $product_detail = !empty($product_detail) ? $product_detail : [];
+                        $array_diff = array_diff($product_detail, $request['product_detail']);
+                        if (!empty($array_diff)) {
+                            foreach ($array_diff as $item) {
+                                $stock = Stock::where('product_detail_id', $item)->first();
+                                if (!empty($stock)) {
+                                    $stock->delete();
+                                }
 
-                    $product->details()->delete();
+                                $product_detail_id = ProductDetail::find($item);
+                                $product_detail_id->delete();
+                            }
+                        }
+                    } else {
+                        foreach ($product->details as $detail) {
+                            $stock = Stock::where('product_detail_id', $detail->id)->first();
+                            if (!empty($stock)) {
+                                $stock->delete();
+                            }
+                        }
+
+                        $product->details()->delete();
+                    }
                 }
 
                 $this->createOrUpdateProductDetail($request->all(), $product);
@@ -355,22 +377,36 @@ class ProductController extends Controller
             || !empty($request['brand']) || !empty($request['model'])
             || !empty($request['quantity']) || !empty($request['price_detail'])) {
             foreach ($request['size_id'] as $index => $value) {
-                $product_detail = new ProductDetail();
-                $product_detail['product_id'] = $product->id;
-                $product_detail['size_id'] = $value;
-                $product_detail['brand'] = !empty($request['brand']) ? $request['brand'][$index] : null;
-                $product_detail['color_id'] = !empty($request['color_id']) ? $request['color_id'][$index] : null;
-                $product_detail['model'] = !empty($request['model']) ? $request['model'][$index] : null;
-                $product_detail['price'] = !empty($request['price_detail']) ? $request['price_detail'][$index] : null;
-                $product_detail['rating'] = null;
-                $product_detail->save();
+                if (!empty($request['product_detail'][$index])) {
+                    $product_detail = ProductDetail::find($request['product_detail'][$index]);
+                    $product_detail['size_id'] = $value;
+                    $product_detail['brand'] = !empty($request['brand']) ? $request['brand'][$index] : $product_detail['brand'];
+                    $product_detail['color_id'] = !empty($request['color_id']) ? $request['color_id'][$index] : $product_detail['color_id'];
+                    $product_detail['model'] = !empty($request['model']) ? $request['model'][$index] : $product_detail['model'];
+                    $product_detail->save();
 
-                // create stock
-                if (!empty($request['quantity'])) {
-                    $stock = new Stock();
-                    $stock['product_detail_id'] = $product_detail->id;
-                    $stock['quantity'] = !empty($request['quantity']) ? $request['quantity'][$index] : null;
-                    $stock->save();
+                    if (!empty($request['quantity'][$index])) {
+                        $stock = Stock::where('product_detail_id', $product_detail->id)->first();
+                        $stock['quantity'] = !empty($request['quantity']) ? $request['quantity'][$index] : $stock['quantity'];
+                        $stock->save();
+                    }
+                }else {
+                    $product_detail = new ProductDetail();
+                    $product_detail['product_id'] = $product->id;
+                    $product_detail['size_id'] = $value;
+                    $product_detail['brand'] = !empty($request['brand']) ? $request['brand'][$index] : null;
+                    $product_detail['color_id'] = !empty($request['color_id']) ? $request['color_id'][$index] : null;
+                    $product_detail['model'] = !empty($request['model']) ? $request['model'][$index] : null;
+                    $product_detail['rating'] = null;
+                    $product_detail->save();
+
+                    // create stock
+                    if (!empty($request['quantity'])) {
+                        $stock = new Stock();
+                        $stock['product_detail_id'] = $product_detail->id;
+                        $stock['quantity'] = !empty($request['quantity']) ? $request['quantity'][$index] : null;
+                        $stock->save();
+                    }
                 }
             }
         }
@@ -379,13 +415,14 @@ class ProductController extends Controller
     }
 
     private $import_error_messages = '';
+
     public function import(Request $request)
     {
         $this->import_error_messages = '';
         $arr_file = Excel::toArray(null, $request->file);
         $arr_file = array_shift($arr_file);
         $header = $arr_file[0];
-        if (! $this->checkImportData($arr_file)) {
+        if (!$this->checkImportData($arr_file)) {
             return redirect()->back()->with('error', $this->import_error_messages);
         }
 
@@ -414,7 +451,7 @@ class ProductController extends Controller
                     // product stock
                     $this->createStock($item, $product_detail);
 
-                }else {
+                } else {
                     // update product
                     $product['price'] = !empty($item[11]) ? $item[11] : $product->price;
                     $product['description'] = !empty($item[5]) ? $item[5] : $product->description;
@@ -426,10 +463,10 @@ class ProductController extends Controller
                     if (!empty($item[1])) {
                         $product_detail = ProductDetail::find($item[1]);
                         if ($product_detail) {
-                            $product_detail['color_id'] = !empty($item[2]) ? $item[2]: $product_detail->color;
+                            $product_detail['color_id'] = !empty($item[2]) ? $item[2] : $product_detail->color;
                             $product_detail['size_id'] = !empty($item[3]) ? $item[3] : $product_detail->size;
                             $product_detail['model'] = !empty($item[6]) ? $item[6] : $product_detail->model;
-                            $product_detail['brand'] = !empty($item[7]) ? $item[7]: $product_detail->brand;
+                            $product_detail['brand'] = !empty($item[7]) ? $item[7] : $product_detail->brand;
                             $product_detail['price'] = !empty($item[11]) ? $item[11] : $product_detail->price;
                             $product_detail->save();
 
@@ -438,11 +475,11 @@ class ProductController extends Controller
                             if (!empty($stock)) {
                                 $stock['quantity'] = !empty($item[12]) ? $item[12] : $stock['quantity'];
                                 $stock->save();
-                            }else{
+                            } else {
                                 $this->createStock($item, $product_detail);
                             }
                         }
-                    }else {
+                    } else {
                         // product detail
                         $product_detail = $this->createProductDetail($item, $product);
 
@@ -455,7 +492,7 @@ class ProductController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error','Import fail');
+            return redirect()->back()->with('error', 'Import fail');
         }
 
         return redirect()->back()->with('success', 'Import success');
@@ -468,12 +505,12 @@ class ProductController extends Controller
      */
     public function checkImportData($data)
     {
-        $arr_key = (! empty($data)) ? $data : [];
+        $arr_key = (!empty($data)) ? $data : [];
         $rules = [
             '0' => ['required', 'string', 'max:255'],
             '1' => ['nullable', 'integer'],
             '2' => ['required', 'integer'],
-            '3' => ['required','integer'],
+            '3' => ['required', 'integer'],
             '4' => ['required', 'max:255'],
             '5' => ['nullable'],
             '6' => ['nullable'],
@@ -481,8 +518,8 @@ class ProductController extends Controller
             '8' => ['nullable', 'integer'],
             '9' => ['nullable', 'integer'],
             '10' => ['nullable', 'integer'],
-            '11' => ['required','numeric','min:0'],
-            '12' => ['nullable','numeric','min:0'],
+            '11' => ['required', 'numeric', 'min:0'],
+            '12' => ['nullable', 'numeric', 'min:0'],
         ];
 
         $attributes = [
@@ -516,13 +553,13 @@ class ProductController extends Controller
             }
 
             if (!empty($item[8])) {
-                array_push($rules[8], 'check_category_big:'.$item[8]);
-                if (!empty($item[9])){
-                    $category = $item[8].','.$item[9];
-                    array_push($rules[9], 'check_category_mid:'.$category);
+                array_push($rules[8], 'check_category_big:' . $item[8]);
+                if (!empty($item[9])) {
+                    $category = $item[8] . ',' . $item[9];
+                    array_push($rules[9], 'check_category_mid:' . $category);
 
                     if (!empty($item[10])) {
-                        array_push($rules[10], 'check_category_small:'.$category);
+                        array_push($rules[10], 'check_category_small:' . $category);
                     }
                 }
 
@@ -534,7 +571,7 @@ class ProductController extends Controller
             if ($validator->fails()) {
                 foreach ($validator->errors()->getMessages() as $errors) {
                     foreach ($errors as $message) {
-                        $this->import_error_messages .= $key. $message . "<br>";
+                        $this->import_error_messages .= $key . $message . "<br>";
                     }
                 }
                 $error_flg = true;
@@ -551,13 +588,13 @@ class ProductController extends Controller
     public function getCategory($item)
     {
         $category = [];
-        if (!empty($item[8]) ) {
-            array_push($category, $item[8].'');
+        if (!empty($item[8])) {
+            array_push($category, $item[8] . '');
             if (!empty($item[9])) {
-                array_push($category, $item[9].'');
+                array_push($category, $item[9] . '');
 
-                if (!empty($item[10])){
-                    array_push($category, $item[10].'');
+                if (!empty($item[10])) {
+                    array_push($category, $item[10] . '');
                 }
             }
         }
@@ -597,5 +634,29 @@ class ProductController extends Controller
         $stock->save();
 
         return $stock;
+    }
+
+    public $error_messages = '';
+    public function validateProduct($params)
+    {
+        $messages = [];
+        $data = [];
+        if (!empty($params['size_id']) && !empty($params['color_id'])) {
+            foreach ($params['size_id'] as $index => $param) {
+                $data[] = [
+                    $param,
+                    $params['color_id'][$index],
+                ];
+            }
+        }
+
+        if (!empty($data)) {
+            foreach ($data as $key => $datum) {
+                unset($data[$key]);
+                if (in_array($datum, $data)) {
+                    $this->error_messages .= $key . 'data đã toong' . "<br>";
+                }
+            }
+        }
     }
 }

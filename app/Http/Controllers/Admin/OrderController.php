@@ -156,21 +156,23 @@ class OrderController extends Controller
         if (!empty($order->orderItems->toArray())) {
             foreach ($order->orderItems as $index => $item) {
                 $product_id = ProductDetail::find($item->product_detail_id);
-                $product_details = ProductDetail::where('product_id', $product_id->product_id)->get();
-                $product = Product::find($product_id->product_id);
-                $order->orderItems[$index]['sku'] = $product->sku;
-                $array = array();
-                if (!empty($product_details->toArray())) {
-                    foreach ($product_details as $key => $product_detail) {
-                        $array[] = [
-                            'id' => $product_detail->id,
-                            'product_detail' => $product_detail->product->name . '/'. $product_detail->size->size .'/' .$product_detail->color->color.'('. $product_detail->stock->quantity.')',
-                            'stock' => $product_detail->stock->quantity,
-                            'price' => $product_detail->price,
-                        ];
+                if (!empty($product_id)) {
+                    $product_details = ProductDetail::where('product_id', $product_id->product_id)->get();
+                    $product = Product::find($product_id->product_id);
+                    $order->orderItems[$index]['sku'] = $product->sku;
+                    $array = array();
+                    if (!empty($product_details->toArray())) {
+                        foreach ($product_details as $key => $product_detail) {
+                            $array[] = [
+                                'id' => $product_detail->id,
+                                'product_detail' => $product_detail->product->name . '/'. $product_detail->size->size .'/' .$product_detail->color->color.'('. $product_detail->stock->quantity.')',
+                                'stock' => $product_detail->stock->quantity,
+                                'price' => $product_detail->price,
+                            ];
+                        }
                     }
+                    $order->orderItems[$index]['product_details'] = $array;
                 }
-                $order->orderItems[$index]['product_details'] = $array;
             }
         }
 

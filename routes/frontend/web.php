@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dynamic\DynamicSportController;
 use App\Http\Controllers\Dynamic\ProductController;
-use App\Http\Controllers\Dynamic\CategoryController;
 use App\Http\Controllers\Dynamic\OrderController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -19,6 +18,7 @@ Route::group([
     ['middleware' => ['auth:user']],
 ], function () {
     Route::get('/', [DynamicSportController::class, 'home'])->name('welcome');
+    Route::get('/logout', [LoginController::class, 'userLogout'])->name('logout.success');
 
     Route::group([
         'prefix' => 'product',
@@ -36,5 +36,5 @@ Route::group([
     ], function(){
         Route::get('/', [OrderController::class, 'index'])->name('index');
     });
-    });
+});
 ?>
