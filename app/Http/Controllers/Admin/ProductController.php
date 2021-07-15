@@ -56,6 +56,14 @@ class ProductController extends Controller
      */
     public function store(AddProductRequest $request)
     {
+        $validate = $this->validateProduct($request->all());
+        if (!empty($validate)) {
+            return response()->json([
+                'statusCode' => 0,
+                'data' => $validate
+            ], 200);
+        }
+
         if ($request->ajax()) {
             DB::beginTransaction();
             try {
@@ -198,7 +206,10 @@ class ProductController extends Controller
         if ($request->ajax()) {
             $validate = $this->validateProduct($request->all());
             if (!empty($validate)) {
-                return redirect()->back()->with('error', $validate);
+                return response()->json([
+                    'statusCode' => 0,
+                    'data' => $validate
+                ], 200);
             }
 
             DB::beginTransaction();
@@ -639,7 +650,6 @@ class ProductController extends Controller
     public $error_messages = '';
     public function validateProduct($params)
     {
-        $messages = [];
         $data = [];
         if (!empty($params['size_id']) && !empty($params['color_id'])) {
             foreach ($params['size_id'] as $index => $param) {
@@ -654,9 +664,11 @@ class ProductController extends Controller
             foreach ($data as $key => $datum) {
                 unset($data[$key]);
                 if (in_array($datum, $data)) {
-                    $this->error_messages .= $key . 'data đã toong' . "<br>";
+                    $this->error_messages .= $key . 'data đã tồn tại' . "<br>";
                 }
             }
         }
+
+        return $this->error_messages;
     }
 }

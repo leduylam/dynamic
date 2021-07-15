@@ -167,7 +167,7 @@ class OrderController extends Controller
                                 'id' => $product_detail->id,
                                 'product_detail' => $product_detail->product->name . '/'. $product_detail->size->size .'/' .$product_detail->color->color.'('. $product_detail->stock->quantity.')',
                                 'stock' => $product_detail->stock->quantity,
-                                'price' => $product_detail->price,
+                                'price' => $product_detail->product->price,
                             ];
                         }
                     }
@@ -212,7 +212,6 @@ class OrderController extends Controller
 
                 // create order_items
                 $this->addOrUpdateOrderItem($request->all(), $order);
-
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollback();
