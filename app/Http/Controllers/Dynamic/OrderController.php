@@ -10,4 +10,7 @@ class OrderController extends Controller
     public function index(){
         return view('dynamicsportsvn.cart.index');
     }
+    public function checkout(){
+        return view('dynamicsportsvn.cart.checkout');
+    }
 }

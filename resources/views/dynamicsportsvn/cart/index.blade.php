@@ -126,20 +126,11 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan=""></td>
-                                <td colspan="5">
-                                    <div class="form-group">
-                                        <label for="">Note</label>
-                                        <textarea name="" id="" cols="3" class="form-control"></textarea>
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
                         <a class="btn_1" href="#">Continue Shopping</a>
-                        <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                        <a class="btn_1 checkout_btn_1" href="{{ route('cart.checkout') }}">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

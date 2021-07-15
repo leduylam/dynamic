@@ -73,7 +73,7 @@
                                         <th>{{ $quantity }}</th>
                                         <th>{{ $amount }}</th>
                                         <th></th>
-                                        <th>{{ $total_amount }}</th>
+                                        <th>{{ number_format($total_amount) }}</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>

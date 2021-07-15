@@ -85,7 +85,7 @@
                                         @endforeach
                                         @endif
 
-                                        <li><a href="  ">Order Form</a></li>
+                                        <li><a href=" {{ route('product.product-table') }} ">Order Form</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -101,17 +101,16 @@
                                     </div>
                                 </li>
                                 <li>
-                                    @if (Auth::check())
                                     <div class="shopping-card">
                                         <a href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
-                                    @endif
+                                    
+                                    
 
                                 </li>
                                 <li class="d-none d-lg-block">
-                                    @if(!auth())
-                                        <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a></li>
-                                    @endif
+                                        <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a>
+                                    </li>
                             </ul>
                         </div>
                         <!-- Mobile Menu -->
@@ -126,44 +125,3 @@
     <!-- Header End -->
 </header>
 
-@push('category')
-    <script type="text/javascript">
-        $('#category_big').change(function () {
-            var id = $(this).val();
-            var option = '';
-            $.ajax({
-                type: "GET",
-                url: "{{ route('admin.category.list.mid') }}",
-                data: {category_id: id},
-                success: function (data) {
-                    $('#category_mid option').remove();
-                    option += `<option value="">-- Select Category --</option>`;
-                    data.forEach(function (val) {
-                        option += `<option value="${val.id}">${val.name}</option>`;
-                    });
-
-                    $('#category_mid').append(option);
-
-                    $('#category_mid').change(function () {
-                        var category_mid = $(this).val();
-                        var option_small = '';
-                        $.ajax({
-                            type: "GET",
-                            url: "{{ route('admin.category.list.small') }}",
-                            data: {category_id_1: id, category_id_2: category_mid},
-                            success: function (result) {
-                                $('#category_small option').remove();
-                                option_small += `<option value="">-- Select Category --</option>`;
-                                result.forEach(function (value) {
-                                    option_small += `<option value="${value.id}">${value.name}</option>`;
-                                });
-
-                                $('#category_small').append(option_small);
-                            }
-                        })
-                    })
-                }
-            })
-        });
-    </script>
-@endpush

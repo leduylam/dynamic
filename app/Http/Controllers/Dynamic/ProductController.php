@@ -37,6 +37,12 @@ class ProductController extends Controller
                 $image = Image::find($image_id->image_id);
                 $products[$index]['image'] = $image->description;
             }
+            if (!empty($product->details->toArray())) {
+                foreach ($product->details as $index => $detail) {
+                    $product->details[$index]['stock'] = !empty($detail->stock) ? $detail->stock->quantity : null;
+                }
+            }
+            // dd($product);
         }
         $products = json_decode(json_encode($products));
         return view('dynamicsportsvn.product.table-product', compact('products', 'sizes'));
@@ -57,7 +63,10 @@ class ProductController extends Controller
     }
 
     public function addtoCard(Request $request){
-        $data = $request->all();
-        echo "<pre>"; print_r($data); die;
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+        }
+        // 
     }
 }

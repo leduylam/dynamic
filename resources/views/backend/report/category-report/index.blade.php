@@ -65,7 +65,7 @@
                                     <tr>
                                         <th colspan="2">Tổng</th>
                                         <th>{{ $all_quantity }}</th>
-                                        <th>{{ $all_amount }} VND</th>
+                                        <th>{{ number_format($all_amount) }} VND</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -76,7 +76,7 @@
                                                 <a href="{{ url('admin/report/category-report/show/'.$category['id'].'?date_start='. (!empty($_GET['date_start']) ? $_GET['date_start'] : ''). '&date_end='.(!empty($_GET['date_end']) ? $_GET['date_end'] :'')) }}">{{ $category['name'] }}</a>
                                             </td>
                                             <td>{{ $category['quantity'] }}</td>
-                                            <td>{{ $category['total_amount'] }} VND</td>
+                                            <td>{{ number_format($category['total_amount']) }} VND</td>
                                             <td style="text-align:center"><a href="{{ url('admin/report/category-report/show/'.$category['id'].'?date_start='. (!empty($_GET['date_start']) ? $_GET['date_start'] : ''). '&date_end='.(!empty($_GET['date_end']) ? $_GET['date_end'] :'')) }}"><i class="fa fa-eye" style="font-size:33px"></i></a></td>
                                         </tr>
                                     @endforeach
