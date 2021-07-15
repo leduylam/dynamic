@@ -75,14 +75,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th >Hình ảnh</th>
+                                        <th >Image</th>
                                         <th >SKU</th>
-                                        <th >Tên</th>
+                                        <th >Name</th>
                                         <th >Size</th>
-                                        <th >Màu</th>
-                                        <th >Giá W.S</th>
-                                        <th >Giá bán lẻ</th>
-                                        <th >Số lượng</th>
+                                        <th >Stock</th>
+                                        <th >W.S Price</th>
+                                        <th >Quantity</th>
                                         <th >Total</th>
                                     </tr>
                                 </thead>
@@ -106,67 +105,52 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div class="media select-itms">
-                                                <div class="media-body nice-select">
-                                                    @if ($product->sizes)
-                                                    <span class="current">Size</span>
-                                                    <ul class="list">
-                                                        
-                                                        @foreach ($product->sizes as $item => $size)
-                                                        <li class="option">{{ $size->size }}</li>
-                                                        @endforeach
-                                                       
-                                                    </ul>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="media select-itms">
-                                                <div class="media-body nice-select">
-                                                    <span class="current">Color</span>
-                                                    <ul class="list">
-                                                        @if ($product->colors)
-                                                        @foreach ($product->colors as $item => $color)
-                                                        <li class="option">{{ $color->color }}</li>
-                                                        @endforeach
+                                        <form action="" method="post">
+                                            <td>
+                                                <div class="media select-itms">
+                                                    <select class="media-body nice-select" name="size_id">
+                                                        @if ($product->sizes)
+                                                        <option class="current">Size</option>
+                                                        <ul class="list">
+                                                            
+                                                            @foreach ($product->sizes as $item => $size)
+                                                            <option class="option" value="{{ $size->id }}">{{ $size->size }}</option>
+                                                            @endforeach
+                                                           
+                                                        </ul>
                                                         @endif
-                                                    </ul>
+                                                    </select>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <p>{{ $product->price }}</p>
+                                            </td>
+                                            <td>
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p>3</p>
+                                                    </div>
+                                                </div>  
+                                            </td>
+                                            <td>
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p>{{ number_format($product->price) }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-body">
-                                                    <p>
-                                                        <?php $retail = $product->price * 1.6 ?>
-                                                        {{ $retail }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="product_count">
-                                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                                                <input class="input-number" name=" " type="text" value="1" min="0" max="10">
-                                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                                              </div>
-                                        </td>
-                                        <td>
-                                            <?php $total = $product->price * 3 ?>
-                                            {{ $total }}
-                                        </td>
-                                        <td>
-                                            <a style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</a>
-                                        </td>
+                                            </td>
+                                            <td>
+                                                <div class="product_count">
+                                                    <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                                    <input class="input-number" name="quantity" type="text" value="1" min="0" max="100">
+                                                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                                  </div>
+                                            </td>
+                                            <td>
+                                                <?php $total = $product->price * 3 ?>
+                                                {{ $total }}
+                                            </td>
+                                            <td>
+                                                <button type="submit" style="font-size: 14px; padding:20px;" href="" class="btn btn-primary">add</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                     @endforeach
                                     

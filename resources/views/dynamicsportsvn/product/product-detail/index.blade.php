@@ -43,7 +43,7 @@
         .prev:hover,
         .next:hover {
             background-color: #274085;
-            color:#fff;
+            color: #fff;
         }
 
         /* Number text (1/3 etc) */
@@ -145,6 +145,7 @@
                 <div class="col-lg-6" style="padding-bottom: 50px">
                     <div class="single_product_text" style="margin: 0;">
                         <h3>{{ $product->name }}</h3>
+                        <p style="font-size: 24px">{{ $product->price }} VND</p>
                         <div style="border:1px solid #eee;"></div>
                         <p>
                             {{ $product->description }}
@@ -153,60 +154,62 @@
 
                         <p style="font-size: 18px; font-weight:500">Thương hiệu: {{ $product->details['brand'] }} <span
                                 style="color:red; font-weight:300"></span> </p>
-                        <form action="" method="post"> @csrf
-                          <input type="hidden" name="product_id" value="{{ $product->id }}">
-                          <div class="row">
-                            <div class="col-lg-4 col-pd-4">
-                                <h4>Size:</h4>
-                                <div class="media select-itms">
-                                    <select class="media-body nice-select" name="size_id">
-                                        @if (!empty($product->sizes))
-                                            <option class="current">-- Size --</option>
-                                            <ul class="list">
-                                                @foreach ($product->sizes as $item => $size)
-                                                    <option class="option" value="{{ $size->id }}">{{ $size->size }}</option>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </select>
+                        <form action="{{ url('product/add-to-card') }}" method="post"> @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <div class="row">
+                                <div class="col-lg-4 col-pd-4">
+                                    <h4>Size:</h4>
+                                    <div class="media select-itms">
+                                        <select class="media-body nice-select" name="size_id">
+                                            @if (!empty($product->sizes))
+                                                <option class="current">-- Size --</option>
+                                                <ul class="list">
+                                                    @foreach ($product->sizes as $item => $size)
+                                                        <option class="option" value="{{ $size->id }}">
+                                                            {{ $size->size }}</option>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-pd-4">
+                                    <h4>Color:</h4>
+                                    <div class="media select-itms">
+                                        <select class="media-body nice-select" name="color_id">
+                                            @if (!empty($product->colors))
+                                                <option class="current">-- Color --</option>
+                                                <ul class="list">
+                                                    @foreach ($product->colors as $item => $color)
+                                                        <option class="option" value="{{ $color->id }}">
+                                                            {{ $color->color }}</option>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-pd-4">
-                                <h4>Color:</h4>
-                                <div class="media select-itms">
-                                    <select class="media-body nice-select" name="color_id">
-                                        @if (!empty($product->colors))
-                                            <option class="current">-- Color --</option>
-                                            <ul class="list">
-                                                @foreach ($product->colors as $item => $color)
-                                                    <option class="option" value="{{ $color->id }}">{{ $color->color }}</option>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </select>
+
+
+
+                            <div class="dsc-product">
+
+                                <div class="dsc-product-count">
+                                    <p class="product-qty-text">Quantity</p>
+                                    <div class="product_count d-inline-block">
+                                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                        <input class="product_count_item input-number dsc_input_number" type="text"
+                                            value="1" min="1" max="100" name="quantity">
+                                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                                    </div>
+                                    {{-- <p>{{ $product->details['stock'] }}</p> --}}
                                 </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="dsc-product">
-
-                            <div class="dsc-product-count">
-                                <p class="product-qty-text">Quantity</p>
-                                <div class="product_count d-inline-block">
-                                    <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                                    <input class="product_count_item input-number dsc_input_number" type="text" value="1"
-                                        min="1" max="100" name="quantity">
-                                    <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                                <div class="d-flex mt-1 align-items-center">
+                                    <button type="submit" class="btn_3" style="padding: 14px 80px;">add to cart</button>
                                 </div>
-                                {{-- <p>{{ $product->details['stock'] }}</p> --}}
-                            </div>
-                            <div class="d-flex mt-1 align-items-center">
-                                <button type="submit" class="btn_3" style="padding: 14px 80px;">add to cart</button>
-                            </div>
 
-                        </div>
+                            </div>
                         </form>
 
                     </div>
