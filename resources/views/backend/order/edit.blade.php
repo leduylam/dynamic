@@ -138,7 +138,7 @@
                                                             class="form-control product_detail_id"
                                                             data-index="{{ $index }}">
                                                         <option> -- product detail --</option>
-                                                        @if(!empty($item->product_details->toArray))
+                                                        @if(!empty($item->product_details))
                                                             @foreach($item->product_details as $value)
                                                                 <option value="{{ $value['id'] }}" {{ $value['id'] == $item->product_detail_id ? 'selected' : '' }} data-stock="{{ $value['stock'] }}" data-price="{{ $value['price'] }}"> {{ $value['product_detail'] }}</option>
                                                             @endforeach
@@ -470,7 +470,7 @@
                     if (result.statusCode == 1) {
                         if (result.data.details) {
                             result.data.details.forEach(function (val) {
-                                pro = pro + '<option value="' + val.id + '" data-price="' + val.price + '" data-stock="' + val.quantity + '">' + val.detail + '</option>';
+                                pro = pro + '<option value="' + val.id + '" data-price="' + val.product.price + '" data-stock="' + val.quantity + '">' + val.detail + '</option>';
                             });
                         }
                     }

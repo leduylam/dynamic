@@ -34,7 +34,7 @@ class EditOrderRequest extends FormRequest
             'total_product_detail.*' => ['required', 'integer'],
             'customer' => ['required', 'string', 'max:255'],
             'address' => ['required' , 'string', 'max:255'],
-            'shipping_start_date' => ['nullable', 'after:today']
+            'shipping_start_date' => ['nullable']
         ];
     }
 
