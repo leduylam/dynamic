@@ -1,6 +1,6 @@
 @extends('dynamicsportsvn.layouts.app')
-@section('css')
-    <style type="text/css">
+
+<style type="text/css">
         /* Hide the images by default */
 
         img {
@@ -86,7 +86,6 @@
         }
 
     </style>
-@endsection
 @section('content')
     <!-- slider Area Start-->
     <div class="slider-area ">
@@ -119,7 +118,7 @@
                         <img src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}" style="width:100%">
                     </div>
                     @endforeach
-                      
+
                     @endif
                     <!-- Next and previous buttons -->
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -127,20 +126,20 @@
 
                     <!-- Image text -->
                     <div class="caption-container">
-                        
+
                     </div>
 
                     <!-- Thumbnail images -->
                     <div class="row">
-                      
+
                       @foreach ($product->images as $image)
                       <div class="column">
                         <img class="demo cursor" src="{{ \Storage::disk('s3')->url('product/'.$image->description) }}"
                             style="width:100%" onclick="currentSlide({{ $image->id }})" alt="">
                     </div>
                       @endforeach
-                        
-                        
+
+
                     </div>
                 </div>
                 <div class="col-lg-6" style="padding-bottom: 50px">
@@ -209,7 +208,7 @@
 
                         </div>
                         </form>
-                        
+
                     </div>
                 </div>
                 <div style="border-bottom: 1px solid #e8e8e8; width:100%;"></div>

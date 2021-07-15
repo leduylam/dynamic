@@ -103,7 +103,6 @@
                                             <th>Color</th>
                                             <th>Brand</th>
                                             <th>Model</th>
-                                            <th>Price</th>
                                             <th>Stock</th>
                                             <th style="text-align: center"><a
                                                     class="btn btn-success addRow" data-index="0">+</a>
@@ -130,7 +129,6 @@
                                             </td>
                                             <td><input type="text" name="brand[0]" class="form-control"></td>
                                             <td><input type="text" name="model[0]" class="form-control"></td>
-                                            <td><input type="text" name="price_detail[0]" class="form-control"></td>
                                             <td><input type="text" name="quantity[0]" class="form-control"></td>
                                         </tr>
                                     </tbody>
@@ -329,7 +327,6 @@
                             '</td>'+
                             '<td><input type="text" name="brand['+ i +']" class="form-control"></td>'+
                             '<td><input type="text" name="model['+ i +']" class="form-control"></td>'+
-                            '<td><input type="text" name="price_detail['+ i +']" class="form-control"></td>'+
                             '<td><input type="text" name="quantity['+ i +']" class="form-control"></td>'+
                             '<td style="text-align: center"><a class="btn btn-danger add-remove" data-index="' + i + '">-</a></td>'+
                         '</tr>';

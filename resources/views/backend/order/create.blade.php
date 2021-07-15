@@ -376,7 +376,7 @@
                     if (result.statusCode == 1) {
                         if (result.data.details) {
                             result.data.details.forEach(function (val) {
-                                pro = pro + '<option value="' + val.id + '" data-price="' + val.price + '" data-stock="' + val.quantity + '">' + val.detail + '</option>';
+                                pro = pro + '<option value="' + val.id + '" data-price="' + val.product.price + '" data-stock="' + val.quantity + '">' + val.detail + '</option>';
                             });
                         }
                     }
