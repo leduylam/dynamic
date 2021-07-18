@@ -162,6 +162,10 @@ class LoginController extends Controller
         return back()->withInput($request->only('email', 'remember'));
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|mixed
+     */
     public function userLogout(Request $request)
     {
         $this->guard()->logout();

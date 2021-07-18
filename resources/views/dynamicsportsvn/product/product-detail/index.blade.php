@@ -85,6 +85,11 @@
             opacity: 1;
         }
 
+        a.disabled {
+            pointer-events: none;
+            color: #ccc;
+        }
+
     </style>
 @section('content')
     <!-- slider Area Start-->
@@ -160,11 +165,11 @@
                                 <div class="col-lg-4 col-pd-4">
                                     <h4>Size:</h4>
                                     <div class="media select-itms">
-                                        <select class="media-body nice-select" name="size_id">
-                                            @if (!empty($product->sizes))
+                                        <select class="media-body nice-select size_id" name="size_id">
+                                            @if (!empty($sizes->toArray()))
                                                 <option class="current">-- Size --</option>
-                                                <ul class="list">
-                                                    @foreach ($product->sizes as $item => $size)
+                                                <ul class="list size_id">
+                                                    @foreach ($sizes as $item => $size)
                                                         <option class="option" value="{{ $size->id }}">
                                                             {{ $size->size }}</option>
                                                     @endforeach
@@ -176,11 +181,11 @@
                                 <div class="col-lg-4 col-pd-4">
                                     <h4>Color:</h4>
                                     <div class="media select-itms">
-                                        <select class="media-body nice-select" name="color_id">
-                                            @if (!empty($product->colors))
+                                        <select class="media-body nice-select color_id" name="color_id">
+                                            @if (!empty($colors->toArray()))
                                                 <option class="current">-- Color --</option>
                                                 <ul class="list">
-                                                    @foreach ($product->colors as $item => $color)
+                                                    @foreach ($colors as $item => $color)
                                                         <option class="option" value="{{ $color->id }}">
                                                             {{ $color->color }}</option>
                                                     @endforeach
@@ -191,10 +196,7 @@
                                 </div>
                             </div>
 
-
-
                             <div class="dsc-product">
-
                                 <div class="dsc-product-count">
                                     <p class="product-qty-text">Quantity</p>
                                     <div class="product_count d-inline-block">
@@ -206,7 +208,7 @@
                                     {{-- <p>{{ $product->details['stock'] }}</p> --}}
                                 </div>
                                 <div class="d-flex mt-1 align-items-center">
-                                    <button type="submit" class="btn_3" style="padding: 14px 80px;">add to cart</button>
+                                    <a class="add-to-card btn_3 @if(!auth()->user()) disabled @endif" data-stock="" style="padding: 14px 80px;">add to cart</a>
                                 </div>
 
                             </div>
@@ -235,6 +237,60 @@
 @endsection
 @push('after-js')
     <script>
+        var color_id = '';
+        var size_id = '';
+        var product = <?php echo json_encode($product->id)?>;
+        $('.color_id').change(function () {
+             color_id = $(this).val();
+             if (size_id) {
+                 getProductDetail(product, color_id, size_id);
+             }
+        });
+
+        $('.size_id').change(function () {
+            size_id = $(this).val();
+            if (color_id) {
+                getProductDetail(product, color_id, size_id);
+            }
+        });
+
+        $('.add-to-card').click(function () {
+            var quantity = $('.dsc_input_number').val();
+            var max_stock = $(this).attr('data-stock');
+            if (parseInt(max_stock)) {
+                if (parseInt(quantity) > parseInt(max_stock)) {
+                    alert('Số lượng tối đa bạn có thể đặt : ' + max_stock);
+                }else {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ url('/product/add-to-card/') }}",
+                        data: {product: product, stock : quantity, size_id: size_id, color_id: color_id},
+                        success : function (result) {
+                            if (result.statusCode == 1) {
+                                $('.shopping-card').attr('title', result.data);
+                                alert('Bạn đã thêm sản phẩm thành công!');
+                            }
+                        }
+                    });
+                }
+            }else {
+                alert('Bạn chưa chọn size hoặc color');
+            }
+        });
+
+        function getProductDetail(product, color_id, size_id) {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/product/item/') }}" + '/' + product,
+                data: {product: product, color_id : color_id, size_id : size_id},
+                success : function (result) {
+                    if (result.statusCode == 1) {
+                        $('.add-to-card').attr('data-stock', result.data);
+                    }
+                }
+            });
+        }
+
         var slideIndex = 1;
         showSlides(slideIndex);
 

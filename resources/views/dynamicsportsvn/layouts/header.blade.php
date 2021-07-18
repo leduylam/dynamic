@@ -1,4 +1,8 @@
-
+<style>
+    .shopping-card::before {
+        content: attr(title) !important;
+    }
+</style>
 <header>
     <!-- Header Start -->
     <div class="header-area">
@@ -104,13 +108,12 @@
                                     <div class="shopping-card">
                                         <a href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
-                                    
-                                    
-
                                 </li>
+                                @if(!auth())
                                 <li class="d-none d-lg-block">
                                         <a href="{{ route('customer.login') }}" class="btn header-btn">Sign in</a>
                                     </li>
+                                @endif
                             </ul>
                         </div>
                         <!-- Mobile Menu -->
@@ -124,4 +127,9 @@
     </div>
     <!-- Header End -->
 </header>
-
+@push('after-js')
+    <script>
+        var cart = <?php echo \Gloudemans\Shoppingcart\Facades\Cart::content()->count(); ?>;
+        $('.shopping-card').attr('title', cart);
+    </script>
+@endpush

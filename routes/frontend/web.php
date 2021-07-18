@@ -14,7 +14,7 @@ use App\Http\Controllers\Dynamic\UserController;
         Route::get('/', [LoginController::class, 'showUserLoginForm'])->name('login');
         Route::post('/', [LoginController::class, 'userLogin'])->name('login.success');
 
-        
+
     });
 
     Route::group([
@@ -26,10 +26,12 @@ use App\Http\Controllers\Dynamic\UserController;
             'prefix' => 'product',
             'as' => 'product.'
         ], function () {
+            Route::get('/item/{id}', [ProductController::class, 'showItem'])->name('item.show');
+            Route::get('/check-stock', [ProductController::class, 'checkStock'])->name('item.stock');
             Route::get('/', [ProductController::class, 'index'])->name('index');
             Route::get('/product-table', [ProductController::class, 'tableProduct'])->name('product-table');
             Route::get('/product-detail/{id}', [ProductController::class, 'productDetail'])->name('product-detail');
-            Route::post('/add-to-card', [ProductController::class, 'addtoCard'])->name('add-to-card');
+            Route::get('/add-to-card', [ProductController::class, 'addtoCard'])->name('add-to-card');
         });
 
         Route::group([
@@ -37,8 +39,10 @@ use App\Http\Controllers\Dynamic\UserController;
             'as' => 'cart.'
         ], function(){
             Route::get('/', [OrderController::class, 'index'])->name('index');
-            Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+            Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+            Route::post('/add', [OrderController::class, 'store'])->name('store');
         });
+
         Route::get('/account', [UserController::class, 'account'])->name('account');
         Route::get('/history-order', [UserController::class, 'historyOrder'])->name('history-order');
         Route::get('/history-detail', [UserController::class, 'historyDetail'])->name('history-detail');

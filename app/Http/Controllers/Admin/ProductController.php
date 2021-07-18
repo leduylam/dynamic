@@ -478,7 +478,6 @@ class ProductController extends Controller
                             $product_detail['size_id'] = !empty($item[3]) ? $item[3] : $product_detail->size;
                             $product_detail['model'] = !empty($item[6]) ? $item[6] : $product_detail->model;
                             $product_detail['brand'] = !empty($item[7]) ? $item[7] : $product_detail->brand;
-                            $product_detail['price'] = !empty($item[11]) ? $item[11] : $product_detail->price;
                             $product_detail->save();
 
                             // stock
@@ -624,7 +623,6 @@ class ProductController extends Controller
         $product_detail['product_id'] = $product['id'];
         $product_detail['color_id'] = !empty($item[2]) ? $item[2] : null;
         $product_detail['size_id'] = !empty($item[3]) ? $item[3] : null;
-        $product_detail['price'] = !empty($item[11]) ? $item[11] : null;
         $product_detail['model'] = !empty($item[6]) ? $item[6] : null;
         $product_detail['brand'] = !empty($item[7]) ? $item[7] : null;
         $product_detail->save();
@@ -647,6 +645,9 @@ class ProductController extends Controller
         return $stock;
     }
 
+    /**
+     * @var string
+     */
     public $error_messages = '';
     public function validateProduct($params)
     {
