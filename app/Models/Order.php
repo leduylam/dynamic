@@ -24,7 +24,8 @@ class Order extends Model
         'shipping_start_date',
         'memo',
         'customer',
-        'address'
+        'address',
+        'email',
     ];
 
     protected $with = [

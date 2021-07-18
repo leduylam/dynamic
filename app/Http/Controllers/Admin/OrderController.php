@@ -320,6 +320,11 @@ class OrderController extends Controller
                     // stock product
                     $stock['quantity'] = $stock['quantity'] - $quantity;
                     $stock->save();
+
+                    // rating product
+                    $product['rating'] += 1;
+                    $product->save();
+
                 } else {
                     return response()->json([
                         'statusCode' => 0,
