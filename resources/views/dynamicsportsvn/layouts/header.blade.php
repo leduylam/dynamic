@@ -98,10 +98,13 @@
                             <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                 <li class="d-none d-xl-block">
                                     <div class="form-box f-right ">
-                                        <input type="text" name="Search" placeholder="Search products">
-                                        <div class="search-icon">
-                                            <i class="fas fa-search special-tag"></i>
-                                        </div>
+                                        <form action="{{ route('product.index') }}" method="get">
+                                            <input type="search" name="search" placeholder="Search products"
+                                                   value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}">
+                                            <div class="search-icon">
+                                                <i class="fas fa-search special-tag"></i>
+                                            </div>
+                                        </form>
                                     </div>
                                 </li>
                                 <li>

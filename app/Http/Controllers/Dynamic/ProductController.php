@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dynamic;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductDetail;
@@ -16,17 +15,26 @@ use App\Models\Stock;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $products = Product::get();
-        // dd($products);
-        foreach ($products as $index => $product) {
-            $image_id = ProductImage::where('product_id', $product->id)->orderBy('created_at', 'desc')->first();
-            if (!empty($image_id)) {
-                $image = Image::find($image_id->image_id);
-                $products[$index]['image'] = $image->description;
+    public function index(Request $request){
+        $query = Product::query();
+        if (!empty($request['order_by']) || !empty($request['search'])) {
+            if ($request['search']) {
+                $query = $query->where('name', 'like' ,'%'.$request['search'].'%');
+            }else if ($request['order_by'] == 'desc') {
+                $query = $query->orderBy('created_at', 'desc');
+            }else {
+                $query = $query->orderBy('created_at', 'acs');
             }
         }
-        return view('dynamicsportsvn.product.index', compact('products'));
+
+        $products = $query->get();
+        $products = $this->getImage($products);
+
+        // product new
+        $product_news = Product::orderBy('created_at', 'desc')->get();
+        $product_news = $this->getImage($product_news);
+
+        return view('dynamicsportsvn.product.index', compact('products', 'product_news'));
     }
 
     /**
@@ -168,5 +176,18 @@ class ProductController extends Controller
             'statusCode' => 0,
             'data' => null
         ], 200);
+    }
+
+    public function getImage($products)
+    {
+        foreach ($products as $index => $product) {
+            $image_id = ProductImage::where('product_id', $product->id)->orderBy('created_at', 'desc')->first();
+            if (!empty($image_id)) {
+                $image = Image::find($image_id->image_id);
+                $products[$index]['image'] = $image->description;
+            }
+        }
+
+        return $products;
     }
 }
