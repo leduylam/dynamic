@@ -29,36 +29,14 @@
 							<div class="visit">Total</div>
 							<div class="percentage">Date</div>
 						</div>
-						<div class="table-row">
-							<div class="serial">01</div>
-							<div class="country"><a href=" {{ route('history-detail') }} "> DSC/00001</a></div>
-							<div class="visit">12.328.928 VND</div>
-							<div class="percentage">14/02/2021</div>
+                        @foreach($orders as $index => $order)
+						    <div class="table-row">
+							<div class="serial">{{ $index + 1 }}</div>
+							<div class="country"><a href=" {{ route('user.history-detail', $order->id) }} "> {{ $order->sku }}</a></div>
+							<div class="visit">{{ $order->total_amount }} VND</div>
+							<div class="percentage">{{ \Carbon\Carbon::parse($order->order_date)->format('Y-m-d') }}</div>
 						</div>
-                        <div class="table-row">
-							<div class="serial">02</div>
-							<div class="country"><a href=""> DSC/00022</a></div>
-							<div class="visit">12.328.928 VND</div>
-							<div class="percentage">20/02/2021</div>
-						</div>
-                        <div class="table-row">
-							<div class="serial">03</div>
-							<div class="country"><a href=""> DSC/00124</a></div>
-							<div class="visit">12.328.928 VND</div>
-							<div class="percentage">05/03/2021</div>
-						</div>
-                        <div class="table-row">
-							<div class="serial">04</div>
-							<div class="country"><a href=""> DSC/00344</a></div>
-							<div class="visit">12.328.928 VND</div>
-							<div class="percentage">12/04/2021</div>
-						</div>
-                        <div class="table-row">
-							<div class="serial">05</div>
-							<div class="country"><a href=""> DSC/00435</a></div>
-							<div class="visit">12.328.928 VND</div>
-							<div class="percentage">01/05/2021</div>
-						</div>
+                        @endforeach
 					</div>
 				</div>
 			</div>

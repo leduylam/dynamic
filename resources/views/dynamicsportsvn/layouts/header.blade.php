@@ -38,7 +38,7 @@
                                 <ul>
                                     <li>
                                         @if(auth()->user())
-                                            <a href="{{ route('customer.login') }}">{{ auth()->user()->name }}</a>
+                                            <a href="{{ route('user.account') }}">{{ auth()->user()->name }}</a>
                                         @else
                                             <a href="{{ route('customer.login') }}">My Account </a>
                                         @endif
