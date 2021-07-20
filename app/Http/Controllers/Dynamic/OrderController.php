@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductDetail;
+use App\Models\Stock;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -98,21 +99,28 @@ class OrderController extends Controller
                     $array_category = json_decode($category->category_id);
                 }
 
-                // create order detail
-                $order_detail = new OrderItem();
-                $order_detail['order_id'] = $query->id;
-                $order_detail['product_detail_id'] = $item->name;
-                $order_detail['quantity'] = $item->qty;
-                $order_detail['price'] = $item->qty * $item->price;
-                $order_detail['product_id'] = $item->options['product_id'];
-                $order_detail['category_id'] = !empty($array_category) ? end($array_category) : null;
-                $order_detail->save();
+                $stock = Stock::where('product_detail_id', $item->id)->first();
+                if (!empty($stock) && $stock->quantity >= $item->qty) {
+                    // create order detail
+                    $order_detail = new OrderItem();
+                    $order_detail['order_id'] = $query->id;
+                    $order_detail['product_detail_id'] = $item->name;
+                    $order_detail['quantity'] = $item->qty;
+                    $order_detail['price'] = $item->qty * $item->price;
+                    $order_detail['product_id'] = $item->options['product_id'];
+                    $order_detail['category_id'] = !empty($array_category) ? end($array_category) : null;
+                    $order_detail->save();
 
-                // update rating product_detail
-                $product_detail = ProductDetail::find($item->id);
-                if (!empty($product_detail)) {
-                    $product_detail['rating'] += 1;
-                    $product_detail->save();
+                    // update rating product_detail
+                    $product_detail = ProductDetail::find($item->id);
+                    if (!empty($product_detail)) {
+                        $product_detail['rating'] += 1;
+                        $product_detail->save();
+                    }
+
+                    // update stock
+                    $stock['quantity'] -= $item->qty;
+                    $stock->save();
                 }
             }
 
@@ -121,6 +129,8 @@ class OrderController extends Controller
             Log::error($e);
             return redirect()->back()->with('error', 'Bạn đã order không thành công!');
         }
+
+        Cart::destroy();
 
         return redirect()->route('product.index')->with('success', 'Bạn đã order thành công!');
     }

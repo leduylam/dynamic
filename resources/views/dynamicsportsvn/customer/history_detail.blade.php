@@ -35,69 +35,40 @@
                             </tr>
                         </thead>
                         <tfoot>
-                            
+
                         </tfoot>
                         <tbody>
+                        @foreach($order_items as $item)
                             <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="{{ asset('dynamic/assets/img/arrivel/arrivel_1.png') }}" alt="" />
+                                            <img style="height: 200px !important;" src="{{ \Storage::disk('s3')->url('product/'.$item['image']) }}" alt="" />
                                         </div>
                                         <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                            <p>{{ $item->productDetail->product->name }}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>XS</h5>
+                                    <h5>{{ $item->productDetail->size->size }}</h5>
                                 </td>
                                 <td>
-                                    <h5>White</h5>
+                                    <h5>{{ $item->productDetail->color->color }}</h5>
                                 </td>
                                 <td>
-                                    <h5>$360.00</h5>
+                                    <h5>{{ $item->productDetail->product->price }}</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <h5>2</h5>
+                                        <h5>{{ $item->quantity }}</h5>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$720.00</h5>
+                                    <h5>{{ $item->price }}</h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td colspan="2">
-                                    <h5>Sub total</h5>
-                                    
-                                </td>
-                                <td>
-                                    <h5>SL: 10</h5>
-                                    
-                                </td>
-                                <td>
-                                    <h5 style="margin-bottom: 10px;">$2160.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td colspan="3">
-                                    <h5>Discount</h5>
-                                </td>
-                                <td>
-                                    <div class="shipping_box">
-                                        <ul class="list">
-                                            <li>
-                                                5 %
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                        @endforeach
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -108,7 +79,7 @@
                                     <div class="shipping_box">
                                         <ul class="list">
                                             <li>
-                                                $1232.00
+                                                {{ $order->total_amount }}
                                             </li>
                                         </ul>
                                     </div>
@@ -117,7 +88,7 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <a class="btn_1" href="#">Go to Shopping</a>
+                        <a class="btn_1" href="{{ route('product.index') }}">Go to Shopping</a>
                     </div>
                 </div>
             </div>

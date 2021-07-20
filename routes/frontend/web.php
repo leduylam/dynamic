@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dynamic\DynamicSportController;
-use App\Http\Controllers\Dynamic\ProductController;
 use App\Http\Controllers\Dynamic\OrderController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dynamic\UserController;
+use App\Http\Controllers\Dynamic\ProductController;
 
     Route::group([
         'prefix' => 'customer',
@@ -13,12 +13,10 @@ use App\Http\Controllers\Dynamic\UserController;
     ], function () {
         Route::get('/', [LoginController::class, 'showUserLoginForm'])->name('login');
         Route::post('/', [LoginController::class, 'userLogin'])->name('login.success');
-
-
     });
 
     Route::group([
-        ['middleware' => ['auth:user']],
+        ['middleware' => ['auth']],
     ], function () {
         Route::get('/', [DynamicSportController::class, 'home'])->name('welcome');
 
@@ -43,8 +41,15 @@ use App\Http\Controllers\Dynamic\UserController;
             Route::post('/add', [OrderController::class, 'store'])->name('store');
         });
 
-        Route::get('/account', [UserController::class, 'account'])->name('account');
-        Route::get('/history-order', [UserController::class, 'historyOrder'])->name('history-order');
-        Route::get('/history-detail', [UserController::class, 'historyDetail'])->name('history-detail');
+        Route::group([
+            'prefix' => 'user',
+            'as' => 'user.',
+        ], function () {
+            Route::get('/account', [UserController::class, 'account'])->name('account');
+            Route::get('/history-order', [UserController::class, 'historyOrder'])->name('history-order');
+            Route::get('/history-detail/{id}', [UserController::class, 'historyDetail'])->name('history-detail');
+            Route::post('/detail', [UserController::class, 'detail'])->name('detail');
+            Route::post('/change-password', [UserController::class, 'changePassword'])->name('change-password');
+        });
     });
 ?>
