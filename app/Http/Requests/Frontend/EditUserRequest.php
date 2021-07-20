@@ -30,4 +30,14 @@ class EditUserRequest extends FormRequest
             'address' => 'required|max:255',
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function messages() {
+        return [
+            'email.user_unique_email_edit' => 'Email already exists',
+            'sku.user_unique_sku_edit' => 'Sku already exists',
+        ];
+    }
 }

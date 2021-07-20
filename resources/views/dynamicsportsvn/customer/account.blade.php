@@ -4,7 +4,7 @@
     <div class="slider-area ">
         <!-- Mobile Menu -->
         <div class="single-slider slider-height2 d-flex align-items-center"
-            data-background="{{ asset('dynamic/assets/img/hero/category.jpg') }}">
+             data-background="{{ asset('dynamic/assets/img/hero/category.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -20,7 +20,7 @@
     <div class="section-top-border">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 col-md-7">
+                <div class="col-md-12">
                     @if ($message = \Illuminate\Support\Facades\Session::get('success'))
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
@@ -32,26 +32,44 @@
                         </div>
                     @endif
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7 col-md-7">
                     <form action="{{ route('user.detail') }}" method="post">
                         @csrf
                         <h3 class="mb-30">Information</h3>
                         <div class="mt-10">
-                            <input type="text" name="name" placeholder="Name" value="{{ !empty(old('name')) ? old('name') : auth()->user()->name }}"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'"
-                                required="" class="single-input">
+                            <input type="text" name="name" placeholder="Name"
+                                   value="{{ !empty(old('name')) ? old('name') : auth()->user()->name }}"
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'"
+                                   required="" class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="email" name="email" placeholder="Email address" value="{{ !empty(old('email')) ? old('email') : auth()->user()->email }}" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Email address'" class="single-input">
+                            <input type="email" name="email" placeholder="Email address"
+                                   value="{{ !empty(old('email')) ? old('email') : auth()->user()->email }}"
+                                   onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Email address'" class="single-input">
                         </div>
                         <div class="mt-10">
-                            <input type="number" name="phone" placeholder="Phone number" value="{{ !empty(old('phone')) ? old('phone') : auth()->user()->phone }}" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Phone number'" class="single-input">
+                            <input type="number" name="phone" placeholder="Phone number"
+                                   value="{{ !empty(old('phone')) ? old('phone') : auth()->user()->phone }}"
+                                   onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Phone number'" class="single-input">
                         </div>
                         <div class="mt-10">
                             <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''"
                                    value="{{ !empty(old('address')) ? old('address') : auth()->user()->address }}"
-                                onblur="this.placeholder = 'Address'" required="" class="single-input">
+                                   onblur="this.placeholder = 'Address'" required="" class="single-input">
                         </div>
                         <div class="d-flex mt-10 align-items-center justify-content-end">
                             <button type="submit" class="btn_1" style="padding: 10px 20px;">Submit</button>
@@ -66,18 +84,20 @@
                         <h3 class="mb-30">Change Password</h3>
                         <div class="mt-10">
                             <input type="password" name="password" placeholder="Current Password"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Password'" required=""
-                                class="single-input">
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Current Password'"
+                                   required=""
+                                   class="single-input">
                         </div>
                         <div class="mt-10">
                             <input type="password" name="password_confirmation" placeholder="New Password"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'New Password'" required=""
-                                class="single-input">
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'New Password'"
+                                   required=""
+                                   class="single-input">
                         </div>
                         <div class="mt-10">
                             <input type="password" name="password_new" placeholder="Comfirm New Password"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Comfirm New Password'"
-                                required="" class="single-input">
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Comfirm New Password'"
+                                   required="" class="single-input">
                         </div>
                         <div class="d-flex mt-10 align-items-center justify-content-end">
                             <button type="submit" class="btn_1" style="padding: 10px 20px;">Submit</button>
