@@ -85,6 +85,9 @@ class ProductController extends Controller
                 }
 
                 if (!empty($category)) {
+                    $data['category_1'] = !empty($category[0]) ? $category[0] : null;
+                    $data['category_2'] = !empty($category[1]) ? $category[1] : null;
+                    $data['category_3'] = !empty($category[2]) ? $category[2] : null;
                     $category = array_filter($category);
                     $data['category_id'] = json_encode($category);
                 }
@@ -231,6 +234,9 @@ class ProductController extends Controller
                 }
 
                 if (!empty($category)) {
+                    $data['category_1'] = !empty($category[0]) ? $category[0] : null;
+                    $data['category_2'] = !empty($category[1]) ? $category[1] : null;
+                    $data['category_3'] = !empty($category[2]) ? $category[2] : null;
                     $category = array_filter($category);
                     $data['category_id'] = json_encode($category);
                 }

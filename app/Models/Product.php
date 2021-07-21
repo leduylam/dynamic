@@ -18,7 +18,8 @@ Product extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'sku', 'price', 'image', 'description', 'content', 'status', 'category_id'];
+    protected $fillable = ['name', 'sku', 'price', 'image', 'description', 'content', 'status', 'category_id',
+        'category_1', 'category_2', 'category_3'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -37,7 +38,7 @@ Product extends Model
     {
         return $this->belongsToMany(Color::class, 'product_details', 'product_id', 'color_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -45,5 +46,5 @@ Product extends Model
     {
         return $this->hasMany(ProductDetail::class, 'product_id');
     }
-    
+
 }
